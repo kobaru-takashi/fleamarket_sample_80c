@@ -24,10 +24,11 @@
 |delivery-fee|integer|null: false|
 |send-from|string|null: false|
 |delivery-date|integer|null: false|
+|user_id|integer|null: false|
 
 ### Association
 - belongs_to :user
-- has_many :categories
+- belongs_to :category
 - has_many :images, inverse_of: :product
 - accepts_nested_attributes_for :images
 
