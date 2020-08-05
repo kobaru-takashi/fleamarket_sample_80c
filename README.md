@@ -11,7 +11,7 @@
 ### Association
 - has_many :products
 - has_many :credits
-- belongs_to :address
+- has_one :address
 
 
 ## Productsテーブル
@@ -24,7 +24,6 @@
 |delivery-fee|integer|null: false|
 |send-from|string|null: false|
 |delivery-date|integer|null: false|
-|image_id|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -37,6 +36,7 @@
 |Column|Type|Option|
 |------|----|------|
 |product_id|integer|null: false|
+|image|string|null: false|
 
 ### Association
 - belongs_to :product, inverse_of: :images
@@ -49,6 +49,7 @@
 |date-month|integer|null: false|
 |date-year|integer|null: false|
 |security-code|integer|null: false|
+|user_id|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -80,6 +81,7 @@
 |family-name-kana|string|null: false|
 |first-name-kana|string|null: false|
 |birth|date|null: false|
+|user_id|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -89,7 +91,6 @@
 |Column|Type|Option|
 |------|----|------|
 |name|string|null: false|
-|product_id|integer|null: false|
 
 ### Association
 - has_many :products
