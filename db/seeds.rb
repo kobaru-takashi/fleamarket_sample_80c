@@ -12,3 +12,10 @@ image = []
 10.times do |i|
   image << Image.new(product_id: "#{i+1}", image: "pict-reason-01.jpg")
 end
+
+require "csv"
+
+CSV.foreach('db/category.csv') do |row|
+  Category.create(:id => row[0], :name => row[1], :ancestry => row[2])
+end 
+

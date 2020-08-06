@@ -68,6 +68,10 @@ gem 'mini_magick'
 gem 'pry-rails'
 gem 'devise'
 
+gem 'ancestry'
+gem 'devise'
+
 group :production do
   gem 'unicorn'
 end
+
