@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_08_06_051627) do
+ActiveRecord::Schema.define(version: 2020_08_06_105202) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -30,6 +29,14 @@ ActiveRecord::Schema.define(version: 2020_08_06_051627) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
   create_table "identifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
     t.string "first_name", null: false
@@ -40,15 +47,14 @@ ActiveRecord::Schema.define(version: 2020_08_06_051627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_identifications_on_user_id"
+  end
 
-ActiveRecord::Schema.define(version: 2020_08_06_053102) do
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "ancestry"
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["product_id"], name: "index_images_on_product_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,5 +90,5 @@ ActiveRecord::Schema.define(version: 2020_08_06_053102) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "identifications", "users"
-
+  add_foreign_key "images", "products"
 end

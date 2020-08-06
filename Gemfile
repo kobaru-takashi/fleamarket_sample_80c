@@ -70,8 +70,8 @@ gem 'devise'
 
 gem 'ancestry'
 gem 'devise'
+gem 'faker'
 
 group :production do
   gem 'unicorn'
 end
-
