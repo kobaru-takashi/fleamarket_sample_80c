@@ -66,6 +66,7 @@ gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'pry-rails'
+gem 'devise'
 
 group :production do
   gem 'unicorn'
