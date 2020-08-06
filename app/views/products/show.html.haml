@@ -1,0 +1,13 @@
+
+-# %tr 
+-#   %th カテゴリー
+-#   - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+-#     %td
+-#       = link_to "#{@category_child.name}","#"
+-#       %br= link_to "#{@category_grandchild.name}","#" 
+-#   -else
+-#     %td 
+-#       = link_to "#{@category_parent.name}","#"
+-#       %br= link_to "#{@category_child.name}","#"
+-#       = link_to "#{@category_grandchild.name}","#"
+-# %tr
