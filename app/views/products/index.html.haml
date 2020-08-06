@@ -1,3 +1,5 @@
+.header
+  = render "header"
 .main
   .mainVisual
     .mainVisual-content
@@ -175,10 +177,10 @@
               .pickupBrand-list-evaluation-tax (税込)
             .pickupBrand-list-evaluation-star ★2
 
-.appBanner
-  .appBanner-content
-    .appBanner-content__title だれでもかんたん、人生を変えるフリマアプリ
-    .appBanner-content__text 今すぐ無料ダウンロード！
-    .appBanner-content__icons
-      = link_to image_tag("/assets/pict/app-store.svg", alt: "app-store", class: "icon"), "#"
-      = link_to image_tag("/assets/pict/google-play.svg", alt: "google-play", class: "icon"), "#"
+
+%aside.appBanner
+  = render 'aside'
+.footer
+  = render 'footer'
+.purchase-link
+  =render 'purchase-btn'
