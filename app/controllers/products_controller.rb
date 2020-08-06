@@ -1,27 +1,50 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:edit, :show]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
+    @products = Product.all.order("created_at DESC").limit(5)
   end
 
   def new
     @category_parent_array = Category.where(ancestry: nil)
+    @product = Product.new
+
   end
 
   def create
+    Product.create(product_params)
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+  end
+
+  def edit
+  end
+
+  def update
+    product = Product.find(params[:id])
+    product.update(product_params)
+  end
+  
   def show
-    @category_id = @product.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    @user = @product.user
   end
 
-  def get_category_children
-    @category_children = Category.find("#{params[:parent_id]}").children
+  private
+  def product_params
+    params.require(:params).permit(:name, :price, :image)
   end
 
-  def get_category_grandchildren
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

@@ -1,0 +1,186 @@
+.header
+  = render "header"
+.main
+  .mainVisual
+    .mainVisual-content
+      .mainVisual-content__title 人生を変えるフリマアプリ
+      .mainVisual-content__text
+        .mainVisual-content__text__up FURIMAはだれでもかんたんに出品・購入できる
+        .mainVisual-content__text__under フリマアプリです
+      .mainVisual-content__icon
+        = link_to image_tag("/assets/pict/app-store.svg", alt: "app-store", class: "icon"), "#"
+        = link_to image_tag("/assets/pict/google-play.svg", alt: "google-play", class: "icon"), "#"
+
+  .topIntroduce
+    .topIntroduce-title 
+      .topIntroduce-title-name FURIMAが選ばれる3つの理由
+      .topIntroduce-title-lines
+    .topIntroduce-lists
+      .topIntroduce-list
+        .image-reason1-tag
+          .number1 1
+        .topIntroduce-list-title 
+          %font{color: "#3CCACE"}> 3分
+          ですぐに出品
+        .topIntroduce-list-text スマホで入力するだけで簡単に出品できる！
+      .topIntroduce-list
+        .image-reason2-tag
+          .number2 2
+        .topIntroduce-list-title
+          %font{color: "#3CCACE"}> シンプル
+          で使いやすい
+        .topIntroduce-list-text めんどくさい入力は必要なく、検索も購入もスムーズ！
+      .topIntroduce-list
+        .image-reason3-tag
+          .number3 3
+        .topIntroduce-list-title
+          %font{color: "#3CCACE"}> 手数料
+          業界最安
+        .topIntroduce-list-text 最大3%でお得に出品&購入！
+
+  .topVisual
+    .topVisual-content
+      .topVisual-content__title 会員数日本一位
+      .topVisual-content__text
+        .topVisual-content__text__up FURIMAは、フリマアプリで最も人気。
+        .topVisual-content__text__middle 出品・購入回数も業界最多です！
+        .topVisual-content__text__under ほしかったあの商品に出会えるかもしれません。
+      .topVisual-content__icon
+        = link_to image_tag("/assets/pict/app-store.svg", alt: "app-store", class: "icon"), "#"
+        = link_to image_tag("/assets/pict/google-play.svg", alt: "google-play", class: "icon"), "#"
+
+
+  .topFeature
+    .topFeature-title
+      .topFeature-title-name FURIMAの特徴
+      .topFeature-title-lines
+    .topFeature-lists
+      .topFeature-list
+        .topFeature-list-icon1
+        .topFeature-list-title 簡単に売り買いできる
+        .topFeature-list-text スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      .topFeature-list
+        .topFeature-list-icon2
+        .topFeature-list-title 売上金は即日振込みに対応
+        .topFeature-list-text 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .topFeature-list
+        .topFeature-list-icon3
+        .topFeature-list-title 様々な支払いに対応
+        .topFeature-list-text お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+  .pickupCategory
+    .pickupCategory-title ピックアップカテゴリー
+    .pickupCategory-subtitle 新規投稿商品
+    .pickupCategory-lists
+      .pickupCategory-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
+        .pickupCategory-list-body
+          .pickupCategory-list-name テスト
+          .pickupCategory-list-evaluation
+            .pickupCategory-list-evaluation-left
+              .pickupCategory-list-evaluation-price 10000円
+              .pickupCategory-list-evaluation-tax (税込)
+            .pickupCategory-list-evaluation-star ★1
+      .pickupCategory-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
+        .pickupCategory-list-body
+          .pickupCategory-list-name テスト
+          .pickupCategory-list-evaluation
+            .pickupCategory-list-evaluation-left
+              .pickupCategory-list-evaluation-price 10000円
+              .pickupCategory-list-evaluation-tax (税込)
+            .pickupCategory-list-evaluation-star ★1
+      .pickupCategory-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
+        .pickupCategory-list-body
+          .pickupCategory-list-name テスト
+          .pickupCategory-list-evaluation
+            .pickupCategory-list-evaluation-left
+              .pickupCategory-list-evaluation-price 10000円
+              .pickupCategory-list-evaluation-tax (税込)
+            .pickupCategory-list-evaluation-star ★1
+      .pickupCategory-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
+        .pickupCategory-list-body
+          .pickupCategory-list-name テスト
+          .pickupCategory-list-evaluation
+            .pickupCategory-list-evaluation-left
+              .pickupCategory-list-evaluation-price 10000円
+              .pickupCategory-list-evaluation-tax (税込)
+            .pickupCategory-list-evaluation-star ★1
+      .pickupCategory-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
+        .pickupCategory-list-body
+          .pickupCategory-list-name テスト
+          .pickupCategory-list-evaluation
+            .pickupCategory-list-evaluation-left
+              .pickupCategory-list-evaluation-price 10000円
+              .pickupCategory-list-evaluation-tax (税込)
+            .pickupCategory-list-evaluation-star ★1
+
+  .pickupBrand
+    .pickupBrand-title ピックアップブランド
+    .pickupBrand-subtitle アーカイバ
+    .pickupBrand-lists
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+      .pickupBrand-list
+        = link_to image_tag("/assets/pict/beef.jpeg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
+        .pickupBrand-list-body
+          .pickupBrand-list-name テスト
+          .pickupBrand-list-evaluation
+            .pickupBrand-list-evaluation-left
+              .pickupBrand-list-evaluation-price 20000円
+              .pickupBrand-list-evaluation-tax (税込)
+            .pickupBrand-list-evaluation-star ★2
+
+
+%aside.appBanner
+  = render 'aside'
+.footer
+  = render 'footer'
+.purchase-link
+  =render 'purchase-btn'
