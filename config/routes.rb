@@ -4,4 +4,14 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :users
+  resources :products do
+    collection do # 新規用（new) usr:products/newのため
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+    member do # 編集(edit用) usl: products/id/editのため
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end 
 end

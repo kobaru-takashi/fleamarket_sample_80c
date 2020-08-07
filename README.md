@@ -91,11 +91,23 @@
 ## Categoriesテーブル
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
+|name|string|null: false, index: true|
+|ancestry|string|index: true|
 
 ### Association
 - has_many :products
 - has_ancestry
+
+
+## products_categoriesテーブル
+|Column|Type|Option|
+|------|----|------|
+|product_id|references|null: false|
+|category_id|references|null: false|
+
+### Association
+- belongs_to：product
+- belongs_to：category
 
 
 ![er-fleamarcket-訂正](https://user-images.githubusercontent.com/67687475/89374438-57345d00-d726-11ea-87cb-60bd29c66869.jpg)
