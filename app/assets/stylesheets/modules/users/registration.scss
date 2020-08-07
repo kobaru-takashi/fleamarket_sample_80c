@@ -1,5 +1,7 @@
 .Account{
   display: block;
+  height: 100vh;
+  overflow: scroll;
   &__container{
     background-color: #ffffff;
     max-width: 380px;
@@ -19,7 +21,7 @@
             font-weight: 600;
           }
           .Form__require{
-            background-color: #ea352d;
+            background-color: #3ccace;
             margin-bottom: 8px;
             padding: 2px 4px;
             border-radius: 2px;
@@ -59,40 +61,21 @@
             }
           }
           .Form__birthdayWrap{
-            display: flex;
-            .Form__selectWrap{
-              width: 100%;
-              position: relative;
+            width: 100%;
+            height: 48px;
+            line-height: 1.5;
+            .year, .month, .day{
+              width: calc( 80% / 3);
               height: 48px;
               border: 1px solid #cccccc;
-              line-height: 1.5;
-              cursor: pointer;
-              width: calc(34% - 17px);
-              display: inline-block;
-              .Form__iconBottom{
-                color: #888888;
-                font-size: 8px;
-              }
-              .Form__select.valid{
-                width: 100%;
-                height: 100%;
-              }
-            }
-            .Form__selectWrap.Form__selectWrap--month{
-              display: inline-block;
-              width: calc( 30% - 17px);
-            }
-            .Form__selectWrap.Form__selectWrap--day{
-              display: inline-block;
-              width: calc( 30% - 17px);
             }
           }
         }
         .actions{
           .UserButton{
             margin-top: 24px;
-            background-color: #ea352d;
-            border: 1px solid #ea352d;
+            background-color: #3ccace;
+            border: 1px solid #3ccace;
             color: #ffffff;
             display: block;
             width: 100%;
