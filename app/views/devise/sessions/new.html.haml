@@ -1,20 +1,40 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Log in
-    %h5 登録しているユーザーでログイン
-    = render "devise/shared/links"
-  .AccountPage__form
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
+
+.Account
+  %section.Account__container
+    %h2.Account__title ログイン
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email, autofocus: true
-        .FormField
-          .FormField__label--normal
-            = f.label :password
-            %i (英数字8文字以上)
-          .FormField__input--normal
-            = f.password_field :password, autocomplete: "off"
+      .Account__content
+        .Form__group
+          = render "devise/shared/links"
+      .Account__content
+        .Form__group
+          = f.label :email, "メールアドレス"
+          = f.email_field :email, autofocus: true, class:"Form__input"
+        .Form__group.Form_password
+          = f.label :password, "パスワード"
+          = f.password_field :password, autocomplete: "off", class: "Form__input", placeholder:"7文字以上の半角英数字"
+        .Form__group
+          = link_to "#",class:"Form__info" do
+            パスワードお忘れの方
         .actions
-          = f.submit "Log in", class: 'Button UserButton'
+          = f.submit "Log in", class: "Button UserButton", value: "ログインをする"
+
+.footer
+  %ul.Content
+    %li.Content-list
+      =link_to "#", class:"Content-link" do
+        プライバシーポリシー
+    %li.Content-list
+      =link_to "#", class:"Content-link" do
+        フリマ利用規約
+    %li.Content-list
+      =link_to "#", class:"Content-link" do
+        特定商取引に関する表記
+  .footer__logo
+    =link_to "#", class:"footer__logo-link" do
+      =image_tag "logo-white.png", class:"footer-image"
+    %p.furima-c © FURIMA

@@ -1,5 +1,7 @@
 .Account{
   display: block;
+  height: 100vh;
+  overflow: scroll;
   &__container{
     background-color: #ffffff;
     max-width: 380px;
@@ -8,7 +10,7 @@
       padding: 16px;
       font-size: 18px;
       line-height: 1.5;
-      text-align: center;
+      text-align: center; 
     }
     form{
       padding: 24px 16px 40px;
@@ -19,7 +21,7 @@
             font-weight: 600;
           }
           .Form__require{
-            background-color: #ea352d;
+            background-color: #3ccace;
             margin-bottom: 8px;
             padding: 2px 4px;
             border-radius: 2px;
@@ -87,12 +89,25 @@
               width: calc( 30% - 17px);
             }
           }
+          .Button{
+            margin-top: 24px;
+            background-color: #3ccace;;
+            border: 1px solid #3ccace;;
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+          }
         }
         .actions{
           .UserButton{
             margin-top: 24px;
-            background-color: #ea352d;
-            border: 1px solid #ea352d;
+            background-color: #3ccace;
+            border: 1px solid #3ccace;
             color: #ffffff;
             display: block;
             width: 100%;
