@@ -1,0 +1,109 @@
+.Account{
+  display: block;
+  &__container{
+    background-color: #ffffff;
+    max-width: 380px;
+    margin: 0 auto;
+    .Account__title{
+      padding: 16px;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    form{
+      padding: 24px 16px 40px;
+      .Account__content{
+        max-width: 380px;
+        .Form__group{
+          label{
+            font-weight: 600;
+          }
+          .Form__require{
+            background-color: #ea352d;
+            margin-bottom: 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #ffffff;
+            font-size: 12px;
+            vertical-align: top;
+          }
+          .Form__input{
+            width: 90%;
+            margin-top: 8px;
+            height: 48px;
+            padding: 10px 16px 8px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+            line-height: 1.5;
+            font-size: 16px;
+          }
+        }
+        .Form__info{
+          margin-top: 8px;
+          line-height: 1.5;
+        }
+        .Form__group{
+          .Form__leftText{
+            font-size: 14px;
+          }
+          .Form__singleText{
+            margin-top: 8px;
+            line-height: 1.5;
+          }
+          .Form__half-area{
+            display: flex;
+            .Form__input.half{
+              margin-right: 10px;
+              width: calc( 50% - 3px );
+            }
+          }
+          .Form__birthdayWrap{
+            display: flex;
+            .Form__selectWrap{
+              width: 100%;
+              position: relative;
+              height: 48px;
+              border: 1px solid #cccccc;
+              line-height: 1.5;
+              cursor: pointer;
+              width: calc(34% - 17px);
+              display: inline-block;
+              .Form__iconBottom{
+                color: #888888;
+                font-size: 8px;
+              }
+              .Form__select.valid{
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .Form__selectWrap.Form__selectWrap--month{
+              display: inline-block;
+              width: calc( 30% - 17px);
+            }
+            .Form__selectWrap.Form__selectWrap--day{
+              display: inline-block;
+              width: calc( 30% - 17px);
+            }
+          }
+        }
+        .actions{
+          .UserButton{
+            margin-top: 24px;
+            background-color: #ea352d;
+            border: 1px solid #ea352d;
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
