@@ -3,13 +3,11 @@ class Address < ApplicationRecord
 
   validates :family_name_kana,:first_name_kana,  presence: true,
                                format: {
-                               with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-                               message: "全角カタカナのみで入力して下さい"
+                               with:  /\A[\p{katakana}\p{blank}ー－]+\z/
                                 }
-  validates :family_name, :first_name, :prefecture, :city, :address, presence: true
-  validates :post_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
-
-
+  validates :family_name, :first_name, presence: true, format:{ with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }
+  validates :post_code, presence: true, format:{with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}
+  validates :prefecture, :city, :address, presence: true
 
 
 
@@ -26,3 +24,7 @@ class Address < ApplicationRecord
     沖縄県:47
   }
 end
+
+
+# message: "全角カタカナのみで入力して下さい"
+# message: "全角文字のみで入力してください"

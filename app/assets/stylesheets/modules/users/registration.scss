@@ -5,7 +5,7 @@
   &__container{
     background-color: #ffffff;
     max-width: 380px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     .Account__title{
       padding: 16px;
       font-size: 18px;
@@ -93,7 +93,7 @@
         }
         .actions{
           .UserButton{
-            margin-top: 24px;
+            margin-top: 55px;
             background-color: #3ccace;
             border: 1px solid #3ccace;
             color: #ffffff;

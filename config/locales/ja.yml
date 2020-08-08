@@ -7,6 +7,20 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      address:
+        post_code: "郵便番号"
+        prefecture: "都道府県"
+        city: "市区町村"
+        address: "番地"
+        building: "建物名・部屋番号"
+        telephone_number: "電話番号"
+        family_name: お名前(姓)
+        first_name: お名前(名)
+        family_name_kana: お名前カナ(姓)
+        first_name_kana: お名前カナ(名)
+    models:
+      address: 住所
   date:
     abbr_day_names:
     - 日

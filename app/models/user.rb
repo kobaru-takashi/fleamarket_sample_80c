@@ -6,8 +6,13 @@ class User < ApplicationRecord
 
   validates :nickname, :email , presence: true, uniqueness: true
   validates :family_name_kana,  :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
-  validates :family_name, :first_name, :birth_date, presence: true
+  validates :birth_date, presence: true
+  validates :password, presence: true, format: { with:  /\A(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,100}+\z/ }
+  validates :family_name, :first_name, presence: true, format:{ with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }
 
   has_one :address
   has_many :products
 end
+
+# message: "には英小文字、数字を全て含めてください。記号は使用できません。"
+# message: "全角文字のみで入力してください"

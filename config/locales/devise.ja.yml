@@ -25,8 +25,28 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        nickname: ニックネーム
+        family_name: お名前(姓)
+        first_name: お名前(名)
+        family_name_kana: お名前カナ(姓)
+        first_name_kana: お名前カナ(名)
+        birth_date: 生年月日
     models:
-      user: ユーザ
+      user: ユーザー
+    attributes:
+      address:
+        post_code: "郵便番号"
+        prefecture: "都道府県"
+        city: "市区町村"
+        address: "番地"
+        building: "建物名・部屋番号"
+        telephone_number: "電話番号"
+        family_name: お名前(姓)
+        first_name: お名前(名)
+        family_name_kana: お名前カナ(姓)
+        first_name_kana: お名前カナ(名)
+    models:
+      address: 住所
   devise:
     confirmations:
       confirmed: アカウントを登録しました。

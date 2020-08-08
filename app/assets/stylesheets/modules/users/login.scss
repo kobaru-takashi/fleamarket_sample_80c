@@ -1,5 +1,5 @@
 .Header{
-  height: 130px;
+  height: 80px;
   text-align: center;
   .Header__inner{
     margin: 40px 0 0;
@@ -12,17 +12,17 @@
   }
 }
 
-.Content{
-  max-width: 840px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-  .Content-list{
-    .Content-link{
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 12px;
-      line-height: 32px;
-    }
-  }
-}
+// .Content{
+//   max-width: 840px;
+//   margin: 0 auto;
+//   display: flex;
+//   justify-content: space-around;
+//   .Content-list{
+//     .Content-link{
+//       color: #ffffff;
+//       text-decoration: none;
+//       font-size: 12px;
+//       line-height: 32px;
+//     }
+//   }
+// }

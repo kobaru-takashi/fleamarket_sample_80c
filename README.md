@@ -6,10 +6,10 @@
 |------|----|------|
 |nickname|string|null: false, index: true, unique: true|
 |email|string|null: false, index: true, unique: true|
-|family-name|string|null: false|
-|first-name|string|null: false|
-|family-name-kana|string|null: false|
-|first-name-kana|string|null: false|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |birth_date|date|null: false|
 
 ### Association
@@ -25,9 +25,9 @@
 |price|integer|null: false|
 |content|text|null: false|
 |condition|integer|null: false|
-|delivery-fee|integer|null: false|
-|send-from|string|null: false|
-|delivery-date|integer|null: false|
+|delivery_fee|integer|null: false|
+|send_from|string|null: false|
+|delivery_date|integer|null: false|
 |user_id|integer|null: false|
 
 ### Association
@@ -50,10 +50,10 @@
 ## Creditsテーブル
 |Column|Type|Option|
 |------|----|------|
-|credit-number|integer|null: false|
-|date-month|integer|null: false|
-|date-year|integer|null: false|
-|security-code|integer|null: false|
+|credit_number|integer|null: false|
+|date_month|integer|null: false|
+|date_year|integer|null: false|
+|security_code|integer|null: false|
 |user_id|integer|null: false|
 
 ### Association
@@ -63,16 +63,16 @@
 ## Addressesテーブル
 |Column|Type|Option|
 |------|----|------|
-|family-name|string|null: false|
-|first-name|string|null: false|
-|family-name-kana|string|null: false|
-|first-name-kana|string|null: false|
-|post-code|integer|null: false|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|post_code|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building|string|------|
-|telephone-number|string|-----|
+|telephone_number|string|-----|
 
 ### Association
 - belongs_to :user

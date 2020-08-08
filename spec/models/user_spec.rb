@@ -71,14 +71,43 @@ describe User do
     end
 
     it "is valid with a password that has more than 6 characters " do
-      user = build(:user, password: "000000", password_confirmation: "000000")
+      user = build(:user, password: "000aaa", password_confirmation: "000aaa")
       expect(user).to be_valid
     end
 
     it "is invalid with a password that has less than 5 characters " do
-      user = build(:user, password: "00000", password_confirmation: "00000")
+      user = build(:user, password: "000aa", password_confirmation: "00aa")
       user.valid?
       expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
+    end
+
+    it "is invalid with a pssword without number" do
+      user = build(:user, password: "aaaaaa", password_confirmation: "aaaaaa")
+      user.valid?
+      expect(user.errors[:password]).to include("is invalid")
+    end
+
+    it "is invalid with a pssword without character" do
+      user = build(:user, password: "123456", password_confirmation: "123456")
+      user.valid?
+      expect(user.errors[:password]).to include("is invalid")
+    end
+
+    it "is valid with a password that is include character and number" do
+      user = build(:user, password: "abc123", password_confirmation: "abc123")
+      expect(user).to be_valid
+    end
+
+    it "is invalid with a family_name that is small character" do
+      user = build(:user, family_name: "hoge")
+      user.valid?
+      expect(user.errors[:family_name]).to include("is invalid")
+    end
+
+    it "is invalid with a first_name that is small character" do
+      user = build(:user, first_name: "hoge")
+      user.valid?
+      expect(user.errors[:first_name]).to include("is invalid")
     end
 
     it "is invalid that a first_name_kana is not katakana" do

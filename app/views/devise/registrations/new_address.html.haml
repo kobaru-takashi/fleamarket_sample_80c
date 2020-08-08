@@ -1,3 +1,7 @@
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
 .Account
   %section.Account__container
     %h2.Account__title 住所情報登録
@@ -44,3 +48,5 @@
           = f.text_field :telephone_number, placeholder: "09012345678", class:"Form__input"
         .actions
           = f.submit "Create Account", class: 'Button UserButton', value:  '新規登録をする'
+.footer
+  =render 'products/footer'
