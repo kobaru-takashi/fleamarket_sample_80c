@@ -4,7 +4,15 @@
       =image_tag "logo.png",class:"LogoFurima__image"
 .Account
   %section.Account__container
-    %h2.Account__title 住所情報登録
+    %nav.progress-bar
+      %ul.progress-lists
+        %li.progress-list
+          会員情報
+        %li.progress-list.active
+          送付先登録
+        %li.progress-list
+          完了
+    %h2.Account__title 送付先登録
     = form_for @address do |f|
       = render "devise/shared/error_messages", resource: @address
       .Account__content

@@ -6,6 +6,26 @@
     background-color: #ffffff;
     max-width: 380px;
     margin: 0 auto 40px;
+    .progress-bar{
+      padding: 16px 0;
+      border-bottom: 1px solid #eeeeee;
+      text-align: center;
+      .progress-lists{
+        .progress-list{
+          position: relative;
+          z-index: 1;
+          display: inline-block;
+          min-width: 40px;
+          margin-right: 5px;
+          font-size: 12px;
+          color: #888888;
+        }
+        .progress-list.active{
+          font-weight: 600;
+          color: #3ccace;
+        }
+      }
+    }
     .Account__title{
       padding: 16px;
       font-size: 18px;

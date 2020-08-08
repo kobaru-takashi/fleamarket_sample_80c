@@ -4,6 +4,14 @@
       =image_tag "logo.png",class:"LogoFurima__image"
 .Account
   %section.Account__container
+    %nav.progress-bar
+      %ul.progress-lists
+        %li.progress-list.active
+          会員情報
+        %li.progress-list
+          送付先登録
+        %li.progress-list
+          完了
     %h2.Account__title 会員情報入力
     = form_for(@user, url: user_registration_path)  do |f|
       = render "devise/shared/error_messages", resource: @user
