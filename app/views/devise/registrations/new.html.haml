@@ -1,31 +1,66 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Create Account
-    %h5 新規アカウントの作成
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .FormField
-        .FormField__label--normal
-          = f.label :nickname
-        .FormField__input--normal
-          = f.text_field :nickname, autofocus: true
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email
-      .FormField
-        .FormField__label--normal
-          = f.label :password
-          %i (英数字8文字以上)
-        .FormField__input--normal
-          = f.password_field :password, autocomplete: "off"
-      .FormField
-        .FormField__label--normal
-          = f.label :password_confirmation
-        .FormField__input--normal
-          = f.password_field :password_confirmation, autocomplete: "off"
-      .actions
-        = f.submit "Create Account", class: 'Button UserButton'
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
+.Account
+  %section.Account__container
+    %nav.progress-bar
+      %ul.progress-lists
+        %li.progress-list.active
+          会員情報
+        %li.progress-list
+          送付先登録
+        %li.progress-list
+          完了
+    %h2.Account__title 会員情報入力
+    = form_for(@user, url: user_registration_path)  do |f|
+      = render "devise/shared/error_messages", resource: @user
+      .Account__content
+        .Form__group
+          = f.label :nickname, "ニックネーム"
+          %span.Form__require 必須
+          = f.text_field :nickname, placeholder: "例) たなかたろう", type: "text", value: "", class: "Form__input",autofocus: true
+        .Form__group
+          = f.label :email, "メールアドレス"
+          %span.Form__require 必須
+          = f.email_field :email, placeholder: "PC・携帯どちらでも可", type: "email", value: "", class:"Form__input"
+        .Form__group.Form__password
+          = f.label :password, "パスワード"
+          %span.Form__require 必須
+          = f.password_field :password, placeholder: "6文字以上の半角英数字", type: "password",class:"Form__input",autocomplete: "new-password"
+        %p.Form__info
+          ※ 英字と数字の両方を含めて設定してください
+        .Form__group.Form__password
+          =f.label :password_confirmation, "パスワード再確認"
+          %span.Form__require 必須
+          = f.password_field :password_confirmation, placeholder: "上記と同じパスワードを入力", type: "password", class:"Form__input", autocomplete: "new-password"
+
+
+        .Form__group
+          %h3.Form__leftText 本人確認
+          %p.Form__singleText
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        .Form__group
+          %div
+            = f.label "お名前(全角)"
+            %span.Form__require 必須
+          .Form__half-area
+            = f.text_field :family_name, placeholder: "例) 田中", type: "text", value: "", class:"Form__input half"
+            = f.text_field :first_name, placeholder: "例) 太郎", type: "text", value: "", class:"Form__input half"
+        .Form__group
+          %div
+            = f.label "お名前カナ(全角)"
+            %span.Form__require 必須
+          .Form__half-area
+            = f.text_field :family_name_kana, placeholder: "例) タナカ", type: "text", value: "", class:"Form__input half"
+            = f.text_field :first_name_kana, placeholder: "例) タロウ", type: "text", value: "", class:"Form__input half"
+        .Form__group
+          = f.label :birth, "生年月日"
+          %span.Form__require 必須
+          %br/
+          .Form__birthdayWrap
+            != sprintf( f.date_select(:birth_date, require:true,with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+        .actions
+          = f.submit "Create Account", class: 'Button UserButton', value:  '次へ進む'
+.footer
+  = render 'products/footer'
