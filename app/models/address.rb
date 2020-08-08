@@ -7,7 +7,7 @@ class Address < ApplicationRecord
                                message: "全角カタカナのみで入力して下さい"
                                 }
   validates :family_name, :first_name, :prefecture, :city, :address, presence: true
-  validates :post_code, presence: true, length:{ maximum: 8}
+  validates :post_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
 
 
 
