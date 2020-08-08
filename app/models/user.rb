@@ -13,6 +13,3 @@ class User < ApplicationRecord
   has_one :address
   has_many :products
 end
-
-# message: "には英小文字、数字を全て含めてください。記号は使用できません。"
-# message: "全角文字のみで入力してください"

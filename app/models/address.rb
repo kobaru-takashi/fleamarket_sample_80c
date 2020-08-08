@@ -24,7 +24,3 @@ class Address < ApplicationRecord
     沖縄県:47
   }
 end
-
-
-# message: "全角カタカナのみで入力して下さい"
-# message: "全角文字のみで入力してください"
