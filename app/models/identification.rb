@@ -1,2 +1,0 @@
-class Identification < ApplicationRecord
-end
