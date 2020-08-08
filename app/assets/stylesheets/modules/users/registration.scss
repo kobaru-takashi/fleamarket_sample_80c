@@ -24,6 +24,7 @@
           }
           .Form__require{
             background-color: #3ccace;
+            margin-bottom: 8px;
             margin-bottom: 5px;
             padding: 2px 4px;
             border-radius: 2px;
@@ -75,6 +76,19 @@
               height: 40px;
               border: 1px solid #cccccc;
             }
+          }
+          .Button{
+            margin-top: 24px;
+            background-color: #3ccace;;
+            border: 1px solid #3ccace;;
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
           }
         }
         .actions{
