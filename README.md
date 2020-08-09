@@ -22,7 +22,7 @@
 |content|text|null: false|
 |condition|integer|null: false|
 |delivery-fee|integer|null: false|
-|send-from|string|null: false|
+|send-from|integer|null: false|
 |delivery-date|integer|null: false|
 |user_id|integer|null: false|
 

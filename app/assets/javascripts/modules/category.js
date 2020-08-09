@@ -6,7 +6,7 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
     childSelectHtml = `<div class="category__child" id="children_wrapper">
-                        <select id="child__category" name="product[category_id]" class="serect_field">
+                        <select id="child__category" name="product[category_id]" class="select_field">
                           <option value="">---</option>
                           ${insertHTML}
                         </select>
@@ -16,7 +16,7 @@ $(function(){
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
     grandchildSelectHtml = `<div class="category__child" id="grandchildren_wrapper">
-                              <select id="grandchild__category" name="product[category_id]" class="serect_field">
+                              <select id="grandchild__category" name="product[category_id]" class="select_field">
                                 <option value="">---</option>
                                 ${insertHTML}
                                 </select>
@@ -26,7 +26,7 @@ $(function(){
 
   $('#product_category_id').on('change',function(){
     var parentId = document.getElementById('product_category_id').value;
-    if (parentId != ""){
+    if (parentId != "選択してください"){
       $.ajax({
         url: '/product/get_category_children/',
         type: 'GET',
@@ -73,5 +73,5 @@ $(function(){
     }else{
       $('#grandchildren_wrapper').remove();
     }
-  })
+  });
 });

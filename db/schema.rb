@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_105202) do
     t.text "content", null: false
     t.integer "condition", null: false
     t.integer "delivery_fee", null: false
-    t.string "send_from", null: false
+    t.integer "send_from", null: false
     t.integer "delivery_date", null: false
     t.string "brand", null: false
     t.bigint "user_id"
