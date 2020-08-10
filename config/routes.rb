@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :users
+  get "users/:id" => "users#show", as: :mypage
 end
