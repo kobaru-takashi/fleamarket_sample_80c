@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      render new_photo_path
+      render new_product_path
     end
   end
 
