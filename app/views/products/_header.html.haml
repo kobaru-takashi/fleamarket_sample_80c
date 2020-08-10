@@ -17,9 +17,47 @@
         =link_to "#", class: "brand-link" do
           ブランド
     %ul.list-right
-      %li.list-raight__sign-in
-        = link_to "#", class:"list-right__sign-in-link" do
-          ログイン
-      %li.list-right__new-registration
-        = link_to "#", class: "list-right__new-registration-link" do
-          新規会員登録
+      - if user_signed_in?
+        .user_nav.grid-6
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "投稿する", new_tweet_path, class: "post"
+      - else
+        .grid-6
+          = link_to "ログイン", new_user_session_path, class: "post"
+          = link_to "新規登録", new_user_registration_path, class: "post"
+
+
+
+      -# %h1.grid-6
+      -#   %a{:href => "/"} PicTweet
+      -# - if user_signed_in?
+      -#   .user_nav.grid-6
+      -#     %span
+      -#       = current_user.nickname
+      -#       %ul.user__info
+      -#         %li
+      -#           = link_to "マイページ", "/users/#{current_user.id}"
+      -#           = link_to "ログアウト", destroy_user_session_path, method: :delete
+      -#     = link_to  "投稿する", new_tweet_path, class: "post"
+      -# - else
+      -#   .grid-6
+      -#     = link_to "ログイン", new_user_session_path, class: "post"
+      -#     = link_to "新規登録", new_user_registration_path, class: "post"
+
+
+
+
+
+
+
+
+
+      -# - if user_signed_in?
+      -#   .user_nav.list-raight__sign-in
+      -#     = link_to "ログアウト", destroy_user_session_path, method: :delete
+      -#     = link_to "投稿する", index_products_path, class: ""
+      -# - else
+      -#   %li.list-raight__sign-in
+      -#     = link_to "ログイン", new_user_session_path, class: "list-right__sign-in-link"
+      -#   %li.list-right__new-registration
+      -#     = link_to "新規会員登録", new_user_registration_path, class: "list-right__new-registration-link"
