@@ -96,5 +96,18 @@ describe Address do
       expect(address).to be_valid
     end
 
+    it "is invalid with telephone_number that is including character" do
+      address = build(:address, telephone_number: "abc12345678")
+      address.valid?
+      expect(address.errors[:telephone_number]).to include("is invalid")
+    end
+
+    it "is invalid with telephone_number that is more than 12 characters" do
+      address = build(:address, telephone_number: "090123456789")
+      address.valid?
+      expect(address.errors[:telephone_number]).to include("is invalid")
+    end
+
+
   end
 end

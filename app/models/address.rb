@@ -8,6 +8,8 @@ class Address < ApplicationRecord
   validates :family_name, :first_name, presence: true, format:{ with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/ }
   validates :post_code, presence: true, format:{with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}
   validates :prefecture, :city, :address, presence: true
+  validates :telephone_number, format:{with: /\A\d{10,11}\z/
+}, allow_blank: true
 
 
 

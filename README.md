@@ -26,7 +26,7 @@
 |content|text|null: false|
 |condition|integer|null: false|
 |delivery_fee|integer|null: false|
-|send_from|string|null: false|
+|send_from|integer|null: false|
 |delivery_date|integer|null: false|
 |user_id|integer|null: false|
 
