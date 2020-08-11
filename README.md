@@ -10,7 +10,7 @@
 
 ### Association
 - has_many :products
-- has_many :credits
+- has_one :credit
 - has_one :address
 
 
@@ -25,6 +25,7 @@
 |send-from|integer|null: false|
 |delivery-date|integer|null: false|
 |user_id|integer|null: false|
+|category_id|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -46,11 +47,9 @@
 ## Creditsテーブル
 |Column|Type|Option|
 |------|----|------|
-|credit-number|integer|null: false|
-|date-month|integer|null: false|
-|date-year|integer|null: false|
-|security-code|integer|null: false|
-|user_id|integer|null: false|
+｜user＿id｜integer|null: false|
+|customer_token|-----|-----|
+|credit_token|-----|-----|
 
 ### Association
 - belongs_to :user
@@ -92,6 +91,7 @@
 |Column|Type|Option|
 |------|----|------|
 |name|string|null: false|
+|ancestry|string|------|
 
 ### Association
 - has_many :products

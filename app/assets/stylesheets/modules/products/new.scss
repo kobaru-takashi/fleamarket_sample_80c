@@ -112,7 +112,7 @@
                   left: 16px;
                   right: 16px;
                   text-align: center;
-                  font-size: 14px;
+                  font-size: 12px;
                   line-height: 1.5;
                   font-weight: bold;
                   -webkit-transform: translate(0, -50%);
@@ -141,6 +141,41 @@
             line-height: 1.4em;
             margin-bottom: 24px;
           }
+          .listing-product-detail__category{
+            margin-top: 32px;
+            .listing-default__label{
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 1.4em;
+              .require{
+                background-color: #3ccace;
+                margin-bottom: 8px;
+                margin-bottom: 5px;
+                padding: 2px 4px;
+                border-radius: 2px;
+                color: #ffffff;
+                font-size: 12px;
+              }
+            }
+            .listing-select-wrapper{
+              margin-top: 16px;
+              &__box{
+                &--select{
+                  margin: 10px 0;
+                  display: inline-block;
+                  position: relative;
+                  width: 100%;
+                  padding: 6px 16px 8px;
+                  border-radius: 4px;
+                  background-color: #ffffff;
+                  line-height: 1.5;
+                  font-size: 16px;
+                  border: 1px solid #cccccc;
+                  height: 50px;
+                }
+              }
+            }
+          }
           .new-product-text{
             margin-top: 32px;
             &-title{
@@ -149,6 +184,15 @@
               line-height: 1.4em;
               .require{
                 background-color: #3ccace;
+                margin-bottom: 8px;
+                margin-bottom: 5px;
+                padding: 2px 4px;
+                border-radius: 2px;
+                color: #ffffff;
+                font-size: 12px;
+              }
+              .not-required{
+                background-color: #cccccc;
                 margin-bottom: 8px;
                 margin-bottom: 5px;
                 padding: 2px 4px;
@@ -195,24 +239,6 @@
               font-size: 16px;
               border: 1px solid #cccccc;
               height: 50px;
-            }
-            .listing-select-wrapper{
-              margin-top: 16px;
-              &__box{
-                &--select{
-                  margin: 8px 0;
-                  display: inline-block;
-                  position: relative;
-                  width: 100%;
-                  padding: 6px 16px 8px;
-                  border-radius: 4px;
-                  background-color: #ffffff;
-                  line-height: 1.5;
-                  font-size: 16px;
-                  border: 1px solid #cccccc;
-                  height: 50px;
-                }
-              }
             }
           }
           .new-product-text-price{
