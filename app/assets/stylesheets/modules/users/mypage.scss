@@ -1,0 +1,40 @@
+.MyPage{
+  display: flex;
+  height: 100vh;
+  overflow: scroll;
+  border-top: 3px solid #272727;
+  &__sideBar{
+    width: 300px;
+    background-color: #272727;
+  }
+  &__lists{
+    background-color: #272727;
+    margin: 10px;
+  }
+  &__list{
+    height: 40px;
+    margin-top: 10px;
+    text-align: center;
+    padding-top: 10px;
+    background-color: #3ccace;
+    color: #ffffff;
+    border-radius: 2px;
+  }
+  &__link{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  &__main{
+    width: calc(100vw - 300px);
+    background-color: #ffffff;
+  }
+  &__Content{
+    text-align: center;
+    margin-top: 250px;
+  }
+  &__logo{
+    width: 500px;
+    height: 150px;
+  }
+}
