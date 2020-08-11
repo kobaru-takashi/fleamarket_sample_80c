@@ -33,10 +33,10 @@
       .product-image
         %ul.image-main
           %li.image-main-tag
-            = image_tag "thumb_test_image.jpg", alt: "product", class: "product-image-tag"
+            = image_tag "thumb_test_image.jpg", alt: "product", class: "product-image-tag"#(@images_first.image.url, class: "main__photo")
             %ul.image-sub
               %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product2", class: "product-image-list", height: "87px"
+                = image_tag "thumb_test_image.jpg", alt:"product2", class: "product-image-list", height: "87px"#(img.image.url, class: "sub__photo", size: "75x75")
               %li.image-sub-list
                 = image_tag "thumb_test_image.jpg", alt:"product3", class: "product-image-list",height: "87px"
               %li.image-sub-list
