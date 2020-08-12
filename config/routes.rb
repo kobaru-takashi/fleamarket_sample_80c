@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'card/new'
+  get 'card/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -10,4 +12,15 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :users
+  resources :card, only: [:new, :create, :show, :destroy] do
+    # get '/patients/:id', to: 'patients#show', as: 'patient'
+    delete '/card/:id', to: 'card#destroy', as:'card'
+  end
+  # resources :card, only: [:new, :show,:create] do
+  #   collection do
+  #     post 'show', to: 'card#show'
+  #     post 'pay', to: 'card#pay'
+  #     post 'destroy', to: 'card#destroy'
+  #   end
+  # end
 end
