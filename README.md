@@ -6,10 +6,10 @@
 |------|----|------|
 |nickname|string|null: false, index: true, unique: true|
 |email|string|null: false, index: true, unique: true|
-|family-name|string|null: false|
-|first-name|string|null: false|
-|family-name-kana|string|null: false|
-|first-name-kana|string|null: false|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |birth_date|date|null: false|
 
 ### Association
@@ -25,9 +25,9 @@
 |price|integer|null: false|
 |content|text|null: false|
 |condition|integer|null: false|
-|delivery-fee|integer|null: false|
-|send-from|integer|null: false|
-|delivery-date|integer|null: false|
+|delivery_fee|integer|null: false|
+|send_from|integer|null: false|
+|delivery_date|integer|null: false|
 |user_id|integer|null: false|
 |category_id|integer|null: false|
 
@@ -55,6 +55,7 @@
 |customer_token|-----|-----|
 |credit_token|-----|-----|
 
+
 ### Association
 - belongs_to :user
 
@@ -62,16 +63,17 @@
 ## Addressesテーブル
 |Column|Type|Option|
 |------|----|------|
-|family-name|string|null: false|
-|first-name|string|null: false|
-|family-name-kana|string|null: false|
-|first-name-kana|string|null: false|
-|post-code|integer|null: false|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|post_code|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building|string|------|
 |telephone-number|integer|-----|
+
 
 ### Association
 - belongs_to :user
@@ -88,4 +90,4 @@
 - has_ancestry
 
 
-![er-fleamarcket-訂正](https://user-images.githubusercontent.com/67687475/89374438-57345d00-d726-11ea-87cb-60bd29c66869.jpg)
+![er-fleamarket再訂正](https://user-images.githubusercontent.com/67687475/89699136-ec6e6600-d95f-11ea-8636-dfcc00853450.jpg)
