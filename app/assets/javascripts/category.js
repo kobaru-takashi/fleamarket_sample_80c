@@ -16,3 +16,33 @@ $(function(){
     })
   });
 });
+
+$(function(){
+  $('.category__parent--name').mouseover(function(){
+    $(this).css("background-color", "#3ccace").css("color", "white");
+  }).mouseout(function(){
+    $(this).css("background-color", "white").css("color", "black");
+  });
+  $('.category__child--name').mouseover(function(){
+    let parent = $(this).parent().parent().parent().children('a');
+    $(this).css("background-color", "lightgray");
+    parent.css("background-color", "#3ccace").css("color", "white");
+  }).mouseout(function(){
+    let parent = $(this).parent().parent().parent().children('a');
+    $(this).css("background-color", "white").css("color", "black");
+    parent.css("background-color", "#3ccace").css("color", "white");
+  });
+  $('.category__grandchild--name').mouseover(function(){
+    let child  = $(this).parent().parent().parent().children('a');
+    let parent = child.parent().parent().parent().children('a');
+    $(this).css("background-color", "lightgray")
+    child.css("background-color", "lightgray");
+    parent.css("background-color", "#3ccace").css("color", "white");
+  }).mouseout(function(){
+    let child  = $(this).parent().parent().parent().children('a');
+    let parent = child.parent().parent().parent().children('a');
+    $(this).css("background-color", "white").css("color","black");
+    child.css("background-color", "white").css("color","black");
+    parent.css("background-color", "white").css("color","black");
+  });
+})

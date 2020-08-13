@@ -1,15 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :show]
   before_action :move_to_index, except: [:index, :show]
-
+  before_action :set_parents
+  
   def index
     @products = Product.all.order("created_at DESC").limit(5)
   end
 
   def new
-    @category_parent_array = Category.where(ancestry: nil)
     @product = Product.new
-
   end
 
   def create
@@ -29,8 +28,24 @@ class ProductsController < ApplicationController
     product.update(product_params)
   end
   
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
   def show
     @user = @product.user
+    @category_id = @product.category_id
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
+  end
+
+  def get_category_children
+    @category_children = Category.find(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   private

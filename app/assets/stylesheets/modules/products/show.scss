@@ -105,6 +105,10 @@
           display: table-row-group;
           vertical-align: middle;
           border-color: inherit;
+          a{
+            text-decoration: none;
+            color: #3CCACE;
+          }
           .detail-record{
             display: table-row;
             vertical-align: inherit;
@@ -156,6 +160,22 @@
             }
           }
         }
+      }
+    }
+    &__editDeleteBuy{
+      display: flex;
+      flex-direction: column;
+      a{
+        line-height: 48px;
+        background: #3ccace;
+        border: 1px solid #3ccace;
+        color: #fff;
+        width: 60%;
+        font-size: 18px;
+        border-radius: 100px;
+        text-decoration: none;
+        text-align: center;
+        margin: 20px auto;
       }
     }
     &__comment-show{
