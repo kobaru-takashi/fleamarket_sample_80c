@@ -1,7 +1,7 @@
 .header__inner
   .header-main
     .logo-furima
-      =link_to "#" ,class:"logo-furima__link" do
+      =link_to root_path ,class:"logo-furima__link" do
         =image_tag "logo.png", class:"logo-furima-image"
     .search-box
       %input{type: "text", class: "search-box__form", placeholder: "キーワードから探す"}
@@ -16,10 +16,16 @@
       %li.list-left__brand
         =link_to "#", class: "brand-link" do
           ブランド
-    %ul.list-right
-      %li.list-raight__sign-in
-        = link_to "#", class:"list-right__sign-in-link" do
-          ログイン
-      %li.list-right__new-registration
-        = link_to "#", class: "list-right__new-registration-link" do
-          新規会員登録
+    - if user_signed_in?
+      %ul.list-right
+        %li.list-right__sign-in
+          = link_to "#", data: {"turbolinks" => false}, class: "list-right__sign-in-link" do
+            マイページ
+    - else
+      %ul.list-right
+        %li.list-raight__sign-in
+          = link_to new_user_session_path, class:"list-right__sign-in-link" do
+            ログイン
+        %li.list-right__new-registration
+          = link_to new_user_registration_path, class: "list-right__new-registration-link" do
+            新規会員登録

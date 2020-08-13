@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.text :content, null:false
       t.integer :condition, null:false
       t.integer :delivery_fee, null:false
-      t.string :send_from, null:false
+      t.integer :send_from, null:false
       t.integer :delivery_date, null:false
       t.string :brand, null:false
       t.references :user

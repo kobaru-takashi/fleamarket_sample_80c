@@ -1,3 +1,9 @@
+require "csv"
+
+CSV.foreach('db/category.csv') do |row|
+  Category.create(:id => row[0], :name => row[1], :ancestry => row[2])
+end
+
 5.times do |i|
   nickname = Faker::Name.name
   email = Faker::Internet.email
@@ -16,10 +22,4 @@ end
 
 10.times do |i|
   Image.create!(product_id: "#{i+1}", src: "pict-reason-01.jpg")
-end
-
-require "csv"
-
-CSV.foreach('db/category.csv') do |row|
-  Category.create(:id => row[0], :name => row[1], :ancestry => row[2])
 end
