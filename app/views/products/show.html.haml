@@ -33,21 +33,20 @@
       .product-image
         %ul.image-main
           %li.image-main-tag
-            = image_tag "thumb_test_image.jpg", alt: "product", class: "product-image-tag"#(@images_first.image.url, class: "main__photo")
-            %ul.image-sub
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product2", class: "product-image-list", height: "87px"#(img.image.url, class: "sub__photo", size: "75x75")
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product3", class: "product-image-list",height: "87px"
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product4", class: "product-image-list",height: "87px"
+            = image_tag @images_first.src.url, class: "product-image-tag"
+            .image__box
+              %ul.image-sub
+                %li.image-sub-list
+                - @images.each do |img|
+                  %li.image-sub-list
+                    = image_tag img.src.url, class: "product-image-list",height: "87px"
       .product-price
-        %span.price
-        = @product.price.to_s(:delimited)
-        円
+        .price
+          ¥
+          = @product.price.to_s(:delimited)
         .product-price__detail
           %span.tax (税込)
-          %span.shiippin-fee 送料込み
+          %span.shiippin-fee= @product.delivery_fee
       .product-content
         = @product.content
       %table.product-detail
@@ -131,13 +130,14 @@
         .related-item
           =link_to "#", class: "related-item-link" do
             %figure.related-item-image-field
-              =image_tag "thumb_test_image.jpg", alt:"related-item", class: "related-item-image"
+              = image_tag @images_first.src.url, alt:"related-item", class: "related-item-image",height: "87px"
             .related-item-body
-              neko
+              = @product.name
             .related-item-detail
               %ul.detail-list
                 %li.price
-                  ¥50,000
+                  ¥
+                  = @product.price.to_s(:delimited)
                 %li.favorite
                   =icon("fas","star")
                   0
