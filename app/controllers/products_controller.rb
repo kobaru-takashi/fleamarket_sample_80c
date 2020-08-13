@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
+  before_action :set_parents, only: [:index,  :new, :create, :edit]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -12,9 +13,6 @@ class ProductsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
   end
 
-  def get_category_children_form
-    @category_children = Category.find(params[:parent_id]).children
-  end
 
   def create
     @product = Product.new(product_params)
@@ -50,6 +48,10 @@ class ProductsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
   end
 
+  def get_category_children_form
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
   def get_category_children
     @category_children = Category.find(name: "#{params[:parent_name]}", ancestry: nil).children
   end
@@ -66,6 +68,10 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
 end
