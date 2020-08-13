@@ -2,29 +2,10 @@
   = render 'products/header'
 
 .MyPage
-  .MyPage__sideBar
-    %ul.MyPage__lists
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          本人情報
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          商品を出品する
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          出品した商品
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          出品した商品（売却済）
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          購入した商品
-      %li.MyPage__list
-        =link_to "#", class:"MyPage__link" do
-          クレジットカード情報
+  = render 'mypage-side'
   .MyPage__main
-    .MyPage__Content
-      =image_tag "logo.png", class:"MyPage__logo"
+    .MyPage__content
+      = image_tag "logo.png", class:"MyPage__logo"
     
 .footer
   = render 'products/footer'
