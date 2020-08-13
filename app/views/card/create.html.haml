@@ -1,3 +1,6 @@
+.index-header
+  = render "Purchase-header"
+  
 .create
   .create__frame
     .create__frame__message
@@ -9,3 +12,6 @@
       -# のちに実装する、登録クレジットカード詳細表示(showアクション)に行くパスを指定
       %li.credit_cards_index_link
         = link_to "登録カード一覧", card_index_path(current_user.id), class: "credit_cards_index_link__btn"
+
+.index-footer
+  = render "Purchase-footer"

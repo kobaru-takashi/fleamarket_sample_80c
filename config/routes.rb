@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :users
-  resources :card, only: [:new, :create, :show, :destroy] do
+  resources :card, only: [:new, :create, :index, :destroy] do
     # get '/patients/:id', to: 'patients#show', as: 'patient'
-    delete '/card/:id', to: 'card#destroy', as:'card'
+    # delete '/card/:id', to: 'card#destroy', as:'card'
   end
   # resources :card, only: [:new, :show,:create] do
   #   collection do

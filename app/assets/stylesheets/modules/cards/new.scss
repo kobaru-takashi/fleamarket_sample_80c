@@ -1,0 +1,208 @@
+.card_add{
+  background-color: #f8f8f8;
+  .card_add-box{
+    max-width: 700px;
+    background-color: #FFF;
+    margin: auto ;
+    text-align: center;
+    padding: 32px 16px 70px 16px;
+    .title{
+      margin: auto ;
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 2px solid #f8f8f8;
+      width: 500px;
+    }
+    .details{
+      margin: auto;
+      max-width: 375px;
+      .number-details{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 15px;
+        .card-number{
+          font-weight: bold;
+          padding-right: 20px;
+        }
+        .must_check{
+          font-weight: bold;
+          background-color: #ff0211;
+          color: #fff;
+          border-radius: 5px;
+          font-size: 10px;
+          padding: 0 5px;
+          display: flex;
+          align-items: center;
+          height: 20px;
+        }
+      }
+      .number{
+        .cardnumber{
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          height: 50px;
+          width: 100%;
+          padding: 0 16px;
+          margin: 5px 0;
+        }
+      }
+      .image{
+        display: flex;
+        justify-content: flex-start;
+        .visa{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+        .master{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+        .jcb{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+        .amex{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+        .diners{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+        .discover{
+          max-height: 20px;
+          max-width: 44px;
+          margin: 5px;
+        }
+      }
+      .expirationdate{
+        &__details{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 15px;
+          .date{
+            font-weight: bold;
+            padding-right: 20px;
+          }
+          .must_check{
+            font-weight: bold;
+            background-color: #ff0211;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 10px;
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            height: 20px;
+          }
+        }
+        &__choice{
+          display: flex;
+          justify-content: center;
+          margin: 5px 0;
+          .month{
+            display: flex;
+            .card-default{
+              width: 150px;
+              padding-left: 50px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
+            .month-details{
+              display: flex;
+              align-items: center;
+              height: 50px;
+              margin: 0 11px;
+            }
+          }
+          .year{
+            display: flex;
+            .card-default{
+              width: 150px;
+              padding-left: 50px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
+            .year-details{
+              display: flex;
+              align-items: center;
+              height: 50px;
+              margin: 0 11px;
+            }
+          }
+        }
+      }
+      .securitycode{
+        &__details{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 15px;
+          font-weight: bold;
+          &__title{
+            padding-right: 20px;
+          }
+          .must_check{
+            font-weight: bold;
+            background-color: #ff0211;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 10px;
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            height: 20px;
+          }
+        }
+        &__cardsecurity{
+          &__form{
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 50px;
+            width: 100%;
+            padding: 0 16px;
+            margin: 5px 0;
+
+          }
+        }
+        .card-question{
+          display: flex;
+          justify-content: flex-end;
+          color: #3CCACE;
+        }
+      }
+      .add{
+        .add-btn{
+          padding: 15px 100px;
+          background-color: #3CCACE;
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          border-radius: 5px;
+          text-decoration: none;
+          width: 100%;
+          margin-top: 15px;
+        }
+      }
+    }
+    .add-box{
+      font-weight: bold;
+      border-bottom: 2px solid #f8f8f8;
+      width: 500px;
+      margin: auto;
+      padding: 20px 0;
+    }
+  }
+}

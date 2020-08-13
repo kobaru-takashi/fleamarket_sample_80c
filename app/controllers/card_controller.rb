@@ -2,8 +2,13 @@ class CardController < ApplicationController
   require "payjp" #PAYJPとやり取りするために、payjpをロード
 
   def new
+    # if current_user.card.present?
+
+    #   redirect_to card_index_path
+    # end
+    @card = Card.new
     @card = Card.where(user_id: current_user.id) if @card.present?
-    redirect_to card_path(current_user.id) if @card.present?
+    redirect_to card_index_path if @card.present?
   end
 
   def create
@@ -33,8 +38,9 @@ class CardController < ApplicationController
     end
   end
 
-  def show
+  def index
     # ログイン中のユーザーのクレジットカード登録の有無を判断
+    # @card = Card.new
     @card = Card.find_by(user_id: current_user.id)
     if @card.blank?
       # 未登録なら新規登録画面に
