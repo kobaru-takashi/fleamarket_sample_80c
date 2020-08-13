@@ -1,0 +1,13 @@
+.Header{
+  height: 80px;
+  text-align: center;
+  .Header__inner{
+    margin: 40px 0 0;
+    .LogoFurima__link{
+      .LogoFurima__image{
+        width: 140px;
+        height: 50px;
+      }
+    }
+  }
+}
