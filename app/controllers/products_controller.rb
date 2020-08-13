@@ -1,35 +1,45 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
-  before_action :set_parents
-  
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index,:show ]
+
   def index
-    @products = Product.all.order("created_at DESC").limit(5)
+    @products = Product.includes(:images).order('created_at DESC')
   end
 
   def new
     @product = Product.new
+    @product.images.new
+    @category_parent_array = Category.where(ancestry: nil)
+  end
+
+  def get_category_children_form
+    @category_children = Category.find(params[:parent_id]).children
   end
 
   def create
-    Product.create(product_params)
+    @product = Product.new(product_params)
+    @category_parent_array = Category.where(ancestry: nil)
+    if @product.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy
-    product = Product.find(params[:id])
-    product.destroy
+    @product.destroy
+    redirect_to root_path
   end
 
   def edit
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update(product_params)
-  end
-  
-  def set_parents
-    @parents = Category.where(ancestry: nil)
+    if @product.update(product_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def show
@@ -48,18 +58,14 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+
   private
   def product_params
-    params.require(:params).permit(:name, :price, :image)
+    params.require(:product).permit(:name, :price,:price, :content, :condition, :delivery_fee, :send_from, :delivery_date,:category_id, :brand, images_attributes: [:src, :_destroy, :id]).merge(saler_id: current_user.id).merge(user_id: current_user.id)
   end
 
   def set_product
     @product = Product.find(params[:id])
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
 end
