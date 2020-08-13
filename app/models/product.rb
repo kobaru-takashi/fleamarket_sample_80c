@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :images
+  belongs_to :saler, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
 
@@ -22,7 +24,7 @@ class Product < ApplicationRecord
 
   enum delivery_date: { １〜２日で発送: "1", ２〜３日で発送: "2", ４〜７日で発送: "3"}
 
-  validates :name, :content,:price, :condition, :delivery_date, :delivery_fee, :send_from,:category, presence: true
+  validates :name, :content,:price, :condition, :delivery_date, :delivery_fee, :send_from, presence: true
 end
 
 

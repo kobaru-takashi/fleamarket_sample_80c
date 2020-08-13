@@ -6,7 +6,11 @@
 |------|----|------|
 |nickname|string|null: false, index: true, unique: true|
 |email|string|null: false, index: true, unique: true|
-|birth|date|null: false|
+|family-name|string|null: false|
+|first-name|string|null: false|
+|family-name-kana|string|null: false|
+|first-name-kana|string|null: false|
+|birth_date|date|null: false|
 
 ### Association
 - has_many :products
@@ -38,7 +42,7 @@
 |Column|Type|Option|
 |------|----|------|
 |product_id|integer|null: false|
-|image|string|null: false|
+|src|string|null: false|
 
 ### Association
 - belongs_to :product, inverse_of: :images
@@ -68,20 +72,6 @@
 |address|string|null: false|
 |building|string|------|
 |telephone-number|integer|-----|
-
-### Association
-- belongs_to :user
-
-
-## Identificationsテーブル
-|Column|Type|Option|
-|------|----|------|
-|family-name|string|null: false|
-|first-name|string|null: false|
-|family-name-kana|string|null: false|
-|first-name-kana|string|null: false|
-|birth|date|null: false|
-|user_id|integer|null: false|
 
 ### Association
 - belongs_to :user
