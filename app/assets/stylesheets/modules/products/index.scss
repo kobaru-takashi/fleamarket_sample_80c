@@ -289,15 +289,22 @@
       line-height: 1.4;
       font-weight: bold;
       color: #3CCACE;
+      text-decoration: none;
+      .title{
+        color: #3CCACE;
+        text-decoration: none;
+      }
     }
     .pickupCategory-lists{
       width: 1000px;
       margin: 26px auto;
       display: flex;
       background-color: #f8f8f8;
-      .pickupCategory-list{
+      justify-content: space-around;
+      .pickupCategory-list__list{
         width: 220px;
         background-color: #fff;
+        margin: 0 5px;
         .pickupCategory-list-image{
           width: 100%;
           height: 150px;
@@ -313,18 +320,21 @@
             text-align: left;
           }
           .pickupCategory-list-evaluation{
-            background-color: white;
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            .pickupCategory-list-evaluation-left{
-              .pickupCategory-list-evaluation-price{
-              }
-              .pickupCategory-list-evaluation-tax{
-                font-size: 10px;
+            font-size: 16px;
+            ul{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .fa{
+                display: inline-block;
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
               }
             }
-            .pickupCategory-list-evaluation-star{
+            p{
+              font-size: 10px;
+              text-align: left;
             }
           }
         }
@@ -347,14 +357,21 @@
       line-height: 1.4;
       font-weight: bold;
       color: #3CCACE;
+      .title{
+        color: #3CCACE;
+        text-decoration: none;
+      }
     }
     .pickupBrand-lists{
       width: 1000px;
       margin: 26px auto;
       display: flex;
+      background-color: #f8f8f8;
+      justify-content: space-around;
       .pickupBrand-list{
         width: 220px;
         background-color: #fff;
+        margin: 0 5px;
         .pickupBrand-list-image{
           width: 100%;
           height: 150px;
@@ -370,18 +387,21 @@
             text-align: left;
           }
           .pickupBrand-list-evaluation{
-            background-color: white;
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            .pickupBrand-list-evaluation-left{
-              .pickupBrand-list-evaluation-price{
-              }
-              .pickupBrand-list-evaluation-tax{
-                font-size: 10px;
+            font-size: 16px;
+            ul{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .fa{
+                display: inline-block;
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
               }
             }
-            .pickupBrand-list-evaluation-star{
+            p{
+              font-size: 10px;
+              text-align: left;
             }
           }
         }

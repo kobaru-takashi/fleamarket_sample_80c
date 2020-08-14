@@ -54,6 +54,7 @@
             .product-image-tag{
               object-fit: cover;
               height: 346px;
+              width: 560px;
             }
             .image-sub{
               display: flex;
@@ -61,10 +62,16 @@
               margin-top: 10px;
               position: relative;
               .image-sub-list{
-                margin-right: 10px;
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                position: relative;
+
                 .product-image-list{
                   object-fit: cover;
                   height: 87px;
+                  width: 110px;
+                  margin-left: 10px;
                 }
               }
             }
