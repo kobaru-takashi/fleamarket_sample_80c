@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
     else
       flash.now[:alert] = '削除できませんでした'
       render :show
+    end
   end
 
   def edit
