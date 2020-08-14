@@ -79,16 +79,6 @@ $(document).on('turbolinks:load', ()=> {
     $(`#product_images_attributes_${id}_src`).val("");
     $('#image-box').append(buildSmallFileField(id));
 
-    // var num = $('#previews').length;
-    // if (num == 4) {
-    //   $(`.label-content-${num}`).show();
-    // }
-    // buildFileField(num);
-
-    // if(id < 5){
-    //   $(`.label-box--${id}`).attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
-    // }
-
     const targetIndex = $(this).parent().data('index');
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
 
