@@ -1,10 +1,11 @@
 class Product < ApplicationRecord
-  belongs_to :user
   belongs_to :category
   belongs_to :saler, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
+  validates_associated :images
+  validates_associated :category
 
 
   enum condition: {  新品・未使用: 1, 未使用に近い: 2, 目立った傷や汚れなし: 3, やや傷や汚れあり: 4, 傷や汚れあり: 5, 全体的に状態が悪い: 6 }
@@ -24,5 +25,10 @@ class Product < ApplicationRecord
 
   enum delivery_date: { １〜２日で発送: 1, ２〜３日で発送: 2, ４〜７日で発送: 3}
 
-  validates :name, :content,:price, :condition, :delivery_date, :delivery_fee, :send_from, presence: true
+  validates :condition, :delivery_date, :delivery_fee, :send_from, presence: true
+  validates :price, numericality: {only_integer: true, greater_than: 300, less_than: 10000000}, presence: true
+  validates :name, length:{ maximum: 40 }, presence: true
+  validates :content, length: { maximum: 1000 }, presence: true
+  validates :category, presence: true
+  validates :images, presence: true
 end
