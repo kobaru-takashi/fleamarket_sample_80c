@@ -1,0 +1,89 @@
+.new-main
+  .new-main__product-new
+    = form_with model: @product, local:true do |f|
+      %h2.product-new-title
+        商品の情報を入力
+      .new-product-form
+        .new-product-form__upload
+          .image-upload
+            出品画像
+            %span.require 必須
+          %p.image-upload-info
+            最大５枚までアップロード出来ます
+            #image-box
+              #previews
+              .label-content-0
+                -if @product.persisted?
+                  - @product.images.each_with_index do |image, i|
+                    = image_tag image.src.url, data: { index: i}, width: "100", height: "100"
+                = f.fields_for :images do |image|
+                  = image.label :src ,{id:"label-box--#{image.index}", class:"js-file_group", "data-index" => "#{image.index}"} do
+                    =icon("fas","camera",class: "label-box-icon")
+                    %pre.label-box__text-visible クリックしてファイルをアップロード
+                    = image.file_field :src, class: 'js-file'
+                  - if @product.persisted?
+                    = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                - if @product.persisted?
+                  .js-file_group{"data-index" => "#{@product.images.count}"}
+                    = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: "js-file"
+                    .js-remove 削除
+        .new-product-form__box
+          %p.new-product-form__sub
+          .new-product-text
+            = f.label :name ,class:"new-product-text-title" do
+              商品名
+              %span.require 必須
+            = f.text_field :name, placeholder: "40文字まで", class: "new-product-text__input"
+          .new-product-text
+            = f.label :content ,class:"new-product-text-title" do
+              商品の説明
+              %span.require 必須
+            = f.text_area :content, placeholder: "商品の説明(必須 1,000字以内)(色、素材、重さ、定価、注意点など)", class: "new-product-text__input-content"
+        .new-product-form__box
+          %p.new-product-form__sub 商品の詳細
+          .listing-form-box
+            .listing-product-detail__category
+              = f.label :category_id ,class: 'listing-default__label' do
+                カテゴリー
+                %span.require 必須
+              .listing-select-wrapper
+                .listing-select-wrapper__box
+                  =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+          .new-product-text
+            =f.label :brand, class:"new-product-text-title" do
+              ブランド
+              %span.not-required 任意
+            = f.text_field :brand, placeholder: "例)シャネル", class: "new-product-text__input"
+          .new-product-text
+            =f.label :condition, class:"new-product-text-title" do
+              商品の状態
+              %span.require 必須
+            =f.select :condition, Product.conditions.keys, {prompt: "選択してください"}, class: "new-product-text__select"
+        .new-product-form__box
+          %p.new-product-form__sub 配送について
+          .new-product-text
+            =f.label :send_from, class:"new-product-text-title" do
+              配送料の負担
+              %span.require 必須
+            =f.select :delivery_fee, Product.delivery_fees.keys, {prompt: "選択してください"}, class:"new-product-text__select"
+          .new-product-text
+            =f.label :send_from, class:"new-product-text-title" do
+              発送元の地域
+              %span.require 必須
+            =f.select :send_from, Product.send_froms.keys, {prompt: "選択してください"}, class:"new-product-text__select"
+          .new-product-text
+            =f.label :delivery_date, class:"new-product-text-title" do
+              発送までの日数
+              %span.require 必須
+            =f.select :delivery_date, Product.delivery_dates.keys, {prompt: "選択してください"}, class:"new-product-text__select"
+        .new-product-form__box
+          %p.new-product-form__sub 価格 (¥300~ 9,999,999)
+          .new-product-text-price
+            =f.label :price,class:"new-product-text-title" do
+              販売価格
+              %span.require 必須
+            %span.price-mark ¥
+            =f.text_field :price, class: "new-product-text-price__input-price",placeholder:"例)300"
+        .new-product-btn
+          =f.submit "出品する",class:"new-product-btn-green"
+          =link_to new_product_path
