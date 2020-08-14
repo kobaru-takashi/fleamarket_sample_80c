@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      render :new
+      redirect_to new_product_path
     end
   end
 
@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
 
   def show
     @user = @product.user
+    @product = Product.find(params[:id])
     @category_id = @product.category_id
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
