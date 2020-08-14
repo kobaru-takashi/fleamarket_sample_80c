@@ -41,9 +41,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user = User.find(current_user.id)
+    @user.update(sign_up_params)
+  unless @user.valid?
+    flash.now[:alert] = @user.errors.full_messages
+    render :edit and return
+  end
+  @address = @user.address
+  render :edit_address
+  end
+
+  def update_address
+    user = current_user
+    @address = Address.find(user.address.id)
+    @address.update(address_params)
+    unless @address.valid?
+      flash.now[:alert] = @address.errors.full_messages
+      render :edit_address and return
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -72,6 +89,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address_params
     params.require(:address).permit(:post_code,:family_name, :first_name, :family_name_kana, :first_name_kana, :prefecture, :city, :address, :building, :telephone_number)
   end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
