@@ -25,8 +25,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to root_path
+    if @product.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = '削除できませんでした'
+      render :show
+    end
   end
 
   def edit
@@ -47,6 +51,8 @@ class ProductsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+    @images = Image.where(product_id: params[:id])
+    @images_first = Image.where(product_id: params[:id]).first
   end
 
   def get_category_children_form

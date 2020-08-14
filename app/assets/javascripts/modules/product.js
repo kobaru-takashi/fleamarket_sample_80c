@@ -78,6 +78,7 @@ $(document).on('turbolinks:load', ()=> {
 
   $(document).on('click', '.delete-box', function() {
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
+
     if ($('#labels div').length != 0){
       $(`#preview-box__${id}`).remove();
       $(`#product_images_attributes_${id}_src`).val("");

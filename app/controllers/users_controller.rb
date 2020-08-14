@@ -12,6 +12,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'ログアウトできませんでした'
+      render :show
+    end
+  end
+
+  def show
+    unless @user == current_user
+      redirect_to root_path(@user)
+    end
+  end
+
   private
 
   def user_params
