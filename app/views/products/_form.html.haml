@@ -12,11 +12,15 @@
             最大５枚までアップロード出来ます
             #image-box
               #previews
+                -if @product.persisted?
+                  - @product.images.each_with_index do |image, i|
+                    #preview-box.preview-box
+                      .upper-box
+                        = image_tag image.src.url, data: { index: i}, width: "110px", height: "150px", class:"preview-image",alt:"preview"
+                      .lower-box
+                        .update-box
               #labels
                 #label.label-content-0
-                  -if @product.persisted?
-                    - @product.images.each_with_index do |image, i|
-                      = image_tag image.src.url, data: { index: i}, width: "100", height: "100"
                   = f.fields_for :images do |image|
                     = image.label :src ,{id:"label-box--#{image.index}", class:"js-file_group", "data-index" => "#{image.index}"} do
                       =icon("fas","camera",class: "label-box-icon")
@@ -47,9 +51,20 @@
               = f.label :category_id ,class: 'listing-default__label' do
                 カテゴリー
                 %span.require 必須
-              .listing-select-wrapper
-                .listing-select-wrapper__box
-                  =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+              - if @product.persisted?
+                .listing-select-wrapper
+                  .listing-select-wrapper__box
+                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_parent.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                #children_wrapper.listing-select-wrapper__added
+                  .listing-select-wrapper__box
+                    =f.select :category_id, options_for_select(@category_children_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}, @category_child.id),{},{class:"listing-select-wrapper__box--select", id: "child_category"}
+                #grandchildren_wrapper.listing-select-wrapper__added
+                  .listing-select-wrapper__box
+                    =f.collection_select :category_id, @category_grandchildren_edit, :id, :name, { include_blank: "選択してください",selected: @category_grandchild.id },{class: "listing-select-wrapper__box--select", id: "grandchild_category"}
+              - else
+                .listing-select-wrapper
+                  .listing-select-wrapper__box
+                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
           .new-product-text
             =f.label :brand, class:"new-product-text-title" do
               ブランド
