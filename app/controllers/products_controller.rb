@@ -25,8 +25,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to root_path
+    if @product.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = '削除できませんでした'
+      render :show
   end
 
   def edit
