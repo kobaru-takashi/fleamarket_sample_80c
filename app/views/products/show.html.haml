@@ -47,7 +47,6 @@
         円
         .product-price__detail
           %span.tax (税込)
-          %span.shiippin-fee 送料込み
       .product-content
         = @product.content
       %table.product-detail
@@ -60,7 +59,7 @@
             - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
               %td.detail-right
                 = link_to "#{@category_child.name}","#"
-                %br= link_to "#{@category_grandchild.name}","#" 
+                %br= link_to "#{@category_grandchild.name}","#"
             -else
               %td.detail-right
                 = link_to "#{@category_parent.name}","#"
@@ -83,7 +82,7 @@
             %td.detail-right= link_to "#{@product.send_from}","#"
           %tr.detail-record
             %th.detail-left 発送日の目安
-            %td.detail-right= @product.delivery_date 
+            %td.detail-right= @product.delivery_date
       .product-option
         %ul.product-option__favorite
           %li.option-favorite

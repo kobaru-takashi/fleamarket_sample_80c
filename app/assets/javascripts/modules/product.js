@@ -1,10 +1,10 @@
 $(document).on('turbolinks:load', ()=> {
   const buildFileField = (num)=> {
     const html = `
-                <div class="label-content-${num}">
+                <div class="label-content-${num}", id="label">
                   <label data-index="${num}" class="js-file_group" for="product_images_attributes_${num}_src">
                     <i class="fas fa-camera label-box-icon"></i>
-                    <pre class= "label-box__text-visible">クリックしてファイルをアップロード</pre>
+                    <pre class="label-box__text-visible">クリックしてアップロード</pre>
                     <input class="js-file" type="file", name="product[images_attributes][${num}][src]", id="product_images_attributes_${num}_src">
                   </label>
                 </div>
@@ -35,9 +35,10 @@ $(document).on('turbolinks:load', ()=> {
 
   const buildSmallFileField = (id) => {
     const html = `
-                 <div class="label-content-small">
+                 <div class="label-content-small-${id}", id="label">
                   <label data-index="${id}" class="js-file_group" for="product_images_attributes_${id}_src">
                     <i class="fas fa-camera label-box-icon"></i>
+                    <pre class="label-box__text-visible">クリックしてアップロード</pre>
                     <input class="js-file" type="file", name="product[images_attributes][${id}][src]", id="product_images_attributes_${id}_src">
                   </label>
                 </div>
@@ -46,7 +47,7 @@ $(document).on('turbolinks:load', ()=> {
   }
 
 
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [1,2,3,4,5];
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
 
@@ -60,34 +61,33 @@ $(document).on('turbolinks:load', ()=> {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {
-      $('#previews').append(buildImg(targetIndex, blobUrl));
-      $('#image-box').append(buildFileField(fileIndex[0]));
-      $(`.label-content-${targetIndex}`).css("display","none");
-      fileIndex.shift();
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-      var last = (targetIndex + 1);
-      if (last >= 5) {
-        $(`.label-content-${last}`).hide();
-        $('.label-content-small').hide();
+      if ($('.preview-box').length < 5) {
+        console.log($('.preview-box').length)
+        $('#previews').append(buildImg(targetIndex, blobUrl));
+        $('#label').css("display","none");
+        $(`.label-content-${targetIndex}`).css("display","none");
+        $(`.label-content-small-${targetIndex}`).css("display","none");
+      }
+      if ($('#labels div').length < 5) {
+        $('#labels').append(buildFileField(fileIndex[0]));
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
       }
     }
   });
 
   $(document).on('click', '.delete-box', function() {
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
-    $(`#preview-box__${id}`).remove();
-    $(`#product_images_attributes_${id}_src`).val("");
-    $('#image-box').append(buildSmallFileField(id));
-
-    // var num = $('#previews').length;
-    // if (num == 4) {
-    //   $(`.label-content-${num}`).show();
-    // }
-    // buildFileField(num);
-
-    // if(id < 5){
-    //   $(`.label-box--${id}`).attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
-    // }
+    if ($('#labels div').length != 0){
+      $(`#preview-box__${id}`).remove();
+      $(`#product_images_attributes_${id}_src`).val("");
+      $(`.label-content-${id}`).remove();
+      $('#labels').append(buildSmallFileField(id));
+    } else{
+      $(`#preview-box__${id}`).remove();
+      $(`#product_images_attributes_${id}_src`).val("");
+      $(`.label-content-${id}`).remove();
+    }
 
     const targetIndex = $(this).parent().data('index');
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
@@ -97,6 +97,5 @@ $(document).on('turbolinks:load', ()=> {
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
 
-    if ($('#previews').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
 });
