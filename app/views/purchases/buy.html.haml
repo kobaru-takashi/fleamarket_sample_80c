@@ -1,0 +1,58 @@
+.Purchase-header-link
+  = render "card/Purchase-header"
+
+.Purchase-main
+  .Purchase-main-view
+    .Purchase-main-title 購入内容の確認
+    .Purchase-main-contents
+      .contents-image
+        = image_tag('pict-reason-01.jpg', width: "100",class: "contents-image-tag")
+      .contents-content
+        .content-text マウスパッド おしゃれ 大理石風 かわいい コースター 滑りにくい
+        .content-money
+          .content-money-tex 送料込み (税込)
+          .content-money-nuber ¥750
+    .Purchase-main-money
+      .money-text 支払い金額
+      .money-number ¥750
+    .Purchase-main-payment
+      .payment-top
+        .payment-top-text 支払い方法
+        = link_to new_card_path, class: "payment-top-link" do
+          変更する  >
+      .payment-under
+        .payment-under-credit
+          クレジットカード
+        .payment-under-personal-number
+          = "**** **** **** " + @customer_card.last4
+        .payment-under-expiration-date 
+          有効期限 
+          .payment-under-expiration-date-number
+            = @exp_month + " / " + @exp_year
+        .payment-under-logo
+          = image_tag @card_src, width: "50",class: "payment-under-logo-tag", alt: @card_brand
+    .Purchase-main-address
+      .address-top
+        .address-top-text 配送先
+        = link_to "", class: "address-top-link" do
+          変更する  >
+      .address-under
+        .address-under-number
+          = " 〒" + current_user.address.post_code
+        .address-under-address
+          = current_user.address.prefecture
+          = current_user.address.city
+          = current_user.address.address
+        .address-under-name
+          = current_user.family_name
+          = current_user.first_name
+    .Purchase-main-btn
+      = form_with html: {class: 'form'}, local: true do |f|
+        .input-box
+          -# = f.submit '購入する', class: 'submit-btn'
+          = link_to "購入する", purchases_pay_path, class: "submit-btn"
+
+.Purchase-footer-link
+  = render "card/Purchase-footer"
+  
+
