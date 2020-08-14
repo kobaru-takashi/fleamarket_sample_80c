@@ -62,7 +62,6 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('src', blobUrl);
     } else {
       if ($('.preview-box').length < 5) {
-        console.log($('.preview-box').length)
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('#label').css("display","none");
         $(`.label-content-${targetIndex}`).css("display","none");
