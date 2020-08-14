@@ -9,7 +9,7 @@
       .credit_card_new_link
         = link_to "クレジットカード新規登録", new_card_path, class: "credit_card_new_link__btn"
       .my_page_link
-        = link_to "マイページに戻る", users_path(current_user.id), class: "my_page_link__btn"
+        = link_to "マイページに戻る", products_path, class: "my_page_link__btn"
 
 .index-footer
   = render "Purchase-footer"

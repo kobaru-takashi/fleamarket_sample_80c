@@ -28,6 +28,8 @@
             -# # 削除ボタンを作成、押すとdestroyメソッドが働くように
             = link_to card_path(@card) , method: :delete, class: "destroy__function__link__btn" do 
               削除する
+      .my_page_link
+        = link_to "マイページに戻る", products_path , class: "my_page_link__btn"
       .payment-details
         = link_to "支払い方法について >", "", class: "payment-details__btn"
 

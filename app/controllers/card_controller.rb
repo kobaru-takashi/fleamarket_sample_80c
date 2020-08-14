@@ -22,7 +22,7 @@ class CardController < ApplicationController
     # 無事トークン作成された場合のアクション(こっちが本命のアクション)
     # まずは生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
       customer = Payjp::Customer.create(
-        # email: current_user.email,
+        email: current_user.email,
         card: params["payjp_token"]
         # metadata: {user_id: current_user.id} #最悪なくてもOK！
       )
