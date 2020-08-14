@@ -13,8 +13,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    current_user = User.find(params[:id])
-    current_user.destroy
+    if current_user.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'ログアウトできませんでした'
+      render :show
+    end
   end
 
   def show
