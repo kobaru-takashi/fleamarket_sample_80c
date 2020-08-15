@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update]
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -10,13 +11,11 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.new
-    @category_parent_array = Category.where(ancestry: nil)
   end
 
 
   def create
     @product = Product.new(product_params)
-    @category_parent_array = Category.where(ancestry: nil)
     if @product.save
       redirect_to product_path(params[:id])
     else
@@ -37,13 +36,11 @@ class ProductsController < ApplicationController
     @category_grandchild = @product.category
     @category_child = @category_grandchild.parent
     @category_parent = @category_child.parent
-    @category_parent_array = Category.where(ancestry: nil)
     @category_children_edit = Category.find_by(id: @category_parent.id).children
     @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
   end
 
   def update
-    @category_parent_array = Category.where(ancestry: nil)
     if @product.update(product_params)
       redirect_to product_path(params[:id])
     else
@@ -86,6 +83,10 @@ class ProductsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def set_parent_array
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
 end
