@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @category_parent_array = Category.where(ancestry: nil)
     if @product.save
-      redirect_to root_path
+      redirect_to product_path(params[:id])
     else
       render new_product_path
     end
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
   def update
     @category_parent_array = Category.where(ancestry: nil)
     if @product.update(product_params)
-      redirect_to root_path
+      redirect_to product_path(params[:id])
     else
       render :edit
     end

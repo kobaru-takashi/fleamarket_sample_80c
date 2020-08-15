@@ -3,28 +3,28 @@
 %nav.nav-category
   %ul.nav-category__lists
     %li.category-list
-      =link_to "/",class:"list-link" do
+      =link_to root_path ,class:"list-link" do
         FURIMA
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        ベビー・キッズ
+        = @category_parent.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        ベビー服(男女兼用) ~95cm
+        = @category_child.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        アウター
+        = @category_grandchild.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
-      =link_to "#", class:"list-link" do
-        product 3
+      =link_to product_path(params[:id]), class:"list-link" do
+        = @product.name
 .main
   .show-main
     .show-main__product-show
@@ -47,7 +47,7 @@
         .product-price__detail
           %span.tax (税込)
       .product-content
-        = @product.content
+        = simple_format(@product.content)
       %table.product-detail
         %tbody.product-detail__body
           %tr.detail-record
