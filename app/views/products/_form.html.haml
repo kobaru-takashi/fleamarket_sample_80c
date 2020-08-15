@@ -10,28 +10,41 @@
             %span.require 必須
           %p.image-upload-info
             最大５枚までアップロード出来ます
-            #image-box
-              #previews
-                -if @product.persisted?
+            - if @product.persisted?
+              #image-box
+                #previews
                   - @product.images.each_with_index do |image, i|
-                    #preview-box.preview-box
+                    .preview-box{id: "preview-box__#{i}"}
                       .upper-box
-                        = image_tag image.src.url, data: { index: i}, width: "110px", height: "150px", class:"preview-image",alt:"preview"
+                        = image_tag image.src.url, data: { index: i}, class:"preview-image",alt:"preview"
                       .lower-box
-                        .update-box
-              #labels
-                #label.label-content-0
+                        .delete-box-edit{id:"delete_btn_#{i}"}
+                          %span 削除
+                #labels
                   = f.fields_for :images do |image|
-                    = image.label :src ,{id:"label-box--#{image.index}", class:"js-file_group", "data-index" => "#{image.index}"} do
-                      =icon("fas","camera",class: "label-box-icon")
-                      %pre.label-box__text-visible クリックしてアップロード
-                      = image.file_field :src, class: 'js-file'
-                    - if @product.persisted?
-                      = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-                  - if @product.persisted?
-                    .js-file_group{"data-index" => "#{@product.images.count}"}
-                      = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: "js-file"
-                      .js-remove 削除
+                    #label_edit{class: "label-content-#{image.index}"}
+                      = image.label :src ,{id:"label-box--#{image.index}", class:"js-file_group", "data-index" => "#{image.index}"} do
+                        =icon("fas","camera",class: "label-box-icon")
+                        %pre.label-box__text-visible クリックしてアップロード
+                        = image.file_field :src, class: 'js-file', name: "product[images_attributes][#{image.index}][src]"
+                        = image.check_box :_destroy, data:{ index: image.index}, class:'hidden-destroy'
+                  -if @product.images.count < 5
+                    #label.label-content-edit__add
+                      %label.js-file_group{"data-index" => "#{@product.images.count}",id:"label_box--#{@product.images.count}"}
+                        =icon("fas","camera",class: "label-box-icon")
+                        %pre.label-box__text-visible クリックしてアップロード
+                        = file_field_tag :src , name: "product[images_attributes][#{@product.images.count}][src]", class:"js-file"
+                #deleted
+            - else
+              #image-box
+                #previews
+                #labels
+                  #label.label-content-0
+                    = f.fields_for :images do |image|
+                      = image.label :src ,{id:"label-box--#{image.index}", class:"js-file_group", "data-index" => "#{image.index}"} do
+                        =icon("fas","camera",class: "label-box-icon")
+                        %pre.label-box__text-visible クリックしてアップロード
+                        = image.file_field :src, class: 'js-file'
         .new-product-form__box
           %p.new-product-form__sub
           .new-product-text
@@ -101,4 +114,7 @@
             %span.price-mark ¥
             =f.text_field :price, class: "new-product-text-price__input-price",placeholder:"例)300"
         .new-product-btn
-          =f.submit "出品する",class:"new-product-btn-green"
+          -if @product.persisted?
+            =f.submit "編集する", class: "new-product-btn-green"
+          -else
+            =f.submit "出品する",class:"new-product-btn-green"
