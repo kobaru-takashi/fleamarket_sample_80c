@@ -34,9 +34,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+    @category_parent_array = Category.where(ancestry: nil)
+    @category_children_edit = Category.find_by(id: @category_parent.id).children
+    @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
   end
 
   def update
+    @category_parent_array = Category.where(ancestry: nil)
     if @product.update(product_params)
       redirect_to root_path
     else
