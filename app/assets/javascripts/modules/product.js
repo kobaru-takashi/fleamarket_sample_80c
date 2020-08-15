@@ -90,3 +90,19 @@ $(document).on('turbolinks:load', ()=> {
     if ($('#previews').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
 });
+
+$(function(){
+  $('.pickupCategory-list__list').mouseover(function(){
+    $(this).css("filter", "opacity(60%)");
+  }).mouseout(function(){
+    $(this).css("filter", "none");
+  });
+});
+
+$(function(){
+  $('.pickupBrand-list').mouseover(function(){
+    $(this).css("filter", "opacity(60%)");
+  }).mouseout(function(){
+    $(this).css("filter", "none");
+  });
+});
