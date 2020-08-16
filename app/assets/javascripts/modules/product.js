@@ -16,14 +16,9 @@ $(document).on('turbolinks:load', ()=> {
     const html = `
                 <div class="preview-box" id="preview-box__${index}">
                   <div class= "upper-box">
-                    <img data-index="${index}" src="${url}" width="110px" height="150px", class="preview-image", alt="preview">
+                    <img data-index="${index}" src="${url}" class="preview-image", alt="preview">
                   </div>
                   <div class="lower-box">
-                    <div class="update-box">
-                      <label data-index="${index}" class="js-file_group" for="product_images_attributes_${index}_src">編集
-                        <input class="js-file" type="file", name="product[images_attributes][${index}][src]", id="product_images_attributes_${index}_src">
-                      </label>
-                    </div>
                     <div class="delete-box" id="delete_btn_${index}">
                       <span>削除</span>
                     </div>
@@ -66,6 +61,7 @@ $(document).on('turbolinks:load', ()=> {
         $('#label').css("display","none");
         $(`.label-content-${targetIndex}`).css("display","none");
         $(`.label-content-small-${targetIndex}`).css("display","none");
+        $('.label-content-edit__add').css("display", "none")
       }
       if ($('#labels div').length < 5) {
         $('#labels').append(buildFileField(fileIndex[0]));
@@ -78,24 +74,34 @@ $(document).on('turbolinks:load', ()=> {
   $(document).on('click', '.delete-box', function() {
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
 
-    if ($('#labels div').length != 0){
+    if ($('#labels div').length == $('.preview-box').length){
       $(`#preview-box__${id}`).remove();
       $(`#product_images_attributes_${id}_src`).val("");
       $(`.label-content-${id}`).remove();
+      $(`.label-content-small-${id}`).remove();
       $('#labels').append(buildSmallFileField(id));
-    } else{
+    } else {
       $(`#preview-box__${id}`).remove();
       $(`#product_images_attributes_${id}_src`).val("");
       $(`.label-content-${id}`).remove();
+      $(`.label-content-small-${id}`).remove();
     }
+  });
 
-    const targetIndex = $(this).parent().data('index');
+  $(document).on('click','.delete-box-edit', function(){
+    const targetIndex = $(this).attr('id').replace(/[^0-9]/g, '');
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
 
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-    $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
+    $(`#preview-box__${targetIndex}`).remove();
+    $(`.label-content-${targetIndex}`).appendTo('#deleted');
+    if ($('#labels div').length == $('.preview-box').length){
+      $('#labels').append(buildSmallFileField(targetIndex + 1));
+    }
 
+
+    if ($('#labels div').length == 0) $('#labels').append(buildFileField(fileIndex[0]));
   });
 });
