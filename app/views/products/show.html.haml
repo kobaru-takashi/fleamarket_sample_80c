@@ -97,7 +97,7 @@
         = link_to "商品の編集", edit_product_path(@product.id), data: {"turbolinks" => false} , class: "edit"
         = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
       - elsif user_signed_in?
-        = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
+        = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
       - else
     .show-main__comment-show
       .comment-form

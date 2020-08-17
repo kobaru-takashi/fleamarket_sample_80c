@@ -6,15 +6,30 @@
     .Purchase-main-title 購入内容の確認
     .Purchase-main-contents
       .contents-image
-        = image_tag('pict-reason-01.jpg', width: "100",class: "contents-image-tag")
+        = image_tag @images_first.src.url, width: "100", class: "contents-image-tag"
+
       .contents-content
-        .content-text マウスパッド おしゃれ 大理石風 かわいい コースター 滑りにくい
+        .content-text
+          = @product.name
         .content-money
-          .content-money-tex 送料込み (税込)
-          .content-money-nuber ¥750
+          .content-money-tex
+
+        .product-price
+          .price
+            ¥
+            = @product.price.to_s(:delimited)
+            %span.tax (税込)
+          .shpping_fee
+            %span 送料：
+            %span
+              = @product.delivery_fee
+
+          .content-money-nuber
+            = "#{@product.price}" + "円"
     .Purchase-main-money
       .money-text 支払い金額
-      .money-number ¥750
+      .money-number 
+        = "#{@product.price}" + "円"
     .Purchase-main-payment
       .payment-top
         .payment-top-text 支払い方法
@@ -47,11 +62,9 @@
           = current_user.family_name
           = current_user.first_name
     .Purchase-main-btn
-      = form_with html: {class: 'form'}, local: true do |f|
-        .input-box
-          -# = f.submit '購入する', class: 'submit-btn'
-          = link_to "購入する", purchases_pay_path, class: "submit-btn"
-
+      .input-box
+        = link_to "登録クレジットカードで購入する", pay_product_purchases_path(product_id: @product.id), method: :post, class: "btn"
+        
 .Purchase-footer-link
   = render "card/Purchase-footer"
   

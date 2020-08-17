@@ -26,17 +26,16 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
 
   
-   resources :products do
+  resources :products do
     resource :purchases do
       member do
         get  "buy"
         post "pay"
+        get 'pay', to: 'purchases#pay', as: 'paied'
       end
     end
   end
 
-
-  resources :users
   resources :card, only: [:new, :create, :index, :destroy] do
 
   end
