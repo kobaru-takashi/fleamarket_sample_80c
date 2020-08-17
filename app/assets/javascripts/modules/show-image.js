@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function(){
       $(".active").removeClass("active");
       $(this).addClass("active");
       const index = tabs.index(this);
-      $(".image-main-tag").removeClass("show").eq(index).addClass("show");
+      $(".image-main-tag").removeClass("show").addClass("not-show").eq(index).removeClass("not-show").addClass("show");
     }
     tabs.mouseover(tabSwitch);
   });

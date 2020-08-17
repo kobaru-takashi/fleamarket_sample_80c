@@ -32,34 +32,42 @@
         %h2= @product.name
       .product-image
         .image-main
-          .image-main__stage
-            - @images.each do |image|
-              .image-main-tag
-                = image_tag image.src.url, class: "product-image-tag"
-                  - if @product.buyer_id.present?
-                  .products-box_photo__sold
-                    .products-box_photo__sold__inner SOLD
-        -# .image_box
-        -#   .image-sub
-        -#     .image-sub-list.active
-        -#       = image_tag @images[0].src.url, class:"product-image-list"
-        -#     - @images.each_with_index do |image, i|
-        -#       .image-sub-list
-        -#         = image_tag image[i].src.url, class: "product-image-list"
+          - if @product.buyer_id.present?
+            .products-box_photo__sold
+              .products-box_photo__sold__inner SOLD
+          -if @images[0].present?
+            .image-main-tag.show
+              = image_tag @images[0].src.url, class: "product-image-tag"
+          -if @images[1].present?
+            .image-main-tag.not-show
+              = image_tag @images[1].src.url, class: "product-image-tag"
+          -if @images[2].present?
+            .image-main-tag.not-show
+              = image_tag @images[2].src.url, class: "product-image-tag"
+          -if @images[3].present?
+            .image-main-tag.not-show
+              = image_tag @images[3].src.url, class: "product-image-tag"
+          -if @images[4].present?
+            .image-main-tag.not-show
+              = image_tag @images[4].src.url, class: "product-image-tag"
 
-      .product-image
-        %ul.image-main
-          .image-main-tag
-            = image_tag @images_first.src.url, class: "product-image-tag"
-            -#   - if @product.buyer_id.present?
-            -#   .products-box_photo__sold
-            -#     .products-box_photo__sold__inner SOLD
-            -# .image__box
-            -#   %ul.image-sub
-            -#     %li.image-sub-list
-            -#     - @images.each do |img|
-            -#       %li.image-sub-list
-            -#         = image_tag img.src.url, class: "product-image-list",height: "87px"
+        .image_box
+          .image-sub
+            - if @images[0].present?
+              .image-sub-list.active
+                = image_tag @images[0].src.url, class:"product-image-list"
+            - if @images[1].present?
+              .image-sub-list
+                = image_tag @images[1].src.url, class:"product-image-list"
+            -if @images[2].present?
+              .image-sub-list
+                = image_tag @images[2].src.url, class:"product-image-list"
+            -if @images[3].present?
+              .image-sub-list
+                = image_tag @images[3].src.url, class:"product-image-list"
+            -if @images[4].present?
+              .image-sub-list
+                = image_tag @images[4].src.url, class:"product-image-list"
 
       .product-price
         .price
@@ -124,8 +132,8 @@
           .delete-product-btn
             = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
         - elsif user_signed_in? && @product.buyer_id.present?
-          .disabled-priduct-btn
-          = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
+          .disabled-product-btn
+            = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
