@@ -33,7 +33,7 @@
           font-size: 14px;
           line-height: 1.4em;
           margin-bottom: 8px;
-          text-align: left;
+
         }
         .content-money{
           display: flex;
@@ -41,10 +41,14 @@
           .content-money-tex{
             font-size: 12px;
           } 
-          .content-money-nuber{
-            font-size: 15px;
-            font-weight: 600;
-            margin-left: 8px;
+        }
+        .product-price{
+
+          .price{
+            font-size: 14px;
+          }
+          .shpping_fee{
+            font-size: 14px;
           }
         }
       }
@@ -141,29 +145,24 @@
     }
   }
 
-
   .Purchase-main-btn{
     padding: 32px 16px 32px 0;
     max-width: 375px;
     margin: auto ;
-    form{
-      .input-box{
-        .submit-btn{
-          height: 50px;
-          width: 100%;
-
-          margin-left: 15px;
-          background-color:  #3CCACE;
-          color: #fff;
-          font-size: 16px;
-          font-weight: bold;
-          border: none;
-          border-radius:5px;
-
-          padding: 20px 140px;
-          font-size: 16px;
-          text-decoration: none;
-        }
+    .input-box{
+      .btn{
+        height: 50px;
+        width: 100%;
+        margin-left: 15px;
+        background-color:  #3CCACE;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius:5px;
+        padding: 20px 90px;
+        font-size: 16px;
+        text-decoration: none;
       }
     }
   }

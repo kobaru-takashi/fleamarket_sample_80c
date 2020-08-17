@@ -7,25 +7,20 @@
     .Purchase-main-contents
       .contents-image
         = image_tag @images_first.src.url, width: "100", class: "contents-image-tag"
-
       .contents-content
         .content-text
           = @product.name
         .content-money
           .content-money-tex
-
         .product-price
           .price
             ¥
             = @product.price.to_s(:delimited)
-            %span.tax (税込)
+            %span.tax (税込) 
           .shpping_fee
             %span 送料：
             %span
               = @product.delivery_fee
-
-          .content-money-nuber
-            = "#{@product.price}" + "円"
     .Purchase-main-money
       .money-text 支払い金額
       .money-number 
@@ -63,7 +58,7 @@
           = current_user.first_name
     .Purchase-main-btn
       .input-box
-        = link_to "登録クレジットカードで購入する", pay_product_purchases_path(product_id: @product.id), method: :post, class: "btn"
+        = link_to "クレジットカードで購入", pay_product_purchases_path(product_id: @product.id), method: :post, class: "btn"
         
 .Purchase-footer-link
   = render "card/Purchase-footer"
