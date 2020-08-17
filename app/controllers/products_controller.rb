@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
   before_action :set_parent_array, only: [:new, :create, :edit, :update]
 
+
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -85,7 +86,11 @@ class ProductsController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
+
   def set_parent_array
+
+ 
+
     @category_parent_array = Category.where(ancestry: nil)
   end
 
