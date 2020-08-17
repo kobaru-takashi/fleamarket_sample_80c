@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   $(function(){
 
     $('.box__parent--link').mouseover(function(){
@@ -17,7 +17,7 @@ $(function(){
   });
 });
 
-$(function(){
+$(document).on('turbolinks:load', function(){
   $('.category__parent--name').mouseover(function(){
     $(this).css("background-color", "#3ccace").css("color", "white");
   }).mouseout(function(){
