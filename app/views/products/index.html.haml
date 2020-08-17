@@ -70,125 +70,37 @@
 
   .pickupCategory
     .pickupCategory-title ピックアップカテゴリー
-    .pickupCategory-subtitle 新規投稿商品
+    .pickupCategory-subtitle 
+      = link_to "新規投稿商品", products_path, class:"title"
     .pickupCategory-lists
-      .pickupCategory-list
-        .pickupCategory-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
-        .pickupCategory-list-body
-          .pickupCategory-list-name テスト
-          .pickupCategory-list-evaluation
-            .pickupCategory-list-evaluation-left
-              .pickupCategory-list-evaluation-price 10000円
-              .pickupCategory-list-evaluation-tax (税込)
-            .pickupCategory-list-evaluation-star ★1
-      .pickupCategory-list
-        .pickupCategory-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
-        .pickupCategory-list-body
-          .pickupCategory-list-name テスト
-          .pickupCategory-list-evaluation
-            .pickupCategory-list-evaluation-left
-              .pickupCategory-list-evaluation-price 10000円
-              .pickupCategory-list-evaluation-tax (税込)
-            .pickupCategory-list-evaluation-star ★1
-      .pickupCategory-list
-        .pickupCategory-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
-        .pickupCategory-list-body
-          .pickupCategory-list-name テスト
-          .pickupCategory-list-evaluation
-            .pickupCategory-list-evaluation-left
-              .pickupCategory-list-evaluation-price 10000円
-              .pickupCategory-list-evaluation-tax (税込)
-            .pickupCategory-list-evaluation-star ★1
-      .pickupCategory-list
-        .pickupCategory-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
-        .pickupCategory-list-body
-          .pickupCategory-list-name テスト
-          .pickupCategory-list-evaluation
-            .pickupCategory-list-evaluation-left
-              .pickupCategory-list-evaluation-price 10000円
-              .pickupCategory-list-evaluation-tax (税込)
-            .pickupCategory-list-evaluation-star ★1
-      .pickupCategory-list
-        .pickupCategory-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupCategory-list-image"), "#"
-        .pickupCategory-list-body
-          .pickupCategory-list-name テスト
-          .pickupCategory-list-evaluation
-            .pickupCategory-list-evaluation-left
-              .pickupCategory-list-evaluation-price 10000円
-              .pickupCategory-list-evaluation-tax (税込)
-            .pickupCategory-list-evaluation-star ★1
-
-
+      = render partial:'product', collection: @products
   .pickupBrand
     .pickupBrand-title ピックアップブランド
-    .pickupBrand-subtitle アーカイバ
+    .pickupBrand-subtitle
+      = link_to "アーカイバ", products_path, class:"title"
     .pickupBrand-lists
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-      .pickupBrand-list
-        .pickupBrand-list-tag
-          = link_to image_tag("pict-reason-02.jpg", alt: "beef.jpeg", class: "pickupBrand-list-image"), "#"
-        .pickupBrand-list-body
-          .pickupBrand-list-name テスト
-          .pickupBrand-list-evaluation
-            .pickupBrand-list-evaluation-left
-              .pickupBrand-list-evaluation-price 20000円
-              .pickupBrand-list-evaluation-tax (税込)
-            .pickupBrand-list-evaluation-star ★2
-
+      - @products.each do |product|
+        .pickupBrand-list
+          = link_to product_path(product.id), data: {"turbolinks" => false} do
+            .pickupBrand-list-tag
+              = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
+                -if product.buyer_id.present? 
+                .pickupCategory-list-tag__sold
+                  .pickupCategory-list-tag__sold__inner SOLD
+          .pickupBrand-list-body
+            .pickupBrand-list-name 
+              = product.name
+            .pickupBrand-list-evaluation
+              .pickupBrand-list-evaluation-left
+                .pickupBrand-list-evaluation-price
+                  %ul
+                    %li
+                      = product.price.to_s(:delimited)
+                      円
+                    %li
+                    = icon('fa', 'star')
+                  %p (税込)
+                  
 %aside.appBanner
   = render 'aside'
 .footer
