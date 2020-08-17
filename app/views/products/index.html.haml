@@ -73,7 +73,7 @@
     .pickupCategory-subtitle 
       = link_to "新規投稿商品", products_path, class:"title"
     .pickupCategory-lists
-      = render 'product'
+      = render partial:'product', collection: @products
   .pickupBrand
     .pickupBrand-title ピックアップブランド
     .pickupBrand-subtitle
