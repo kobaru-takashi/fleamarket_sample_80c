@@ -1,50 +1,92 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index,:show ]
+  before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update]
 
   def index
-    @products = Product.all.order("created_at DESC").limit(5)
+    @products = Product.includes(:images).order('created_at DESC')
   end
 
   def new
-    @category_parent_array = Category.where(ancestry: nil)
     @product = Product.new
-
+    @product.images.new
   end
 
+
   def create
-    Product.create(product_params)
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to product_path(params[:id])
+    else
+      render new_product_path
+    end
   end
 
   def destroy
-    product = Product.find(params[:id])
-    product.destroy
+    if @product.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = '削除できませんでした'
+      render :show
+    end
   end
 
   def edit
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+    @category_children_edit = Category.find_by(id: @category_parent.id).children
+    @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update(product_params)
+    if @product.update(product_params)
+      redirect_to product_path(params[:id])
+    else
+      render :edit
+    end
   end
-  
+
   def show
     @user = @product.user
+    @product = Product.find(params[:id])
+    @category_id = @product.category_id
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
+    @images = Image.where(product_id: params[:id])
+    @images_first = Image.where(product_id: params[:id]).first
   end
+
+  def get_category_children_form
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_children
+    @category_children = Category.find(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+
 
   private
   def product_params
-    params.require(:params).permit(:name, :price, :image)
+    params.require(:product).permit(:name, :price,:price, :content, :condition, :delivery_fee, :send_from, :delivery_date,:category_id, :brand, images_attributes: [:src, :_destroy, :id]).merge(saler_id: current_user.id).merge(user_id: current_user.id)
   end
 
   def set_product
     @product = Product.find(params[:id])
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
+
+  def set_parent_array
+    @category_parent_array = Category.where(ancestry: nil)
+  end
+
 end
