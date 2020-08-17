@@ -30,9 +30,13 @@
 |delivery_date|integer|null: false|
 |user_id|integer|null: false|
 |category_id|integer|null: false|
+|saler_id|integer|null: false|
+|buyer_id|integer|------|
 
 ### Association
 - belongs_to :user
+- belongs_to :saler, class_name: "User"
+- belongs_to :buyer, class_name: "User", optional: true
 - belongs_to :category
 - has_many :images, inverse_of: :product
 - accepts_nested_attributes_for :images
