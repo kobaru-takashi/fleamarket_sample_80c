@@ -15,13 +15,11 @@
             = image_tag @card_src, width: "70",class: "credit_card_info__brand__img", alt: @card_brand
           .credit_card_info__numbers
             .number
-              -# # Pay.jpから取得したカード番号の末尾４桁を取得
               = "**** **** **** " + @customer_card.last4
             .expiration_date
               .expiration_date__title
                 有効期限
               .expiration_date__info
-                -# # showメソッドで定義した有効期限の年と月を取得
                 = @exp_month + " / " + @exp_year
         .destroy__function
           .destroy__function__link
