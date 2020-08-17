@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
-  before_action :set_parrent_array, only: [:new, :create, :edit, :update]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update]
+
 
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -85,7 +86,11 @@ class ProductsController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
-  def set_parrent_array
+
+  def set_parent_array
+
+ 
+
     @category_parent_array = Category.where(ancestry: nil)
   end
 
