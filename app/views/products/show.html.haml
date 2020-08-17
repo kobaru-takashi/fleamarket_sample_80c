@@ -31,18 +31,36 @@
       .product-name
         %h2= @product.name
       .product-image
+        .image-main
+          .image-main__stage
+            - @images.each do |image|
+              .image-main-tag
+                = image_tag image.src.url, class: "product-image-tag"
+                  - if @product.buyer_id.present?
+                  .products-box_photo__sold
+                    .products-box_photo__sold__inner SOLD
+        -# .image_box
+        -#   .image-sub
+        -#     .image-sub-list.active
+        -#       = image_tag @images[0].src.url, class:"product-image-list"
+        -#     - @images.each_with_index do |image, i|
+        -#       .image-sub-list
+        -#         = image_tag image[i].src.url, class: "product-image-list"
+
+      .product-image
         %ul.image-main
-          %li.image-main-tag
+          .image-main-tag
             = image_tag @images_first.src.url, class: "product-image-tag"
-              - if @product.buyer_id.present?
-              .products-box_photo__sold
-                .products-box_photo__sold__inner SOLD
-            .image__box
-              %ul.image-sub
-                %li.image-sub-list
-                - @images.each do |img|
-                  %li.image-sub-list
-                    = image_tag img.src.url, class: "product-image-list",height: "87px"
+            -#   - if @product.buyer_id.present?
+            -#   .products-box_photo__sold
+            -#     .products-box_photo__sold__inner SOLD
+            -# .image__box
+            -#   %ul.image-sub
+            -#     %li.image-sub-list
+            -#     - @images.each do |img|
+            -#       %li.image-sub-list
+            -#         = image_tag img.src.url, class: "product-image-list",height: "87px"
+
       .product-price
         .price
           ¥
