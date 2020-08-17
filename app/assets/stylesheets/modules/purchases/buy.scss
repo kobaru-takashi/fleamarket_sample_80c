@@ -1,0 +1,170 @@
+.Purchase-main{
+  background-color: #f8f8f8;
+  .Purchase-main-view{
+    max-width: 700px;
+    background-color: #FFF;
+    margin: auto ;
+    text-align: center;
+    padding: 32px 16px;
+    .Purchase-main-title{
+      font-size: 24px;
+      font-weight: bold;
+      padding: 32px 16px;
+      border-bottom: 2px solid #f8f8f8;
+      width: 400px;
+      margin: auto ;
+      max-width: 375px;
+    }
+    .Purchase-main-contents{
+      padding: 32px 16px;
+      display: flex;
+      justify-content: center;
+      max-width: 375px;
+      margin: auto ;
+      border-bottom: 2px solid #f8f8f8;
+      .contents-image{
+        .contents-image-tag{
+        }
+      }
+      .contents-content{
+        width: 100%;
+        margin-left: 16px;
+        .content-text{
+          font-size: 14px;
+          line-height: 1.4em;
+          margin-bottom: 8px;
+          text-align: left;
+        }
+        .content-money{
+          display: flex;
+          justify-content: flex-end;
+          .content-money-tex{
+            font-size: 12px;
+          } 
+          .content-money-nuber{
+            font-size: 15px;
+            font-weight: 600;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .Purchase-main-money{
+    padding: 32px 16px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 375px;
+    margin: auto ;
+    border-bottom: 2px solid #f8f8f8;
+    .money-text{
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .money-number{
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+  .Purchase-main-payment{
+    padding: 32px 16px;
+    max-width: 375px;
+    margin: auto ;
+    border-bottom: 2px solid #f8f8f8;
+    .payment-top{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      .payment-top-text{
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .payment-top-link{
+        text-decoration: none;
+        color: rgb(0, 149, 238);
+       } 
+    }
+    .payment-under{
+      font-size: 14px;
+      .payment-under-credit{
+        display: flex;
+        justify-content: flex-start;
+      }
+      .payment-under-personal-number{
+        display: flex;
+        justify-content: flex-start;
+      }
+      .payment-under-expiration-date{
+        display: flex;
+        justify-content: flex-start;
+      }
+      .payment-under-logo{
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .Purchase-main-address{
+    padding: 32px 16px;
+    max-width: 375px;
+    margin: auto ;
+    border-bottom: 2px solid #f8f8f8;
+    .address-top{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      .address-top-text{
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .address-top-link{
+        text-decoration: none;
+        color: rgb(0, 149, 238);
+      }
+    }
+    .address-under{
+      font-size: 14px;
+      .address-under-number{
+        display: flex;
+        justify-content: flex-start;
+      }
+      .address-under-address{
+        display: flex;
+        justify-content: flex-start;
+      }
+      .address-under-name{
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+
+  .Purchase-main-btn{
+    padding: 32px 16px 32px 0;
+    max-width: 375px;
+    margin: auto ;
+    form{
+      .input-box{
+        .submit-btn{
+          height: 50px;
+          width: 100%;
+
+          margin-left: 15px;
+          background-color:  #3CCACE;
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          border-radius:5px;
+
+          padding: 20px 140px;
+          font-size: 16px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
