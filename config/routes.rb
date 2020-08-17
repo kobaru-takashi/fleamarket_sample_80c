@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'purchases/buy'
+  get 'purchases/pay'
+  get 'card/new'
+  get 'card/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -20,4 +24,20 @@ Rails.application.routes.draw do
 
   resources :users
   resources :categories, only: [:index]
+
+  
+   resources :products do
+    resource :purchases do
+      member do
+        get  "buy"
+        post "pay"
+      end
+    end
+  end
+
+
+  resources :users
+  resources :card, only: [:new, :create, :index, :destroy] do
+
+  end
 end
