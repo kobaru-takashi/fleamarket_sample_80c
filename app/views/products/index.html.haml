@@ -78,6 +78,9 @@
           = link_to product_path(product.id), data: {"turbolinks" => false} do
             .pickupCategory-list-tag
               = image_tag product.images.first.src.url, class: "pickupCategory-list-image",width: "220px"
+                -if product.buyer_id.present? 
+                .pickupCategory-list-tag__sold
+                  .pickupCategory-list-tag__sold__inner SOLD
           .pickupCategory-list-body
             .pickupCategory-list-name
               = product.name
@@ -101,6 +104,9 @@
           = link_to product_path(product.id), data: {"turbolinks" => false} do
             .pickupBrand-list-tag
               = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
+                -if product.buyer_id.present? 
+                .pickupCategory-list-tag__sold
+                  .pickupCategory-list-tag__sold__inner SOLD
           .pickupBrand-list-body
             .pickupBrand-list-name 
               = product.name
