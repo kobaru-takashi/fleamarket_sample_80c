@@ -4,14 +4,12 @@
 .card_add 
   .card_add-box
     .title クレジットカード情報入力
-    -#form_tagメソッドでcreateアクションに入力情報を渡します。
     = form_tag(card_index_path, method: :post, id: "charge-form", class: "details", name: "inputForm") do
       .number-details
         .card-number カード番号
         %span.must_check 必須
       .number
         = text_field_tag 'payment_card_no', "", class: 'cardnumber', id: "payment_card_no", placeholder: '半角数字のみ', type: "text", maxlength: "16"
-      -# 事前にassets/imagesにcardsファイルを作成、中に各カード会社の画像を入れておき、呼び出す。
       .image
         = image_tag(image_path('visa.svg'), class: "visa")
         = image_tag(image_path('mastercard.svg'), class: 'master')
@@ -53,7 +51,6 @@
               %option{value: "2029"} 29
               %option{value: "2030"} 30
             .year-details 年
-
       .securitycode
         .securitycode__details
           .securitycode__details__title セキュリティコード
@@ -61,8 +58,9 @@
         .securitycode__cardsecurity
           = text_field_tag  "payment_card_cvc", "", type: 'text', class: 'securitycode__cardsecurity__form', id: "payment_card_cvc", maxlength: "4", placeholder: 'カード背面4桁もしくは3桁の番号'
         .card-question カード裏面の番号とは？
-      .add 
+      .add
         = submit_tag "登録する", class: "add-btn", id: "payment_card_submit-button"
-    .add-box 
+    .add-box
+
 .index-footer
   = render "Purchase-footer"

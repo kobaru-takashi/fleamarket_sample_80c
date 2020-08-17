@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
   before_action :set_parent_array, only: [:new, :create, :edit, :update]
 
-
   def index
     @products = Product.includes(:images).order('created_at DESC')
   end
@@ -13,7 +12,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.new
   end
-
 
   def create
     @product = Product.new(product_params)
@@ -72,7 +70,6 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
-
   private
   def product_params
     params.require(:product).permit(:name, :price,:price, :content, :condition, :delivery_fee, :send_from, :delivery_date,:category_id, :brand, images_attributes: [:src, :_destroy, :id]).merge(saler_id: current_user.id).merge(user_id: current_user.id)
@@ -86,11 +83,7 @@ class ProductsController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
-
   def set_parent_array
-
- 
-
     @category_parent_array = Category.where(ancestry: nil)
   end
 

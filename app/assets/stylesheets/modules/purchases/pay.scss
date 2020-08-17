@@ -7,7 +7,6 @@
     text-align: center;
     padding: 32px 16px 70px 16px;
     .main_details{
-
       &__message{
         font-size: 24px;
         font-weight: bold;
@@ -16,11 +15,8 @@
         width: 500px;
         margin: auto ;
       }
-
     }
-
     .purchased__links{
-
       &__TopPage{
         padding-top: 40px;
         &__btn{
@@ -49,10 +45,7 @@
           border-radius: 5px;
           text-decoration: none;
         }
-    }
-
       }
-
+    }
   }
-
 }

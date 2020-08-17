@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   resources :users
   resources :categories, only: [:index]
 
-  
   resources :products do
     resource :purchases do
       member do
@@ -37,6 +36,6 @@ Rails.application.routes.draw do
   end
 
   resources :card, only: [:new, :create, :index, :destroy] do
-
   end
+
 end
