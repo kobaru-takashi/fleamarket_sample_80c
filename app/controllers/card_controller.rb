@@ -1,14 +1,14 @@
 class CardController < ApplicationController
-  require "payjp" #PAYJPとやり取りするために、payjpをロード
+  require "payjp" 
 
   def new
-    # if current_user.card.present?
+    if current_user.card.present?
 
-    #   redirect_to card_index_path
-    # end
-    @card = Card.new
-    @card = Card.where(user_id: current_user.id) if @card.present?
-    redirect_to card_index_path if @card.present?
+      redirect_to card_index_path
+    end
+    # @card = Card.new
+    # @card = Card.where(user_id: current_user.id) if @card.present?
+    # redirect_to card_index_path if @card.present?
   end
 
   def create
@@ -22,7 +22,7 @@ class CardController < ApplicationController
     # 無事トークン作成された場合のアクション(こっちが本命のアクション)
     # まずは生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
       customer = Payjp::Customer.create(
-        email: current_user.email,
+        # email: current_user.email,
         card: params["payjp_token"]
         # metadata: {user_id: current_user.id} #最悪なくてもOK！
       )

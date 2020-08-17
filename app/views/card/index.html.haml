@@ -12,7 +12,7 @@
           .credit_card_info__brand
             -# # showメソッドで定義した@card_srcを呼び出し
             -# # 画像をcardsというフォルダを作り、入れておく
-            = image_tag @card_src, width: "70",class: "credit_card_info__brand__img", alt: @card_brand
+            -# = image_tag @card_src, width: "70",class: "credit_card_info__brand__img", alt: @card_brand
           .credit_card_info__numbers
             .number
               -# # Pay.jpから取得したカード番号の末尾４桁を取得
