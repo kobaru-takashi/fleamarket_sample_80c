@@ -77,8 +77,7 @@
     .contentLeft
     .contentRight
       .titleBox
-        = "#{:keyword}の商品一覧"
-        //検索キーワードを表示まだ
+        = "#{params[:keyword]}の商品一覧"
       .productLists
         - if @products
           %ul.productList
