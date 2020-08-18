@@ -9,9 +9,8 @@
       .titleBox
         = "#{@category.name}の商品一覧"
       .productLists
-        - if @products
-          %ul.productList
-            = render partial:'products/product', collection: @products
+        %ul.productList
+          = render partial:'products/product', collection: @products
 
 %aside.appBanner
   = render 'products/aside'

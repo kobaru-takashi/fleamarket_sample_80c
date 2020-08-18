@@ -27,9 +27,9 @@
           text-decoration: none;
           .productList{
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 4列 */
-            grid-column-gap: 5px; /* 間隔 */
-            grid-row-gap: 5px; /* 縦間隔 */
+            grid-template-columns: repeat(5, 1fr);
+            grid-column-gap: 5px;
+            grid-row-gap: 5px;
             .pickupCategory-list__list{
             background-color: #fff;
             margin: 0 5px;
