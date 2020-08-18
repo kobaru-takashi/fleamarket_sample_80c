@@ -3,77 +3,117 @@
 %nav.nav-category
   %ul.nav-category__lists
     %li.category-list
-      =link_to "#",class:"list-link" do
+      =link_to root_path ,class:"list-link" do
         FURIMA
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        ベビー・キッズ
+        = @category_parent.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        ベビー服(男女兼用) ~95cm
+        = @category_child.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
       =link_to "#",class:"list-link" do
-        アウター
+        = @category_grandchild.name
     %li.category-list
       =icon("fas","angle-right")
     %li.category-list
-      =link_to "#", class:"list-link" do
-        product 3
+      =link_to product_path(params[:id]), class:"list-link" do
+        = @product.name
 .main
   .show-main
     .show-main__product-show
       .product-name
-        product exp
+        %h2= @product.name
       .product-image
-        %ul.image-main
-          %li.image-main-tag
-            = image_tag "thumb_test_image.jpg", alt: "product", class: "product-image-tag"
-            %ul.image-sub
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product2", class: "product-image-list", height: "87px"
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product3", class: "product-image-list",height: "87px"
-              %li.image-sub-list
-                = image_tag "thumb_test_image.jpg", alt:"product4", class: "product-image-list",height: "87px"
+        .image-main
+          - if @product.buyer_id.present?
+            .products-box_photo__sold
+              .products-box_photo__sold__inner SOLD
+          -if @images[0].present?
+            .image-main-tag.show
+              = image_tag @images[0].src.url, class: "product-image-tag"
+          -if @images[1].present?
+            .image-main-tag.not-show
+              = image_tag @images[1].src.url, class: "product-image-tag"
+          -if @images[2].present?
+            .image-main-tag.not-show
+              = image_tag @images[2].src.url, class: "product-image-tag"
+          -if @images[3].present?
+            .image-main-tag.not-show
+              = image_tag @images[3].src.url, class: "product-image-tag"
+          -if @images[4].present?
+            .image-main-tag.not-show
+              = image_tag @images[4].src.url, class: "product-image-tag"
+
+        .image_box
+          .image-sub
+            - if @images[0].present?
+              .image-sub-list.active
+                = image_tag @images[0].src.url, class:"product-image-list"
+            - if @images[1].present?
+              .image-sub-list
+                = image_tag @images[1].src.url, class:"product-image-list"
+            -if @images[2].present?
+              .image-sub-list
+                = image_tag @images[2].src.url, class:"product-image-list"
+            -if @images[3].present?
+              .image-sub-list
+                = image_tag @images[3].src.url, class:"product-image-list"
+            -if @images[4].present?
+              .image-sub-list
+                = image_tag @images[4].src.url, class:"product-image-list"
+
       .product-price
-        %span.price ¥50,0000
-        .product-price__detail
+        .price
+          ¥
+          = @product.price.to_s(:delimited)
           %span.tax (税込)
-          %span.shiippin-fee 送料込み
+        .shpping_fee
+          %span 送料：
+          %span
+            = @product.delivery_fee
       .product-content
-        あくまでテストです。
+        = simple_format(@product.content)
       %table.product-detail
         %tbody.product-detail__body
           %tr.detail-record
             %th.detail-left 出品者
-            %td.detail-right hoge
+            %td.detail-right= @user.nickname
           %tr.detail-record
             %th.detail-left カテゴリー
-            %td.detail-right ベビー・キッズ
+            - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+              %td.detail-right
+                = link_to "#{@category_child.name}","#"
+                %br= link_to "#{@category_grandchild.name}","#"
+            -else
+              %td.detail-right
+                = link_to "#{@category_parent.name}","#"
+                %br= link_to "#{@category_child.name}","#"
+                = link_to "#{@category_grandchild.name}","#"
           %tr.detail-record
             %th.detail-left ブランド
-            %td.detail-right
+            %td.detail-right= @product.brand
           %tr.detail-record
             %th.detail-left 商品のサイズ
             %td.detail-right
           %tr.detail-record
             %th.detail-left 商品の状態
-            %td.detail-right 未使用に近い
+            %td.detail-right= @product.condition
           %tr.detail-record
             %th.detail-left 発送料の負担
-            %td.detail-right 送料込み(出品者負担)
+            %td.detail-right= @product.delivery_fee
           %tr.detail-record
             %th.detail-left 発送元の地域
-            %td.detail-right 岩手県
+            %td.detail-right= @product.send_from
           %tr.detail-record
             %th.detail-left 発送日の目安
-            %td.detail-right 4~7日で発送
+            %td.detail-right= @product.delivery_date
       .product-option
         %ul.product-option__favorite
           %li.option-favorite
@@ -84,6 +124,20 @@
           = link_to "#", class:"option-report__link" do
             = icon("fas","flag")
             不適切な商品の通報
+    .show-main__editDeleteBuy
+      .editDeleteBuy__btn
+        - if user_signed_in? && current_user.id == @user.id
+          .edit-product-btn
+            = link_to "商品の編集", edit_product_path(@product.id), data: {"turbolinks" => false} , class: "edit"
+          .delete-product-btn
+            = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
+        - elsif user_signed_in? && @product.buyer_id.present?
+          .disabled-product-btn
+            = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
+        - elsif user_signed_in?
+          .buy-product-btn
+            = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
+        - else
     .show-main__comment-show
       .comment-form
         %input{type: "textarea", class: "comment-form__input"}
@@ -91,9 +145,14 @@
           相手のことを考え丁寧なコメントを心がけましょう。
           %br/
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %button{name: "button", type: "submit", class: "comment-form__btn"}
-          =icon("fas","comment")
-          コメントする
+        - if @product.buyer_id.present?
+          %button{name: "button", type: "submit", class: "comment-form__btn-disabled"}
+            =icon("fas","comment")
+            売り切れのためコメント出来ません
+        - else
+          %button{name: "button", type: "submit", class: "comment-form__btn"}
+            =icon("fas","comment")
+            コメントする
       .comment-area
     .show-main__links
       %ul.links-list
@@ -106,19 +165,22 @@
             =icon("fas","angle-right")
             後ろの商品
     .show-main__related-items
-      =link_to "#", class:"related-items-link" do
-        ベビー・キッズをもっと見る
+      - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+        =link_to "#{@category_child.name}をもっと見る", "#", class:"related-items-link"
+      - else
+        = link_to "#{@category_parent.name}をもっと見る", "#", class: "related-items-link"
       .related-items-list
         .related-item
           =link_to "#", class: "related-item-link" do
             %figure.related-item-image-field
-              =image_tag "thumb_test_image.jpg", alt:"related-item", class: "related-item-image"
+              = image_tag @images_first.src.url, alt:"related-item", class: "related-item-image",height: "87px"
             .related-item-body
-              neko
+              = @product.name
             .related-item-detail
               %ul.detail-list
                 %li.price
-                  ¥50,000
+                  ¥
+                  = @product.price.to_s(:delimited)
                 %li.favorite
                   =icon("fas","star")
                   0

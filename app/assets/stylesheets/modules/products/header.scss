@@ -51,11 +51,87 @@
     .header-nav{
       font-size: 14px;
       display: flex;
-      margin-bottom: 10px;
+      box-sizing: border-box;
+      .category__child, .category__parent, .category__grandchild{
+        display: none;
+      }
+
+      .category__list{
+        min-height: 480px;
+        position: absolute;
+        width: 240px;
+        top: 40px;
+        background-color: white;
+        z-index: 30;
+        padding-right: 30px;
+      }
+
+      .category__child--name{
+        width: 100%;
+        display: inline-block;
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: #333;
+        text-decoration: none;
+        line-height: 32px;
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-size: 18px;
+        padding-right: 30px;
+        border-bottom: 1px solid #f8f8f8;
+      
+      }
+
+      .categories{
+        padding-bottom: 10px;
+        box-sizing: border-box;
+        &:hover{
+          .category__parent{
+            top: 40px;
+            display: block;
+            &--name{
+              width: 100%;
+              display: inline-block;
+              font-size: 13px;
+              letter-spacing: 2px;
+              color: #333;
+              text-decoration: none;
+              line-height: 32px;
+              background-position: center right;
+              background-repeat: no-repeat;
+              background-size: 18px;
+              padding-right: 30px;
+              border-bottom: 1px solid #f8f8f8;
+            }
+            li {
+              &:hover{
+                .category__child{
+                  width: 100%;
+                  display: block;
+                  top: 0;
+                  left: 270px;
+                  li {
+                    &:hover{
+                      .category__grandchild{
+                        width: 100%;
+                        display: block;
+                        top: 0;
+                        left: 300px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+
       .list-left{
         position: relative;
         display: flex;
-        &__category{
+        &__category {
           .category-link{
             text-decoration: none;
             color: black;
@@ -66,6 +142,7 @@
             padding-right: 30px;
           }
         }
+      
         &__brand{
           line-height: 32px;
           display: flex;
@@ -110,7 +187,6 @@
             text-decoration: none;
             padding-left: 16px;
           }
-
         }
         &__new-registration{
           color: #333333;
