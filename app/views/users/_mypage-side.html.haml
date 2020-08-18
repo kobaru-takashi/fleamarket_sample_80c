@@ -4,7 +4,7 @@
       =link_to edit_user_registration_path(current_user), class:"MyPage__link" do
         本人情報
     %li.MyPage__list
-      =link_to "#", class:"MyPage__link" do
+      =link_to new_product_path , class:"MyPage__link" do
         商品を出品する
     %li.MyPage__list
       =link_to "#", class:"MyPage__link" do
@@ -16,5 +16,8 @@
       =link_to "#", class:"MyPage__link" do
         購入した商品
     %li.MyPage__list
-      =link_to "#", class:"MyPage__link" do
+      =link_to card_index_path , class:"MyPage__link" do
         クレジットカード情報
+    %li.MyPage__list
+      =link_to "", class:"MyPage__link" do
+        お気に入り一覧
