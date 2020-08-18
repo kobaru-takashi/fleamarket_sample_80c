@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :categories, only: [:index]
+  resources :categories
 end
