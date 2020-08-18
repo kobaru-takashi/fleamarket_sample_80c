@@ -2,8 +2,9 @@ class PurchasesController < ApplicationController
   require "payjp"
 
   def buy
+
     @product = Product.find(params[:product_id])
-    @images_first = Image.where(product_id: params[:product_id]).first
+    @images = Image.where(product_id: params[:product_id])
     @addresses = Address.all
     if user_signed_in?
       @user = current_user
