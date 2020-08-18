@@ -1,0 +1,52 @@
+.Purchase-footer{
+  background-color: #f8f8f8;
+  height: 128px;
+  width: 100%;
+  align-items: center;
+  padding: 40px 0 40px 0;
+  .Purchase-footer-top{
+    display: flex;
+    justify-content: space-between;
+    max-width: 375px;
+    margin: auto;
+    font-size: 12px;
+    .Purchase-footer-top-privacy{
+    }
+    .top-privacy-tag{
+      text-decoration: none;
+      color: black;
+    }
+    .Purchase-footer-top-contract{
+    }
+    .top-contract-tag{
+      text-decoration: none;
+      color: black;
+    }
+    .Purchase-footer-top-notation{
+      text-decoration: none;
+      color: black;
+    }
+    .top-notation-tag{
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .Purchase-footer-under{
+    margin: auto;
+    .Purchase-footer-under-image{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-logo-image{
+      display: flex;
+      padding-top: 30px;
+      margin: auto;
+    }
+    .Purchase-footer-under-lnc{
+      display: flex;
+      justify-content: center;
+      font-size: 12px;
+    }
+  }
+}
