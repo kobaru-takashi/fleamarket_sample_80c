@@ -42,19 +42,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    @user = User.find(current_user.id)
-    @user.update(sign_up_params)
-  unless @user.valid?
-    flash.now[:alert] = @user.errors.full_messages
+    current_user.update(sign_up_params)
+  unless current_user.valid?
+    flash.now[:alert] = current_user.errors.full_messages
     render :edit and return
   end
-  @address = @user.address
+  @address = current_user.address
   render :edit_address
   end
 
   def update_address
-    user = current_user
-    @address = Address.find(user.address.id)
+    @address = Address.find(current_user.address.id)
     @address.update(address_params)
     unless @address.valid?
       flash.now[:alert] = @address.errors.full_messages
