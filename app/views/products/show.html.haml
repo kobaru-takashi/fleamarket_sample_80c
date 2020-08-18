@@ -8,23 +8,55 @@
       .product-name
         %h2= @product.name
       .product-image
-        %ul.image-main
-          %li.image-main-tag
-            = image_tag @images_first.src.url, class: "product-image-tag"
-            .image__box
-              %ul.image-sub
-                %li.image-sub-list
-                - @images.each do |img|
-                  %li.image-sub-list
-                    = image_tag img.src.url, class: "product-image-list",height: "87px"
+        .image-main
+          - if @product.buyer_id.present?
+            .products-box_photo__sold
+              .products-box_photo__sold__inner SOLD
+          -if @images[0].present?
+            .image-main-tag.show
+              = image_tag @images[0].src.url, class: "product-image-tag"
+          -if @images[1].present?
+            .image-main-tag.not-show
+              = image_tag @images[1].src.url, class: "product-image-tag"
+          -if @images[2].present?
+            .image-main-tag.not-show
+              = image_tag @images[2].src.url, class: "product-image-tag"
+          -if @images[3].present?
+            .image-main-tag.not-show
+              = image_tag @images[3].src.url, class: "product-image-tag"
+          -if @images[4].present?
+            .image-main-tag.not-show
+              = image_tag @images[4].src.url, class: "product-image-tag"
+
+        .image_box
+          .image-sub
+            - if @images[0].present?
+              .image-sub-list.active
+                = image_tag @images[0].src.url, class:"product-image-list"
+            - if @images[1].present?
+              .image-sub-list
+                = image_tag @images[1].src.url, class:"product-image-list"
+            -if @images[2].present?
+              .image-sub-list
+                = image_tag @images[2].src.url, class:"product-image-list"
+            -if @images[3].present?
+              .image-sub-list
+                = image_tag @images[3].src.url, class:"product-image-list"
+            -if @images[4].present?
+              .image-sub-list
+                = image_tag @images[4].src.url, class:"product-image-list"
+
       .product-price
         .price
           ¥
           = @product.price.to_s(:delimited)
-        .product-price__detail
           %span.tax (税込)
+        .shpping_fee
+          %span 送料：
+          %span
+            = @product.delivery_fee
       .product-content
-        = @product.content
+        = simple_format(@product.content)
       %table.product-detail
         %tbody.product-detail__body
           %tr.detail-record
@@ -55,7 +87,7 @@
             %td.detail-right= @product.delivery_fee
           %tr.detail-record
             %th.detail-left 発送元の地域
-            %td.detail-right= link_to "#{@product.send_from}","#"
+            %td.detail-right= @product.send_from
           %tr.detail-record
             %th.detail-left 発送日の目安
             %td.detail-right= @product.delivery_date
@@ -70,12 +102,19 @@
             = icon("fas","flag")
             不適切な商品の通報
     .show-main__editDeleteBuy
-      - if current_user == @user
-        = link_to "商品の編集", edit_product_path(@product.id), data: {"turbolinks" => false} , class: "edit"
-        = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
-      - elsif user_signed_in?
-        = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
-      - else
+      .editDeleteBuy__btn
+        - if user_signed_in? && current_user.id == @user.id
+          .edit-product-btn
+            = link_to "商品の編集", edit_product_path(@product.id), data: {"turbolinks" => false} , class: "edit"
+          .delete-product-btn
+            = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
+        - elsif user_signed_in? && @product.buyer_id.present?
+          .disabled-product-btn
+            = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
+        - elsif user_signed_in?
+          .buy-product-btn
+            = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
+        - else
     .show-main__comment-show
       .comment-form
         %input{type: "textarea", class: "comment-form__input"}
@@ -83,9 +122,14 @@
           相手のことを考え丁寧なコメントを心がけましょう。
           %br/
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %button{name: "button", type: "submit", class: "comment-form__btn"}
-          =icon("fas","comment")
-          コメントする
+        - if @product.buyer_id.present?
+          %button{name: "button", type: "submit", class: "comment-form__btn-disabled"}
+            =icon("fas","comment")
+            売り切れのためコメント出来ません
+        - else
+          %button{name: "button", type: "submit", class: "comment-form__btn"}
+            =icon("fas","comment")
+            コメントする
       .comment-area
     .show-main__links
       %ul.links-list

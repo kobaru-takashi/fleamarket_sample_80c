@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
-  before_action :set_parents, only: [:index,  :new, :create, :edit, :show]
-  before_action :set_parent_array, only: [:new, :create, :edit, :update]
+  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
@@ -55,8 +55,8 @@ class ProductsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    @images = Image.where(product_id: params[:id])
-    @images_first = Image.where(product_id: params[:id]).first
+    @images = @product.images
+    @images_first = @product.images.first
   end
 
   def get_category_children_form
@@ -69,6 +69,10 @@ class ProductsController < ApplicationController
 
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+
+  def search
+    @products = Product.search(params[:keyword])
   end
 
 
