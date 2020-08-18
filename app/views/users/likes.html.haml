@@ -1,0 +1,22 @@
+.container-show aaaa
+
+  .main
+    %section.main__group
+    -#   %h2.main__group__title
+    -#     〇〇さんのマイページ
+    -# %section.main__table
+    -#   %h2.main__table__header
+    -#     いいね！一覧
+    -#   %ul.main__table__list
+    -#     - current_user.like_items.each do |item|
+    -#       %li
+    -#         =link_to item_path(item), class: "main__table__list__item" do
+    -#           %figure 
+    -#             = image_tag asset_path(item.images[0].content), :size =>'48x64'
+    -#           .main__table__list__item__body
+    -#             .main__table__list__item__body__text
+    -#             = item.name
+    -#             %br
+    -#             = item.price 
+    -#             円
+    -#           %i.fas.fa-chevron-right

@@ -33,4 +33,11 @@ class UsersController < ApplicationController
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
+
+
+  def likes
+    @user = User.find_by(id: params[:id])
+    @likes = Like.where(user_id: @user.id)
+    @user = User.find(params[:id])
+  end
 end

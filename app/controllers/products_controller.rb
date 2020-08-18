@@ -56,6 +56,7 @@ class ProductsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
     @images = @product.images
     @images_first = @product.images.first
+    @like = @product.likes.where(user_id: current_user.id).first
   end
 
   def get_category_children_form

@@ -22,7 +22,12 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :users, only: [:show ]
+  resources :users, only: [:show ] do
+    collection do
+      get 'favorite', to: 'users#favorite', as: 'favorite'
+    end
+  end
+
   resources :categories, only: [:index]
 
   resources :products do
@@ -38,4 +43,15 @@ Rails.application.routes.draw do
   resources :card, only: [:new, :create, :index, :destroy] do
   end
 
+  resources :users do
+    resources :products do
+     resources :likes, only: [:create, :destroy, :show]
+    end
+  end
+  
+  resources :users, only: [:index, :show] do
+    collection do
+      get :likes
+    end
+  end
 end
