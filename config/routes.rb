@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'products#index'
-  resources :products
+  resources :products do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_children_form', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search'
+    end
+  end
   resources :users, only: [:show ]
+  resources :categories, only: [:index]
   get "users/:id" => "users#show"
+
 end
