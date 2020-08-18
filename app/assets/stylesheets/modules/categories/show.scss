@@ -1,3 +1,4 @@
+
 .main{
   background: #f8f8f8;
   .showMain{
@@ -7,24 +8,29 @@
       float: left;
     }
     .contentRight{
-      width: 700px;
       margin: 0 auto;
       .titleBox{
         background-color: #fff;
         border-radius: 5px;
         border-radius: 5px 5px 0 0;
-          padding: 16px 10px 8px;
-          background-color: #3CCACE;
-          color: #fff;
-          text-align: center;
-          font-weight: bold;
-          font-size: 22px;
+        padding: 16px 10px 8px;
+        background-color: #3CCACE;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+        margin: 0 auto;
+        width: 60%;
         }
         .productLists{
           margin: 30px 0;
           text-decoration: none;
+          .productList{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 4列 */
+            grid-column-gap: 5px; /* 間隔 */
+            grid-row-gap: 5px; /* 縦間隔 */
             .pickupCategory-list__list{
-            width: 220px;
             background-color: #fff;
             margin: 0 5px;
             .pickupCategory-list-tag__sold{
@@ -78,6 +84,7 @@
                 p{
                   font-size: 10px;
                   text-align: left;
+                }
                 }
               }
             }
