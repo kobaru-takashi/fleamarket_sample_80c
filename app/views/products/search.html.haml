@@ -73,6 +73,16 @@
             %span クリア
           %button{type: "submit", class:"search-drop__btn-green"}
             %span 完了
+  .showMain
+    .contentLeft
+    .contentRight
+      .titleBox
+        = "#{:keyword}の商品一覧"
+        //検索キーワードを表示まだ
+      .productLists
+        - if @products
+          %ul.productList
+            = render partial:'product', collection: @products
 
 %aside.appBanner
   = render "aside"
