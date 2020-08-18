@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :set_parent_array, only: [:new, :create, :edit, :update]
 
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @products = Product.includes(:images).order('created_at DESC').limit(5)
   end
 
   def new
