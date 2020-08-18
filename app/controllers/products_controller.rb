@@ -73,7 +73,6 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.search(params[:keyword])
-    binding.pry
   end
 
 

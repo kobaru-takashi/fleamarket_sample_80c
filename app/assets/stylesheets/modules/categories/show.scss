@@ -9,7 +9,7 @@
     }
     .contentRight{
       margin: 0 auto;
-      width: 1200px;
+      width: 100%;
       .titleBox{
         background-color: #fff;
         border-radius: 5px;
@@ -26,6 +26,8 @@
         .productLists{
           margin: 30px 0;
           text-decoration: none;
+          overflow: scroll;
+          position: relative;
           .productList{
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -34,6 +36,8 @@
             .pickupCategory-list__list{
             background-color: #fff;
             margin: 0 5px;
+            width: 200px;
+            
             .pickupCategory-list-tag__sold{
               width: 0;
               height: 0;
