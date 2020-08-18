@@ -6,7 +6,7 @@
     .Purchase-main-title 購入内容の確認
     .Purchase-main-contents
       .contents-image
-        = image_tag @images[0].src.url, width: "100", class: "contents-image-tag"
+        = image_tag @images.src.url, width: "100", class: "contents-image-tag"
       .contents-content
         .content-text
           = @product.name

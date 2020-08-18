@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   def buy
 
     @product = Product.find(params[:product_id])
-    @images = Image.where(product_id: params[:product_id])
+    @images =  @product.images.first
     @addresses = Address.all
     if user_signed_in?
       @user = current_user
