@@ -1,0 +1,92 @@
+.header
+  = render 'header'
+.main
+  .main__search
+    .search-sort-box
+      .search-sort
+        .search-sort__left
+          .search-sort-icon
+            = icon("fas", "sort", class: "icon-sort")
+          .search-sort-text
+            %span 並べ替え
+        .search-sort__right
+          .search-sort-icon
+            = icon("fas", "search-plus", class: "icon-search")
+          .search-sort-text
+            %span 詳細検索
+    .search-drop-box.not-show
+      .search-drop
+        .search-drop__form-group
+          %label
+            = icon("fas", "plus", class: "icon-search-drop")
+            .search-drop-text
+              %span キーワードを追加する
+          %input{type: "text", class:"search-drop-input", placeholder: "例) 値下げ"}
+        .search-drop__form-group
+          %label
+            = icon("fas", "list-ul", class: "icon-search-drop")
+            .search-drop-text
+              %span カテゴリーを選択する
+          //ここにカテゴリーのドロップボックス
+        .search-drop__form-group
+          %label
+            = icon("fas", "tag", class: "icon-search-drop")
+            .search-drop-text
+              %span ブランド名から探す
+          %input{type: "text", class:"search-drop-input", placeholder: "例) シャネル"}
+          //インクリメンタルリサーチ
+        .search-drop__form-group
+          %label
+            = icon("fas", "expand", class: "icon-search-drop")
+            .search-drop-text
+              %span サイズを指定する
+          //ここにサイズのセレクト
+        .search-drop__form-group
+          %label
+            = icon("fas", "yen-sign", class: "icon-search-drop")
+            .search-drop-text
+              %span 価格
+          //ここに価格のセレクトボックス
+          %input{type: "number", class:"search-drop-input-half", placeholder: "¥ Min"}
+          %span ~
+          %input{type: "number", class:"search-drop-input-half", placeholder: "¥ Max"}
+        .search-drop__form-group
+          %label
+            = icon("fas", "star", class: "icon-search-drop")
+            .search-drop-text
+              %span 商品の状態
+          //ここに商品の状態のチェックボックス
+        .search-drop__form-group
+          %label
+            = icon("fas", "truck-moving", class: "icon-search-drop")
+            .search-drop-text
+              %span 配送料の負担
+          //ここに配送料のチェックボックス
+        .search-drop__form-group
+          %label
+            = icon("fas", "shopping-cart", class: "icon-search-drop")
+            .search-drop-text
+              %span 販売状況
+          //ここに販売状況のチェックボックス
+        .search-drop__btn
+          %button{type: "button", class:"search-drop__btn-reset"}
+            %span クリア
+          %button{type: "submit", class:"search-drop__btn-green"}
+            %span 完了
+  .showMain
+    .contentLeft
+    .contentRight
+      .titleBox
+        = "#{:keyword}の商品一覧"
+        //検索キーワードを表示まだ
+      .productLists
+        - if @products
+          %ul.productList
+            = render partial:'product', collection: @products
+
+%aside.appBanner
+  = render "aside"
+.footer
+  = render 'footer'
+.purchase-link
+  =render 'purchase-btn'
