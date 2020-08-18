@@ -39,13 +39,13 @@
         %li.list-right__sign-in
           = link_to user_path(current_user), data: {"turbolinks" => false}, class: "list-right__sign-in-link" do
             マイページ
-          %li.list-right__sign-in
-            = link_to destroy_user_session_path, method: :delete, class: "list-right__sign-out" do
-              ログアウト
-          %li.list-right__sign-in
-            = image_tag "member_photo_noimage_thumb.png", class: "list-right__sign-icon"
-          %li.list-right__sign-in
-            = current_user.nickname
+        %li.list-right__sign-in
+          = link_to destroy_user_session_path, method: :delete, class: "list-right__sign-out" do
+            ログアウト
+        %li.list-right__sign-in
+          = image_tag "member_photo_noimage_thumb.png", class: "list-right__sign-icon"
+        %li.list-right__sign-in
+          = current_user.nickname
     - else
       %ul.list-right
         %li.list-raight__sign-in

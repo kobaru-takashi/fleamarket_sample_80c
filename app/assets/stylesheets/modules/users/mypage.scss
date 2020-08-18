@@ -1,0 +1,71 @@
+.MyPage{
+  display: flex;
+  height: 100vh;
+  overflow: scroll;
+  border-top: 3px solid #272727;
+  &__sideBar{
+    width: 300px;
+    background-color: #272727;
+    .MyPage__lists{
+      background-color: #272727;
+      margin: 10px;
+      .MyPage__list{
+        height: 40px;
+        margin-top: 10px;
+        text-align: center;
+        padding-top: 10px;
+        background-color: #3ccace;
+        color: #ffffff;
+        border-radius: 2px;
+        .MyPage__link{
+          display: block;
+          color: #ffffff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  &__main{
+    width: calc(100vw - 300px);
+    background-color: #ffffff;
+    overflow: scroll;
+    .MyPage__user{
+      text-align: center;
+      margin-bottom: 30px;
+      background-color: #cccccc;
+      padding: 20px;
+      .MyPage__logo{
+        width: 150px;
+        height: 150px;
+      }
+      .MyPage__userInfo{
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    .MyPage__infoLists{
+      margin: 50px 0;
+      .MyPage__infoTitle{
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        border: 1px solid #cccccc;
+      }
+      .MyPage__info{
+        text-align: left;
+        font-size: 16px;
+        padding-left: 10px;
+        color: #272727;
+        border: 1px solid #cccccc;
+      }
+    }
+    .MyPage__content{
+      text-align: center;
+      background-color: #ffffff;
+      .MyPage__logoFurima{
+        width: 300px;
+        height: 100px;
+      }
+    }
+  }
+}
