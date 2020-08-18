@@ -31,18 +31,44 @@
       .product-name
         %h2= @product.name
       .product-image
-        %ul.image-main
-          %li.image-main-tag
-            = image_tag @images_first.src.url, class: "product-image-tag"
-              - if @product.buyer_id.present?
-              .products-box_photo__sold
-                .products-box_photo__sold__inner SOLD
-            .image__box
-              %ul.image-sub
-                %li.image-sub-list
-                - @images.each do |img|
-                  %li.image-sub-list
-                    = image_tag img.src.url, class: "product-image-list",height: "87px"
+        .image-main
+          - if @product.buyer_id.present?
+            .products-box_photo__sold
+              .products-box_photo__sold__inner SOLD
+          -if @images[0].present?
+            .image-main-tag.show
+              = image_tag @images[0].src.url, class: "product-image-tag"
+          -if @images[1].present?
+            .image-main-tag.not-show
+              = image_tag @images[1].src.url, class: "product-image-tag"
+          -if @images[2].present?
+            .image-main-tag.not-show
+              = image_tag @images[2].src.url, class: "product-image-tag"
+          -if @images[3].present?
+            .image-main-tag.not-show
+              = image_tag @images[3].src.url, class: "product-image-tag"
+          -if @images[4].present?
+            .image-main-tag.not-show
+              = image_tag @images[4].src.url, class: "product-image-tag"
+
+        .image_box
+          .image-sub
+            - if @images[0].present?
+              .image-sub-list.active
+                = image_tag @images[0].src.url, class:"product-image-list"
+            - if @images[1].present?
+              .image-sub-list
+                = image_tag @images[1].src.url, class:"product-image-list"
+            -if @images[2].present?
+              .image-sub-list
+                = image_tag @images[2].src.url, class:"product-image-list"
+            -if @images[3].present?
+              .image-sub-list
+                = image_tag @images[3].src.url, class:"product-image-list"
+            -if @images[4].present?
+              .image-sub-list
+                = image_tag @images[4].src.url, class:"product-image-list"
+
       .product-price
         .price
           ¥
@@ -111,6 +137,7 @@
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
+
         - else
     .show-main__comment-show
       .comment-form
