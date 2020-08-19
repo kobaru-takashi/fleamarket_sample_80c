@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show ] do
-    collection do
+    resources :products do
       get 'favorite', to: 'users#favorite', as: 'favorite'
     end
   end
@@ -49,9 +49,4 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :users, only: [:index, :show] do
-    collection do
-      get :likes
-    end
-  end
 end

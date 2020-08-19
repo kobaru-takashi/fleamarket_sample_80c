@@ -1,0 +1,94 @@
+.favorite-main{
+  .pickupBrand{
+    padding: 80px 0;
+    background-color: #f8f8f8;
+    height: 100%;
+    .pickupBrand-title{
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bold;
+
+    }
+    .pickupBrand-subtitle{
+      text-align: center;
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: bold;
+      color: #3CCACE;
+      .title{
+        color: #3CCACE;
+        text-decoration: none;
+      }
+    }
+    .pickupBrand-lists{
+      width: 1000px;
+      margin: 26px auto;
+      padding-left: 60px;
+      display: flex;
+      background-color: #f8f8f8;
+      flex-wrap: wrap;
+
+      .pickupBrand-list{
+        width: 220px;
+        background-color: #fff;
+        margin: 5px 5px;
+        .pickupCategory-list-tag__sold{
+          width: 0;
+          height: 0;
+          border-width: 80px 80px 0 0;
+          border-color: #ea352d transparent transparent transparent;
+          display: block;
+          position: absolute;
+          z-index: 1;
+          border-style: solid;
+  
+          &__inner{
+            top: -60px;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            color: #fff;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 600;
+          }
+        }
+        .pickupBrand-list-image{
+          width: 100%;
+          height: 150px;
+        }
+        .pickupBrand-list-body{
+          background-color: white;
+          color: #333;
+          padding: 16px;
+          .pickupBrand-list-name{
+            overflow: hidden;
+            line-height: 1.5;
+            font-size: 16px;
+            text-align: left;
+          }
+          .pickupBrand-list-evaluation{
+            font-size: 16px;
+            ul{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .fa{
+                display: inline-block;
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+              }
+            }
+            p{
+              font-size: 10px;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}

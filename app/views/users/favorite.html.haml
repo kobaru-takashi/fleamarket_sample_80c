@@ -1,0 +1,24 @@
+.favorite-main
+  .pickupBrand
+    .pickupBrand-lists
+      - current_user.like_products.each do |product|
+        .pickupBrand-list
+          =link_to product_path(product), class: "main__table__list__item" do
+            .pickupBrand-list-tag
+              = image_tag product.images[0].src.url, class: "pickupBrand-list-image",width: "220px"
+                -if product.buyer_id.present? 
+                .pickupCategory-list-tag__sold
+                  .pickupCategory-list-tag__sold__inner SOLD
+          .pickupBrand-list-body
+            .pickupBrand-list-name 
+              = product.name
+            .pickupBrand-list-evaluation
+              .pickupBrand-list-evaluation-left
+                .pickupBrand-list-evaluation-price
+                  %ul
+                    %li
+                      = product.price.to_s(:delimited)
+                      円
+                    %li
+                    = icon('fa', 'star')
+                  %p (税込)
