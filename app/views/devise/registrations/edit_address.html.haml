@@ -2,6 +2,7 @@
   .Header__inner
     =link_to root_path ,class:"LogoFurima__link" do
       =image_tag "logo.png",class:"LogoFurima__image"
+      
 .Account
   %section.Account__container
     %nav.progress-bar
@@ -9,11 +10,11 @@
         %li.progress-list
           会員情報
         %li.progress-list.active
-          送付先登録
+          送付先編集
         %li.progress-list
           完了
-    %h2.Account__title 送付先登録
-    = form_for @address, url: addresses_path do |f|
+    %h2.Account__title 送付先編集
+    = form_for @address, url: addresses_path, method: :patch do |f|
       = render "devise/shared/error_messages", resource: @address
       .Account__content
         .Form__group
@@ -21,19 +22,19 @@
             = f.label "お名前(全角)"
             %span.Form__require 必須
           .Form__half-area
-            = f.text_field :family_name, placeholder: "例) 田中", type: "text", value: "", class:"Form__input half"
-            = f.text_field :first_name, placeholder: "例) 太郎", type: "text", value: "", class:"Form__input half"
+            = f.text_field :family_name, placeholder: "例) 田中", type: "text",class:"Form__input half"
+            = f.text_field :first_name, placeholder: "例) 太郎", type: "text", class:"Form__input half"
         .Form__group
           %div
             = f.label "お名前カナ(全角)"
             %span.Form__require 必須
           .Form__half-area
-            = f.text_field :family_name_kana, placeholder: "例) タナカ", type: "text", value: "", class:"Form__input half"
-            = f.text_field :first_name_kana, placeholder: "例) タロウ", type: "text", value: "", class:"Form__input half"
+            = f.text_field :family_name_kana, placeholder: "例) タナカ", type: "text", class:"Form__input half"
+            = f.text_field :first_name_kana, placeholder: "例) タロウ", type: "text", class:"Form__input half"
         .Form__group
           = f.label :post_code, "郵便番号"
           %span.Form__require 必須
-          = f.text_field :post_code, placeholder: "例)123-4567", value: "", class:"Form__input",id:"user_address_attributes_postal_code"
+          = f.text_field :post_code, placeholder: "例)123-4567", class:"Form__input",id:"user_address_attributes_postal_code"
         .Form__group
           = f.label :prefecture, "都道府県"
           %span.Form__require 必須
@@ -55,6 +56,6 @@
           %span.Form__not-required 任意
           = f.text_field :telephone_number, placeholder: "09012345678", class:"Form__input"
         .actions
-          = f.submit "Create Account", class: 'Button UserButton', value:  '新規登録をする'
+          = f.submit "Update", class: 'Button UserButton', value:  '編集をする'
 .footer
   =render 'products/footer'

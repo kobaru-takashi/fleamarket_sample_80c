@@ -1,0 +1,50 @@
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
+
+.Account
+  %section.Account__container
+    %nav.progress-bar
+      %ul.progress-lists
+        %li.progress-list.active
+          会員情報
+        %li.progress-list
+          送付先編集
+        %li.progress-list
+          完了
+    %h2.Account__title 会員情報編集
+    = form_for @user, url: user_registration_path(current_user), html: { method: :patch } do |f|
+      = render "devise/shared/error_messages", resource: @user
+      .Account__content
+        .Form__group
+          %a.Form__singleText 
+            ※登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+          .Form__info--label
+            お名前
+          .Form__info--user
+            = "#{@user.family_name}  #{@user.first_name}"
+          .Form__info--label
+            お名前  カナ
+          .Form__info--user
+            = "#{@user.family_name_kana}  #{@user.first_name_kana}"
+          .Form__info--label
+            生年月日
+          .Form__info--user
+            = @user.birth_date.strftime("%Y/%m/%d")
+          %br
+
+        .Form__group
+          = f.label :nickname, "ニックネーム"
+          %span.Form__require 必須
+          = f.text_field :nickname,  type: "text", class: "Form__input",autofocus: true
+        .Form__group
+          = f.label :email, "メールアドレス"
+          %span.Form__require 必須
+          = f.email_field :email, placeholder: "PC・携帯どちらでも可", type: "email", class:"Form__input"
+        
+        .actions
+          = f.submit "Update", class: 'Button UserButton', value:  '編集をする'
+
+.footer
+  = render 'products/footer'

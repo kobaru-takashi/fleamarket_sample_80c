@@ -1,0 +1,65 @@
+.Purchase-header-link
+  = render "card/Purchase-header"
+
+.Purchase-main
+  .Purchase-main-view
+    .Purchase-main-title 購入内容の確認
+    .Purchase-main-contents
+      .contents-image
+        = image_tag @images.src.url, width: "100", class: "contents-image-tag"
+      .contents-content
+        .content-text
+          = @product.name
+        .content-money
+          .content-money-tex
+        .product-price
+          .price
+            ¥
+            = @product.price.to_s(:delimited)
+            %span.tax (税込) 
+          .shpping_fee
+            %span 送料：
+            %span
+              = @product.delivery_fee
+    .Purchase-main-money
+      .money-text 支払い金額
+      .money-number 
+        = "#{@product.price}" + "円"
+    .Purchase-main-payment
+      .payment-top
+        .payment-top-text 支払い方法
+        = link_to new_card_path, class: "payment-top-link" do
+          変更する  >
+      .payment-under
+        .payment-under-credit
+          クレジットカード
+        .payment-under-personal-number
+          = "**** **** **** " + @customer_card.last4
+        .payment-under-expiration-date 
+          有効期限 
+          .payment-under-expiration-date-number
+            = @exp_month + " / " + @exp_year
+        .payment-under-logo
+          = image_tag @card_src, width: "50",class: "payment-under-logo-tag", alt: @card_brand
+    .Purchase-main-address
+      .address-top
+        .address-top-text 配送先
+        = link_to "", class: "address-top-link" do
+          変更する  >
+      .address-under
+        .address-under-number
+          = " 〒" + current_user.address.post_code
+        .address-under-address
+          = current_user.address.prefecture
+          = current_user.address.city
+          = current_user.address.address
+        .address-under-name
+          = current_user.family_name
+          = current_user.first_name
+    .Purchase-main-btn
+      .input-box
+        = link_to "クレジットカードで購入", pay_product_purchases_path(product_id: @product.id), method: :post, class: "btn"
+
+.Purchase-footer-link
+  = render "card/Purchase-footer"
+

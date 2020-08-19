@@ -109,11 +109,12 @@
           .delete-product-btn
             = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
         - elsif user_signed_in? && @product.buyer_id.present?
-          .disabled-product-btn
-            = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
+          .disabled-priduct-btn
+          = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
         - elsif user_signed_in?
           .buy-product-btn
-            = link_to "購入画面に進む", data: {"turbolinks" => false} , class: "pay"
+            = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
+
         - else
     .show-main__comment-show
       .comment-form
