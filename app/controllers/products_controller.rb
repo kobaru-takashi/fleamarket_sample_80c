@@ -13,7 +13,6 @@ class ProductsController < ApplicationController
     @product.images.new
   end
 
-
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -74,7 +73,6 @@ class ProductsController < ApplicationController
   def search
     @products = Product.search(params[:keyword])
   end
-
 
   private
   def product_params

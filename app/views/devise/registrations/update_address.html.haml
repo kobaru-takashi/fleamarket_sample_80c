@@ -1,0 +1,18 @@
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
+.Account
+  .Account__container
+    %nav.progress-bar
+      %ul.progress-lists
+        %li.progress-list
+          会員情報
+        %li.progress-list
+          送付先編集
+        %li.progress-list.active
+          完了
+    %h2.create_address 登録を編集しました。
+    = link_to "トップへ戻る", root_path, class: "route-to-top"
+.footer
+  = render 'products/footer'

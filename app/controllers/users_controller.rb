@@ -1,22 +1,15 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :destroy]
+  before_action :authenticate_user!, only: [:show]
 
-  def edit
-  end
-
-  def update
-    if current_user.update(user_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
 
   def destroy
-    if current_user.destroy
-      redirect_to root_path
-    else
-      flash.now[:alert] = 'ログアウトできませんでした'
-      render :show
+    user.destroy
+  end
+
+  def show
+    unless @user == current_user
+      redirect_to root_path(@user)
     end
   end
 
@@ -32,5 +25,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :nickname)
   end
 
-
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

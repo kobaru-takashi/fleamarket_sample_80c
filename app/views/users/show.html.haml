@@ -1,0 +1,30 @@
+.header
+  = render 'products/header'
+
+.MyPage
+  = render 'mypage-side'
+  .MyPage__main
+    .MyPage__user
+      = image_tag "member_photo_noimage_thumb.png", class:"MyPage__logo"
+      .MyPage__userInfo
+        ようこそ #{@user.nickname} さん
+      .MyPage__userInfo
+        評価  ３  出品数  ５
+    .MyPage__infoLists
+      .MyPage__infoTitle
+        お知らせ
+      .MyPage__info
+        明日、8%還元クーポンの有効期限が切れます！詳細を確認しましょう。
+      .MyPage__info
+        事務局から個別メッセージ「《3日間限定！ポイント倍増》招待コード「あけおめ」を入力してメルペイ登録すると合計P2,000もらえる」
+      .MyPage__info
+        事務局から個別メッセージ「【対象者限定】セブン-イレブン初発送200円分ポイントプレゼント」
+      .MyPage__info
+        《最大10万円相当》売れたら売上金が2倍のチャンス！本日スタート！
+      .MyPage__info
+        3日後、8%還元クーポンの有効期限が切れます！タップして詳細を確認しましょう。
+    .MyPage__content
+      = image_tag "logo.png", class:"MyPage__logoFurima"
+
+.footer
+  = render 'products/footer'
