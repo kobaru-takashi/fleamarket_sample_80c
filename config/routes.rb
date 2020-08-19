@@ -22,8 +22,9 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
   resources :users, only: [:show ]
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
 
   resources :products do
     resource :purchases do
