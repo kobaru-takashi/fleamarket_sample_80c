@@ -23,7 +23,7 @@
     }
     .pickupBrand-lists{
       width: 1000px;
-      margin: 26px auto;
+      margin: auto;
       padding-left: 60px;
       display: flex;
       background-color: #f8f8f8;
@@ -75,11 +75,13 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-              .fa{
-                display: inline-block;
-                font-size: inherit;
-                text-rendering: auto;
-                -webkit-font-smoothing: antialiased;
+              .favorite-count{
+                .fa{
+                  display: inline-block;
+                  font-size: inherit;
+                  text-rendering: auto;
+                  -webkit-font-smoothing: antialiased;
+                }
               }
             }
             p{

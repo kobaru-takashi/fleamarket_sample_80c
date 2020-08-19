@@ -436,11 +436,13 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-              .fa{
-                display: inline-block;
-                font-size: inherit;
-                text-rendering: auto;
-                -webkit-font-smoothing: antialiased;
+              .favorite-count{
+                .fa{
+                  display: inline-block;
+                  font-size: inherit;
+                  text-rendering: auto;
+                  -webkit-font-smoothing: antialiased;
+                }
               }
             }
             p{
