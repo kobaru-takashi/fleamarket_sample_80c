@@ -56,6 +56,8 @@ class ProductsController < ApplicationController
     @images = @product.images
     @images_first = @product.images.first
     @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
+    @comment = Comment.new
+    @commentALL = Comment.where(product_id:params[:id])
   end
 
   def get_category_children_form
