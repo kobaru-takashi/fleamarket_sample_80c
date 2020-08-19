@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to :saler, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   has_many :images, dependent: :destroy
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
   validates_associated :images
   validates_associated :category
