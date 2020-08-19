@@ -1,0 +1,17 @@
+.breadcrumbs{
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  .breadcrumbs-list{
+    font-size: 14px;
+    margin: 0 30px;
+    padding: 16px 0;
+    overflow: visible;
+    a{
+      text-decoration: none;
+      color: #272727;
+    }
+    .current{
+      font-weight: bold;
+    }
+  }
+}

@@ -1,16 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:show]
-
+  before_action :set_parents, only: [:show]
 
   def destroy
     user.destroy
-  end
-
-  def show
-    unless @user == current_user
-      redirect_to root_path(@user)
-    end
   end
 
   def show
@@ -27,5 +21,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 end

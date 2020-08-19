@@ -2,7 +2,8 @@
   .Header__inner
     =link_to root_path ,class:"LogoFurima__link" do
       =image_tag "logo.png",class:"LogoFurima__image"
-
+- breadcrumb :user
+= render "layouts/breadcrumbs"
 .Account
   %section.Account__container
     %nav.progress-bar
