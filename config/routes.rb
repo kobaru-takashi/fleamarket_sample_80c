@@ -39,5 +39,8 @@ Rails.application.routes.draw do
   resources :card, only: [:new, :create, :index, :destroy] do
   end
   resources :comments, only:[:create,:update,:destroy] do
+    member do
+      get 'restore'
+    end
   end
 end
