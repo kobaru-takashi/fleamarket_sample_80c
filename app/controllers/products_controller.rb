@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search]
-  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :show]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
@@ -50,13 +50,13 @@ class ProductsController < ApplicationController
 
   def show
     @user = @product.user
-    @product = Product.find(params[:id])
     @category_id = @product.category_id
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
     @images = @product.images
     @images_first = @product.images.first
+    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
   end
 
   def get_category_children_form
