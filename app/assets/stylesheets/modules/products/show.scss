@@ -4,6 +4,7 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   position: relative;
   padding: 0 60px;
+  box-sizing: border-box;
   &__lists{
     padding: 17px 0 35px;
     width: 100%;

@@ -1,0 +1,36 @@
+.header
+  = render 'header'
+.main
+  .main__search
+    .search-sort-box
+      .search-sort
+        .search-sort__left
+          .search-sort-icon
+            = icon("fas", "sort", class: "icon-sort")
+          .search-sort-text
+            %span 並べ替え
+        .search-sort__right
+          .search-sort-icon
+            = icon("fas", "search-plus", class: "icon-search")
+          .search-sort-text
+            %span 詳細検索
+
+  .showMain
+    .contentLeft
+    .contentRight
+      -if @products.present?
+        .titleBox
+          = "#{params[:keyword]}の商品一覧"
+        .productLists
+          %ul.productList
+            = render partial:'product', collection: @products
+      - else
+        .titleBox
+          = "『#{params[:keyword]}』の商品はありません"
+
+%aside.appBanner
+  = render "aside"
+.footer
+  = render 'footer'
+.purchase-link
+  =render 'purchase-btn'
