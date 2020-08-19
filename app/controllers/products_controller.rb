@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show ]
-  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search]
-  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search]
+  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search, :search_detail]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail]
+  before_action :set_product_search_query
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
@@ -71,7 +72,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:keyword])
+
+  end
+
+  def search_detail
+
   end
 
   private

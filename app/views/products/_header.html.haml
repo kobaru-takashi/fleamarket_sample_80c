@@ -4,9 +4,9 @@
       =link_to root_path ,class:"logo-furima__link" do
         =image_tag "logo.png", class:"logo-furima-image"
     .search-box
-      = form_with(url: search_products_path, local: true, method: :get, class: "search-box-form") do |form|
+      = search_form_for(@q, url: search_products_path, local: true, method: :get, class: "search-box-form") do |form|
         .search-box-form__input
-          = form.text_field :keyword, placeholder: "キーワードから探す", class: "search-box__form"
+          = form.search_field :name_or_content_cont, placeholder: "キーワードから探す", class: "search-box__form"
           = button_tag type: 'submit',class:"search-box__btn" do
             .search-box-icon
               =image_tag 'icon-search 1.png', class: "search-box-icon-image"

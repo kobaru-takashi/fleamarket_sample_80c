@@ -3,3 +3,8 @@ $(document).on('turbolinks:load', function(){
     $(".search-drop-box").toggleClass("is-show").toggleClass("not-show")
   });
 });
+
+
+$(document).on("change", '.search-drop-check-box-all', function(){
+
+});

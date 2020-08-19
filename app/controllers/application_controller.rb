@@ -18,7 +18,18 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     user_path(resource.id)
   end
-  
+
+  def set_product_search_query
+    if params[:q] != nil
+      params[:q]['name_or_content_cont_any'] = params[:q]['name_or_content_cont_any'].try(:split,/[\p{blank}\s]+/)
+      @q = Product.ransack(params[:q])
+      @products = @q.result
+    else
+      @q = Product.ransack(params[:q])
+      @products = @q.result
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

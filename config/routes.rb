@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'get_category_children_form', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'search'
+      get 'search_detail'
     end
   end
 

@@ -65,32 +65,32 @@
                   %span すべて
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "1", nil
                 .check-box-label
                   %span 新品・未使用
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}, 2, nil
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "2", nil
                 .check-box-label
                   %span 未使用に近い
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}, 3, nil
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "3", nil
                 .check-box-label
                   %span 目立った傷や汚れなし
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}, 4, nil
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "4", nil
                 .check-box-label
                   %span やや傷や汚れあり
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}, 5, nil
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "5", nil
                 .check-box-label
                   %span 傷や汚れあり
             .search-drop-check-box
               %label
-                = f.check_box :condition, {multiple: true, include_hidden: false}, 6, nil
+                = f.check_box :condition, {multiple: true, include_hidden: false}, "6", nil
                 .check-box-label
                   %span 全体的に状態が悪い
           .search-drop__form-group
@@ -105,12 +105,12 @@
                   %span すべて
             .search-drop-check-box
               %label
-                = f.check_box :delivery_fee, {multiple: true, include_hidden: false}, 1, nil
+                = f.check_box :delivery_fee, {multiple: true, include_hidden: false}, "1", nil
                 .check-box-label
                   %span 送料込み(出品者負担)
             .search-drop-check-box
               %label
-                = f.check_box :delivery_fee, {multiple: true, include_hidden: false}, 2, nil
+                = f.check_box :delivery_fee, {multiple: true, include_hidden: false}, "2", nil
                 .check-box-label
                   %span 着払い(購入者負担)
           .search-drop__form-group
@@ -118,19 +118,19 @@
               = icon("fas", "shopping-cart", class: "icon-search-drop")
               .search-drop-text
                 %span 販売状況
-            -# .search-drop-check-box-all
-            -#   %label
-            -#     %input{type: "checkbox"}
-            -#     .check-box-label
-            -#       %span すべて
+            .search-drop-check-box-all
+              %label
+                %input{type: "checkbox"}
+                .check-box-label
+                  %span すべて
             .search-drop-check-box
               %label
-                = f.check_box :buyer_id_not_null, {multiple: true, include_hidden: false}, nil, nil
+                = f.check_box :buyer_id, {multiple: true, include_hidden: false}, nil, nil
                 .check-box-label
                   %span 出品中
             .search-drop-check-box
               %label
-                = f.check_box :buyer_id_null, {multiple: true, include_hidden: false}, present?, nil
+                = f.check_box :delivery_fee, {multiple: true, include_hidden: false}, present?, nil
                 .check-box-label
                   %span 売り切れ
           .search-drop__btn

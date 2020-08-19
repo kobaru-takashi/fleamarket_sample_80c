@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:show]
+  before_action :set_product_search_query, only: [:show]
+  before_action :set_parents, only: [:show]
 
 
   def destroy
@@ -27,5 +29,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 end
