@@ -55,7 +55,7 @@
 ## Creditsテーブル
 |Column|Type|Option|
 |------|----|------|
-｜user＿id｜integer|null: false|
+|user＿id|integer|null: false|
 |customer_token|-----|-----|
 |credit_token|-----|-----|
 

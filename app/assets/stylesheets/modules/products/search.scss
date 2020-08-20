@@ -28,6 +28,27 @@
         }
       }
     }
+    .search-sort-drop.is-show{
+      margin: 0 auto;
+      text-align: left;
+      width: 620px;
+      padding: 0 40px;
+      z-index: 1000;
+      position: relative;
+      .search-sort-drop-list{
+        border-bottom: 1px solid #cccccc;
+        cursor: pointer;
+        width: 150px;
+        padding: 10px 20px;
+        a{
+          text-decoration: none;
+          color: #888888;
+        }
+      }
+    }
+    .search-sort-drop.not-show{
+      display:none;
+    }
     .search-drop-box.is-show{
       background-color: #ffffff;
       width: 620px;
@@ -112,7 +133,6 @@
                   font-size: 16px;
                   border: 1px solid #cccccc;
                   height: 55px;
-                  color: #888888;
                 }
               }
             }

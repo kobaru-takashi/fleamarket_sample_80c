@@ -1,0 +1,130 @@
+.main__search
+  = search_form_for(@q, url: search_detail_products_path) do |f|
+    .search-sort-box
+      .search-sort
+        .search-sort__left
+          .search-sort-icon
+            = icon("fas", "sort", class: "icon-sort")
+          .search-sort-text
+            %span 並べ替え
+        .search-sort__right
+          .search-sort-icon
+            = icon("fas", "search-plus", class: "icon-search")
+          .search-sort-text
+            %span 詳細検索
+    .search-sort-drop.not-show
+      .search-sort-drop-list
+        = sort_link(@q, :price, '価格高い順', default_order: :desc)
+      .search-sort-drop-list
+        = sort_link(@q, :price, '価格安い順', default_order: :asc)
+      .search-sort-drop-list
+        = sort_link(@q, :created_at, '出品の新しい順', default_order: :desc)
+    .search-drop-box.not-show
+      .search-drop
+        .search-drop__form-group
+          = f.label :name_or_content_cont do
+            = icon("fas", "plus", class: "icon-search-drop")
+            .search-drop-text
+              %span キーワードを追加する
+          = f.search_field :name_or_content_cont, class:"search-drop-input", placeholder: "例)値下げ"
+        .search-drop__form-group
+          .listing-product-detail__category
+            = f.label :category_id ,class: 'listing-default__label' do
+              = icon("fas", "list-ul", class: "icon-search-drop")
+              .search-drop-text
+                %span カテゴリーを選択する
+            .listing-select-wrapper
+              .listing-select-wrapper__box
+                =f.collection_select :category_id_in, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+        .search-drop__form-group
+          = f.label :price do
+            = icon("fas", "yen-sign", class: "icon-search-drop")
+            .search-drop-text
+              %span 価格
+          = f.search_field :price_gteq, class: "search-drop-input-half", placeholder: "¥ Min"
+          %span ~
+          = f.search_field :price_lteq, placeholder: "¥ Max", class:"search-drop-input-half"
+        .search-drop__form-group
+          = f.label :condition_ep do
+            = icon("fas", "star", class: "icon-search-drop")
+            .search-drop-text
+              %span 商品の状態
+          .search-drop-check-box-all
+            %label
+              %input{type: "checkbox"}
+              .check-box-label
+                %span すべて
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 1,nil
+              .check-box-label
+                %span 新品・未使用
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 2, nil
+              .check-box-label
+                %span 未使用に近い
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 3, nil
+              .check-box-label
+                %span 目立った傷や汚れなし
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 4, nil
+              .check-box-label
+                %span やや傷や汚れあり
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 5, nil
+              .check-box-label
+                %span 傷や汚れあり
+          .search-drop-check-box
+            %label
+              = f.check_box :condition_in, {multiple: true, include_hidden: false}, 6, nil
+              .check-box-label
+                %span 全体的に状態が悪い
+        .search-drop__form-group
+          = f.label :delivery_fee do
+            = icon("fas", "truck-moving", class: "icon-search-drop")
+            .search-drop-text
+              %span 配送料の負担
+          .search-drop-check-box-all
+            %label
+              %input{type: "checkbox"}
+              .check-box-label
+                %span すべて
+          .search-drop-check-box
+            %label
+              = f.check_box :delivery_fee_in, {multiple: true, include_hidden: false}, 1, nil
+              .check-box-label
+                %span 送料込み(出品者負担)
+          .search-drop-check-box
+            %label
+              = f.check_box :delivery_fee_in, {multiple: true, include_hidden: false}, 2, nil
+              .check-box-label
+                %span 着払い(購入者負担)
+        .search-drop__form-group
+          = f.label :buyer_id do
+            = icon("fas", "shopping-cart", class: "icon-search-drop")
+            .search-drop-text
+              %span 販売状況
+          .search-drop-check-box-all
+            %label
+              = f.check_box :buyer_id, include_hidden: false, multiple: true
+              .check-box-label
+                %span すべて
+          .search-drop-check-box
+            %label
+              = f.check_box :buyer_id_null, include_hidden: false
+              .check-box-label
+                %span 出品中
+          .search-drop-check-box
+            %label
+              = f.check_box :buyer_id_not_null,  include_hidden: false
+              .check-box-label
+                %span 売り切れ
+        .search-drop__btn
+          %button{type: "button", class:"search-drop__btn-reset"}
+            %span クリア
+          = f.submit "完了", class:"search-drop__btn-green"
