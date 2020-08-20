@@ -78,3 +78,5 @@ group :production do
 end
 gem 'payjp'
 gem "gretel"
+gem 'omniauth-twitter'
+gem "omniauth-rails_csrf_protection"

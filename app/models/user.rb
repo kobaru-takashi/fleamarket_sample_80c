@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:twitter]
 
   validates :nickname, :email , presence: true, uniqueness: true
   validates :family_name_kana,  :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
@@ -18,5 +18,5 @@ class User < ApplicationRecord
 
   # has_one :card, dependent: :destroy
   has_one :card
-
+  has_many :sns_credentials
 end
