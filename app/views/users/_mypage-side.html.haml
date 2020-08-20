@@ -18,3 +18,7 @@
     %li.MyPage__list
       =link_to card_index_path, class:"MyPage__link" do
         クレジットカード情報
+    %li.MyPage__list
+      =link_to  user_product_likes_path(current_user, [:product_id]), class:"MyPage__link" do
+        いいね！一覧
+

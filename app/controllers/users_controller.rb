@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :set_parents, only: [:show, :likes]
 
-
   def destroy
     user.destroy
   end
@@ -14,12 +13,16 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  def likes
+    @user = User.find(params[:user_id])
+  end
 
+  private
+  
   def user_params
     params.require(:user).permit(:email, :nickname)
   end
-
+  
   def set_user
     @user = User.find(params[:id])
   end
@@ -27,4 +30,5 @@ class UsersController < ApplicationController
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
+
 end

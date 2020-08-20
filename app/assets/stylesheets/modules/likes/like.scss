@@ -1,0 +1,30 @@
+.item-button-container__left__dislike{
+  background-color:  #ffffff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid #3CCACE;
+  a{
+    text-decoration: none;
+  }
+  i{
+    color:#3CCACE;
+  }
+  span{
+    color:#3CCACE;
+  }
+}
+
+.item-button-container__left__like{
+  background-color:  #eeeeee;
+  padding: 5px 10px;
+  border-radius: 20px;
+  a{
+    text-decoration: none;
+  }
+  i{
+    color: black;
+  }
+  span{
+    color: black;
+  }
+}

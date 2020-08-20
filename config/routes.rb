@@ -23,8 +23,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show ]
-  resources :categories, only: [:index, :show]
+  resources :users, only: [:show ] do
+    resources :products do
+      get 'likes', to: 'users#likes', as: 'likes'
+    end
+  end
+
+  resources :categories, only: [:index]
+
 
   resources :products do
     resource :purchases do
@@ -39,4 +45,10 @@ Rails.application.routes.draw do
   resources :card, only: [:new, :create, :index, :destroy] do
   end
 
+  resources :users do
+    resources :products do
+     resources :likes, only: [:create, :destroy, :show]
+    end
+  end
+  
 end
