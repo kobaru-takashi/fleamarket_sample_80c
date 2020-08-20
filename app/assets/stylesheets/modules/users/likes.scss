@@ -1,4 +1,4 @@
-.favorite-main{
+.likes-main{
   width: calc(100vw - 300px);
   height: 100%;
   background-color: #f8f8f8;
@@ -29,11 +29,12 @@
       display: flex;
       background-color: #f8f8f8;
       flex-wrap: wrap;
-
+      padding-left: 20px;
       .pickupBrand-list{
-        width: 210px;
+        width: 200px;
         background-color: #fff;
         margin: 5px 5px;
+
         .pickupBrand-list-tag{
           position: relative;
           .pickupCategory-list-tag__sold{
@@ -58,7 +59,6 @@
               font-weight: 600;
             }
           }
-
         }
         .pickupBrand-list-image{
           width: 100%;
@@ -80,7 +80,7 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-              .favorite-count{
+              .likes-count{
                 .fa{
                   display: inline-block;
                   font-size: inherit;
@@ -96,6 +96,21 @@
           }
         }
       }
+    }
+  }
+}
+
+.likes-blank{
+  background-color: #f8f8f8;
+  width: calc(100vw - 300px);
+  display: flex;
+  justify-content: center;
+  .box{
+    .likes-blank-tag{
+      margin: 150px auto 0px auto;
+    }
+    .text{
+      font-weight: bold;
     }
   }
 }

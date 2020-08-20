@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show ] do
     resources :products do
-      get 'favorite', to: 'users#favorite', as: 'favorite'
+      get 'likes', to: 'users#likes', as: 'likes'
     end
   end
 

@@ -182,9 +182,9 @@
                 %li.price
                   ¥
                   = @product.price.to_s(:delimited)
-                %li.favorite
-                  =icon("fas","star")
-                  0
+                %li.likes-count
+                  =icon('fa', 'heart')
+                  = @product.likes_count
               %p.tax (税込)
 %aside.appBanner
   = render 'aside'
