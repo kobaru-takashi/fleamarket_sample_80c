@@ -114,7 +114,6 @@
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
-
         - else
     .show-main__comment-show
       .comment-form
