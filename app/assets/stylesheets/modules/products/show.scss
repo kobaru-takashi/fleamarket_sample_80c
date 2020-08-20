@@ -169,15 +169,14 @@
       .product-option{
         display: flex;
         justify-content: space-between;
-        &__favorite{
-          margin-top: 10px;
+
+        .item-button-container{
           display: flex;
-          .option-favorite{
-            margin-right: auto;
-            padding: 6px 10px;
-            border-radius: 40px;
-            color: #3ccace;
-            border: 1px solid #ffb340;
+          align-items: flex-end;
+          padding-left: 15px;
+
+          .item-button-container__left{
+
           }
         }
         &__report{

@@ -97,10 +97,10 @@
                     %li
                       = product.price.to_s(:delimited)
                       円
-                    %li
-                    = icon('fa', 'star')
+                    %li.likes-count
+                      = icon('fa', 'heart')
+                      = product.likes_count
                   %p (税込)
-                  
 %aside.appBanner
   = render 'aside'
 .footer

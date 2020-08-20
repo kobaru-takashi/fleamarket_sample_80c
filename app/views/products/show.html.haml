@@ -92,10 +92,10 @@
             %th.detail-left 発送日の目安
             %td.detail-right= @product.delivery_date
       .product-option
-        %ul.product-option__favorite
-          %li.option-favorite
-            = icon("fas","star")
-            お気に入り
+        .item-button-container
+          .item-button-container__left
+            = render partial: "likes/like", locals: { product: @product, products: @products, likes: @likes, like: @like}
+
         %ul.product-option__report
           %li.option-report
           = link_to "#", class:"option-report__link" do
@@ -114,7 +114,6 @@
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
-
         - else
     .show-main__comment-show
       .comment-form
@@ -149,6 +148,7 @@
         = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
       .related-items-list
         = render partial:'product', collection: @products
+        
 %aside.appBanner
   = render 'aside'
 .footer

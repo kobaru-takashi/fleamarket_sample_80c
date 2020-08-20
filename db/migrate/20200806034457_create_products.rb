@@ -11,7 +11,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :brand, null:false
       t.references :user
       t.references :category
-      t.timestamps
+      t.integer :delivery_date, null:false
     end
   end
 end
