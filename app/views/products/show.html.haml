@@ -1,30 +1,7 @@
 .header
   =render "header"
 %nav.nav-category
-  %ul.nav-category__lists
-    %li.category-list
-      =link_to root_path ,class:"list-link" do
-        FURIMA
-    %li.category-list
-      =icon("fas","angle-right")
-    %li.category-list
-      =link_to "#",class:"list-link" do
-        = @category_parent.name
-    %li.category-list
-      =icon("fas","angle-right")
-    %li.category-list
-      =link_to "#",class:"list-link" do
-        = @category_child.name
-    %li.category-list
-      =icon("fas","angle-right")
-    %li.category-list
-      =link_to "#",class:"list-link" do
-        = @category_grandchild.name
-    %li.category-list
-      =icon("fas","angle-right")
-    %li.category-list
-      =link_to product_path(params[:id]), class:"list-link" do
-        = @product.name
+  =render "breadcrumb"
 .main
   .show-main
     .show-main__product-show
@@ -89,13 +66,13 @@
             %th.detail-left カテゴリー
             - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
               %td.detail-right
-                = link_to "#{@category_child.name}","#"
+                = link_to "#{@category_child.name}",category_path(@category_child.id)
                 %br= link_to "#{@category_grandchild.name}","#"
             -else
               %td.detail-right
-                = link_to "#{@category_parent.name}","#"
-                %br= link_to "#{@category_child.name}","#"
-                = link_to "#{@category_grandchild.name}","#"
+                = link_to "#{@category_parent.name}",category_path(@category_parent.id)
+                %br= link_to "#{@category_child.name}",category_path(@category_child.id)
+                = link_to "#{@category_grandchild.name}",category_path(@category_grandchild.id)
           %tr.detail-record
             %th.detail-left ブランド
             %td.detail-right= @product.brand
@@ -137,7 +114,6 @@
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
-
         - else
     .show-main__comment-show
       .comment-form
@@ -167,25 +143,12 @@
             後ろの商品
     .show-main__related-items
       - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
-        =link_to "#{@category_child.name}をもっと見る", "#", class:"related-items-link"
+        =link_to "#{@category_child.name}をもっと見る", category_path(@category_child.id), class:"related-items-link"
       - else
-        = link_to "#{@category_parent.name}をもっと見る", "#", class: "related-items-link"
+        = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
       .related-items-list
-        .related-item
-          =link_to "#", class: "related-item-link" do
-            %figure.related-item-image-field
-              = image_tag @images_first.src.url, alt:"related-item", class: "related-item-image",height: "87px"
-            .related-item-body
-              = @product.name
-            .related-item-detail
-              %ul.detail-list
-                %li.price
-                  ¥
-                  = @product.price.to_s(:delimited)
-                %li.likes-count
-                  =icon('fa', 'heart')
-                  = @product.likes_count
-              %p.tax (税込)
+        = render partial:'product', collection: @products
+        
 %aside.appBanner
   = render 'aside'
 .footer

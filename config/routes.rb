@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
   resources :users, only: [:show ] do
     resources :products do
       get 'likes', to: 'users#likes', as: 'likes'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index]
+
 
   resources :products do
     resource :purchases do

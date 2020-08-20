@@ -1,0 +1,20 @@
+.header
+  = render "products/header"
+%nav.nav-category
+  =render "products/breadcrumb"
+.main
+  .showMain
+    .contentLeft
+    .contentRight
+      .titleBox
+        = "#{@category.name}の商品一覧"
+      .productLists
+        %ul.productList
+          = render partial:'products/product', collection: @products
+
+%aside.appBanner
+  = render 'products/aside'
+.footer
+  = render 'products/footer'
+.purchase-link
+  =render 'products/purchase-btn'

@@ -16,6 +16,8 @@
 @import "modules/users/edit.scss";
 @import "modules/users/likes.scss";
 @import "modules/categories/index.scss";
+@import "modules/products/search.scss";
+@import "modules/categories/show.scss";
 @import "modules/cards/destoroy";
 @import "modules/cards/index";
 @import "modules/cards/new";
@@ -26,3 +28,5 @@
 @import "modules/purchases/pay";
 @import "modules/categories/index.scss";
 @import "modules/likes/like.scss";
+@import "modules/breadcrumbs/breadcrumbs";
+
