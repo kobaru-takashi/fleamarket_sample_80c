@@ -14,6 +14,7 @@
 
 ### Association
 - has_many :products
+- has_many :comments
 - has_one :credit
 - has_one :address
 
@@ -39,6 +40,7 @@
 - belongs_to :buyer, class_name: "User", optional: true
 - belongs_to :category
 - has_many :images, inverse_of: :product
+- has_many :comments, inverse_of: :product
 - accepts_nested_attributes_for :images
 
 
@@ -55,7 +57,7 @@
 ## Creditsテーブル
 |Column|Type|Option|
 |------|----|------|
-｜user＿id｜integer|null: false|
+|user＿id|integer|null: false|
 |customer_token|-----|-----|
 |credit_token|-----|-----|
 
@@ -92,6 +94,18 @@
 ### Association
 - has_many :products
 - has_ancestry
+
+## Commentsテーブル
+|Column|Type|Option|
+|------|----|------|
+|comment|string|------|
+|delete_check|integer|default: 0|
+|user_id|integer|null: false|
+|product_id|integer|null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :product
 
 
 ![er-fleamarket再訂正](https://user-images.githubusercontent.com/67687475/89699136-ec6e6600-d95f-11ea-8636-dfcc00853450.jpg)
