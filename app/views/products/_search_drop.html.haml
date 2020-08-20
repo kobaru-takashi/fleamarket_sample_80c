@@ -35,7 +35,7 @@
                 %span カテゴリーを選択する
             .listing-select-wrapper
               .listing-select-wrapper__box
-                =f.collection_select :category_id_in, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                =f.collection_select :category_id_eq, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
         .search-drop__form-group
           = f.label :price do
             = icon("fas", "yen-sign", class: "icon-search-drop")

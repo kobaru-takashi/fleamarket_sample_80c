@@ -136,6 +136,20 @@
                 }
               }
             }
+            .search-category-check-box{
+              position: relative;
+              padding: 10px;
+              .search-category-check-box-form{
+                position: relative;
+                display: flex;
+                &__btn{
+                  padding: 5px 3px;
+                }
+                &__label{
+
+                }
+              }
+            }
           }
           .search-drop-check-box, .search-drop-check-box-all{
             position: relative;
