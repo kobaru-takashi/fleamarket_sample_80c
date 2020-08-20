@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
 
 
   resources :products do
@@ -50,5 +50,5 @@ Rails.application.routes.draw do
      resources :likes, only: [:create, :destroy, :show]
     end
   end
-  
+
 end
