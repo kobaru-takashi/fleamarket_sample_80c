@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:show]
-  before_action :set_parents, only: [:show, :likes]
+  before_action :set_parents, only: [:show, :likes, :purchased_product, :listed_product]
 
   def destroy
     user.destroy
@@ -16,6 +16,15 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:user_id])
   end
+
+  def purchased_product
+
+  end
+  
+  def listed_product
+    @user = User.find(params[:user_id])
+  end
+
 
   private
   
