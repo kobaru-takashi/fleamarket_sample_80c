@@ -78,3 +78,4 @@ group :production do
 end
 gem 'payjp'
 gem "gretel"
+gem 'fog-aws'
