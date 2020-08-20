@@ -109,7 +109,7 @@
           .delete-product-btn
             = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
         - elsif user_signed_in? && @product.buyer_id.present?
-          .disabled-priduct-btn
+          .disabled-product-btn
           = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
         - elsif user_signed_in?
           .buy-product-btn
@@ -148,7 +148,7 @@
         = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
       .related-items-list
         = render partial:'product', collection: @products
-        
+
 %aside.appBanner
   = render 'aside'
 .footer
