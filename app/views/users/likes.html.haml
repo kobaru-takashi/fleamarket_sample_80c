@@ -1,6 +1,6 @@
 .header
   = render 'products/header'
-  
+
 .MyPage
   = render 'mypage-side'
   - if @user.likes.present?
@@ -29,7 +29,6 @@
                           = icon('fa', 'heart')
                           = product.likes_count
                       %p (税込)
-
   - else
     .likes-blank
       .box

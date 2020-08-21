@@ -29,8 +29,6 @@ Rails.application.routes.draw do
       get 'purchased_product', to: 'users#purchased_product', as: 'purchased_product'
       get 'listed_product', to: 'users#listed_product', as: 'listed_product'
       get 'sold', to: 'users#sold', as: 'sold'
-
-      
     end
   end
 
