@@ -83,28 +83,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-    if category_key = params.require(:q)[:category_id]
-      if category_key.to_i == 0
-        @search_category = Category.find_by(name: category_key, ancestry: nil)
-      else
-        @search_category = Category.find(category_key)
-      end
-
-      if @search_category.present?
-        if @search_category.ancestry.nil?
-          @category_child_array = Category.where(ancestry: @search_category.id).pluck(:name, :id)
-          grandchildren_id = @search_category.indirect_ids.sort
-          find_category_product(grandchildren_id)
-        elsif @search_category.ancestry.exclude("/")
-          @category_child = @search_category
-          @category_child_array = @search_category.siblings.pluck(:name, :id)
-          @category_grandchild_array = @search_category.children
-          grandchildren_id = @search_category.chid_ids
-          find_category_product(grandchildren_id)
-        end
-      end
-    end
-
 
   end
 

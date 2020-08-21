@@ -28,32 +28,6 @@
               %span キーワードを追加する
           = f.search_field :name_or_content_cont_all, class:"search-drop-input", placeholder: "例)値下げ"
         .search-drop__form-group
-          .listing-product-detail__category
-            = f.label :category_id ,class: 'listing-default__label' do
-              = icon("fas", "list-ul", class: "icon-search-drop")
-              .search-drop-text
-                %span カテゴリーを選択する
-            .listing-select-wrapper
-              .listing-select-wrapper__box
-                - if @search_category.present?
-                  %li
-                    = f.select :category_id_start_all, options_for_select(@search_parents, @search_category.root.name),{include_blank: "選択してください"}, {id: 'parent_category_search'}
-                  %li
-                    - if @category_child.present?
-                      = f.select :category_id_start, options_for_select(@category_child_array, @category_child.id),{include_blank: "選択してください"}, {id: 'child_category_search'}
-                    - else
-                      = f.select :category_id_start, @category_child_array, {include_blank: "選択してください"}, {id: 'child_category_search'}
-                  - if @category_grandchildren_array.present?
-                    .search-category-check-box#grandchildren_wrapper
-                      = f.collection_check_boxes :category_id_in, @category_grandchild_array, :id, :name, include_hidden: false, multiple: true do |b|
-                        .search-category-check-box-form
-                          .search-category-check-box-form__btn
-                            = b.check_box
-                          .search-category-check-box-form__label
-                            = b.label {b.text}
-                - else
-                  =f.collection_select :category_id_start, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category_search"}
-        .search-drop__form-group
           = f.label :price do
             = icon("fas", "yen-sign", class: "icon-search-drop")
             .search-drop-text
