@@ -5,23 +5,30 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @saler_of_product = User.find(@comment.product.saler_id)
-    @comment.save
-    redirect_to product_path(@comment.product.id)
+    if @comment.save
+      respond_to do |format|
+        format.json
+      end
+    else
+      flash[:alert] = "保存できていません"
+      redirect_to product_path(params[:id])
+    end
   end
 
   def update
     @comment.update(delete_check:1)
-    redirect_to product_path(@comment.product.id)
   end
 
   def restore
     @comment.update(delete_check:0)
-    redirect_to product_path(@comment.product.id)
+    @saler_of_product = User.find(@comment.product.saler_id)
+    respond_to do |format|
+      format.json
+    end
   end
 
   def destroy
     @comment.destroy
-    redirect_to product_path(@comment.product.id)
   end
 
 private

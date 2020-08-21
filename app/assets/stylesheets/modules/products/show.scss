@@ -253,7 +253,6 @@
           padding: 10px;
           margin-bottom: 10px;
           overflow: scroll;
-          box-sizing: border-box;
           .comment__box{
             display: flex;
             .comment__user-name{
@@ -338,6 +337,11 @@
             font-size: inherit;
             text-rendering: auto;
           }
+        }
+        .comment-form__body{
+          width: 100%;
+          min-height: 104px;
+          padding: 10px;
         }
       }
     }
