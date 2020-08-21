@@ -83,3 +83,14 @@ $(document).on('turbolinks:load', function(){
   });
 });
 });
+
+$(function(){
+  $('.new-product-btn-green').click(function() {
+    if ($('#child_category').val() == "") {
+      $('#child_category').remove();
+    }
+    if ($('#grandchild_category').val()== "") {
+      $('#grandchild_category').remove();
+    }
+  });
+});

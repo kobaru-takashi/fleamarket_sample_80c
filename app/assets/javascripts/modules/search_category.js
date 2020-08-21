@@ -97,8 +97,11 @@ $(document).on('turbolinks:load', function(){
 });
 });
 
-$('.search-drop__btn-green').click(function() {
-  if ($('#child_category_search').val() == "") {
-    $('#child_category_search').remove();
-  }
+
+$(function(){
+  $('.search-drop__btn-green').click(function() {
+    if ($('#child_category_search').val() == "") {
+      $('#child_category_search').remove();
+    }
+  });
 });
