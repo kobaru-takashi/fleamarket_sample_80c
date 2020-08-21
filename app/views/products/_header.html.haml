@@ -6,7 +6,7 @@
     .search-box
       = search_form_for(@q, url: search_products_path, local: true, method: :get, class: "search-box-form") do |form|
         .search-box-form__input
-          = form.search_field :name_or_content_cont, placeholder: "キーワードから探す", class: "search-box__form"
+          = form.search_field :name_or_content_cont_all, placeholder: "キーワードから探す", class: "search-box__form"
           = button_tag type: 'submit',class:"search-box__btn" do
             .search-box-icon
               =image_tag 'icon-search 1.png', class: "search-box-icon-image"

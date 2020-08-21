@@ -69,10 +69,18 @@
                 = link_to "#{@category_child.name}","#"
                 %br= link_to "#{@category_grandchild.name}","#"
             -else
-              %td.detail-right
-                = link_to "#{@category_parent.name}","#"
-                %br= link_to "#{@category_child.name}","#"
-                = link_to "#{@category_grandchild.name}","#"
+              -if @category_parent.present? && @category_child.present?
+                %td.detail-right
+                  = link_to "#{@category_parent.name}","#"
+                  %br= link_to "#{@category_child.name}","#"
+                  = link_to "#{@category_grandchild.name}","#"
+              -elsif @category_child.present?
+                %td.detail-right
+                  =link_to "#{@category_child.name}", "#"
+                  %br=link_to "#{@category_grandchild.name}", "#"
+              -else
+                %td.detail-right
+                  = link_to "#{@category_grandchild.name}", "#"
           %tr.detail-record
             %th.detail-left ブランド
             %td.detail-right= @product.brand
@@ -146,7 +154,12 @@
       - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
         =link_to "#{@category_child.name}をもっと見る", "#", class:"related-items-link"
       - else
-        = link_to "#{@category_parent.name}をもっと見る", "#", class: "related-items-link"
+        -if @category_parent.present? && @category_child.present?
+          = link_to "#{@category_parent.name}をもっと見る", "#", class: "related-items-link"
+        -elsif @category_child.present?
+          = link_to "#{@category_child.name}をもっと見る","#", class: "related-items-link"
+        - else
+          = link_to "#{@category_grandchild.name}をもっとよく見る", "#", class: "related-items-link"
       .related-items-list
         .related-item
           =link_to "#", class: "related-item-link" do

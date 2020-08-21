@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def set_product_search_query
     if params[:q] != nil
-      params[:q]['name_or_content_cont_any'] = params[:q]['name_or_content_cont_any'].try(:split,/[\p{blank}\s]+/)
+      params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].try(:split,/[\p{blank}\s]+/)
       @q = Product.ransack(params[:q])
       @products = @q.result
     else

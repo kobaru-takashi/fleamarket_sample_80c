@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function(){
       childSelectHtml = `
                        <div class='listing-select-wrapper__added' id= 'children_wrapper'>
                           <div class='listing-select-wrapper__box'>
-                            <select class="listing-select-wrapper__box--select" id="child_category_search" name="q[category_id]">
+                            <select class="listing-select-wrapper__box--select" id="child_category_search" name="q[category_id_start_all]">
                               <option value="" data-category="">選択してください</option>
                               ${insertHTML}
                             <select>

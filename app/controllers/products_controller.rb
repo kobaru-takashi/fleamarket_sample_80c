@@ -34,10 +34,17 @@ class ProductsController < ApplicationController
 
   def edit
     @category_grandchild = @product.category
-    @category_child = @category_grandchild.parent
-    @category_parent = @category_child.parent
-    @category_children_edit = Category.find_by(id: @category_parent.id).children
-    @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
+    @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
+    if @category_grandchild.parent.present?
+      @category_child = @category_grandchild.parent
+      @category_children_edit = Category.find_by(id:@category_child.id).children
+      @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
+      if @category_child.parent.present?
+        @category_parent = @category_child.parent
+        @category_children_edit = Category.find_by(id: @category_parent.id).children
+        @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
+      end
+    end
   end
 
   def update
@@ -51,12 +58,16 @@ class ProductsController < ApplicationController
   def show
     @user = @product.user
     @product = Product.find(params[:id])
-    @category_id = @product.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
     @images = @product.images
     @images_first = @product.images.first
+    @category_id = @product.category_id
+    @category_grandchild = Category.find(@category_id)
+    if @category_grandchild.parent.present?
+      @category_child = Category.find(@category_id).parent
+      if @category_child.parent.present?
+        @category_parent = @category_child.parent
+      end
+    end
   end
 
   def get_category_children_form
