@@ -1,7 +1,7 @@
 .Purchase-footer
   .Purchase-footer-top
     .Purchase-footer-top-privacy 
-    = link_to "https://www.facebook.com/", class: "top-privacy-tag" do
+    = link_to "#", class: "top-privacy-tag" do
       プライバシーポリシー
     .Purchase-footer-top-contract
     = link_to "", class: "top-contract-tag" do
@@ -12,5 +12,5 @@
 
   .Purchase-footer-under
     .Purchase-footer-under-image
-    = link_to image_tag("/assets/logo/logo-white.png", width:'200', alt: "FURIMALOGO", class: "footer-logo-image"), "#"
+    = link_to image_tag("logo-white.png", width:'200', alt: "FURIMALOGO", class: "footer-logo-image"), root_path
     .Purchase-footer-under-lnc © Furima, Inc.
