@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
           @category_child = @search_category
           @category_child_array = @search_category.siblings.pluck(:name, :id)
           @category_grandchild_array = @search_category.children
-          grand_children_id = @search_category.chid_ids
+          grandchildren_id = @search_category.chid_ids
           find_category_product(grandchildren_id)
         end
       end

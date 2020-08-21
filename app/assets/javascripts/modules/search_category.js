@@ -23,13 +23,13 @@ $(document).on('turbolinks:load', function(){
       var childSelectHtml = '';
       childSelectHtml = `
                        <div class='listing-select-wrapper__added' id= 'children_wrapper'>
-                         <div class='listing-select-wrapper__box'>
+                          <div class='listing-select-wrapper__box'>
                             <select class="listing-select-wrapper__box--select" id="child_category_search" name="q[category_id]">
-                          <option value="" data-category="">選択してください</option>
-                           ${insertHTML}
-                           <select>
+                              <option value="" data-category="">選択してください</option>
+                              ${insertHTML}
+                            <select>
+                          </div>
                         </div>
-                      </div>
       `;
       $('.listing-product-detail__category').append(childSelectHtml);
     }
@@ -42,8 +42,8 @@ $(document).on('turbolinks:load', function(){
                             `;
       $('.listing-product-detail__category').append(grandchildSelectHtml);
     }
-    $('#parent_category').on('change', function(){
-      var parentCategory = document.getElementById('parent_category').value;
+    $('#parent_category_search').on('change', function(){
+      var parentCategory = document.getElementById('parent_category_search').value;
       if (parentCategory != ""){
         $.ajax({
           url: '/products/get_category_children_form',
@@ -97,7 +97,7 @@ $(document).on('turbolinks:load', function(){
 });
 });
 
-$('.search-drop__btn-green').click(function(e) {
+$('.search-drop__btn-green').click(function() {
   if ($('#child_category_search').val() == "") {
     $('#child_category_search').remove();
   }

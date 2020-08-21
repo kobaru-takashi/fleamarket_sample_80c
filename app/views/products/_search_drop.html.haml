@@ -35,7 +35,24 @@
                 %span カテゴリーを選択する
             .listing-select-wrapper
               .listing-select-wrapper__box
-                =f.collection_select :category_id_eq, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                - if @search_category.present?
+                  %li
+                    = f.select :category_id, options_forselect(@search_parents, @search_category.root.name),{include_blank: "選択してください"}, {id: 'parent_category_search'}
+                  %li
+                    - if @category_child.present?
+                      = f.select :category_id, options_for_select(@category_child_array, @category_child.id),{include_blank: "選択してください"}, {id: 'child_category_search'}
+                    - else
+                      = f.select :category_id, @category_child_array, {include_blank: "選択してください"}, {id: 'child_category_search'}
+                  - if @category_grandchildren_array.present?
+                    .search-category-check-box#grandchildren_wrapper
+                      = f.collection_check_boxes :category_id_in, @category_grandchild_array, :id, :name, include_hidden: false do |b|
+                        .search-category-check-box-form
+                          .search-category-check-box-form__btn
+                            = b.check_box
+                          .search-category-check-box-form__label
+                            = b.label {b.text}
+                - else
+                  =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください"}, { class: "listing-select-wrapper__box--select", id: "parent_category_search"}
         .search-drop__form-group
           = f.label :price do
             = icon("fas", "yen-sign", class: "icon-search-drop")
