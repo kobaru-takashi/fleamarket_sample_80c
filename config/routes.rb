@@ -23,9 +23,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show ] do
+  resources :users, only: [:show] do
     resources :products do
       get 'likes', to: 'users#likes', as: 'likes'
+      get 'purchased_product', to: 'users#purchased_product', as: 'purchased_product'
+      get 'listed_product', to: 'users#listed_product', as: 'listed_product'
+      get 'sold', to: 'users#sold', as: 'sold'
     end
   end
 

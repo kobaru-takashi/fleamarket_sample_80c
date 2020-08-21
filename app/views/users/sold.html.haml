@@ -3,11 +3,11 @@
 
 .MyPage
   = render 'mypage-side'
-  - if @user.likes.present?
+  -if @sold_current_user_items.present?
     .likes-main
       .pickupBrand
         .pickupBrand-lists
-          - current_user.like_products.each do |product|
+          - @sold_current_user_items.each do |product|
             .pickupBrand-list
               =link_to product_path(product), class: "main__table__list__item" do
                 .pickupBrand-list-tag
@@ -33,7 +33,7 @@
     .likes-blank
       .box
         = image_tag("logo.png", width: '200', alt: "FURIMALOGO", class: "likes-blank-tag")
-        .text 『いいね！』がありません
+        .text 『出品した商品(売却済)』がありません
 
 .footer
   = render 'products/footer'
