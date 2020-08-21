@@ -18,14 +18,15 @@ class UsersController < ApplicationController
   end
 
   def sold
-    @user = User.find(params[:user_id])
     @current_user_items = current_user.products
     @sold_current_user_items = @current_user_items.where.not(buyer_id: nil)
-    # binding.pry
+
   end
 
   def purchased_product
-    @product = Product.where(params[:buyer_id])
+    @items = Product.where(params[:id])
+    @purchased_items = @items.where(buyer_id: current_user.id)
+
   end
 
   def likes
