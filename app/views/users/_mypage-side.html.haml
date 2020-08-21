@@ -10,7 +10,7 @@
       =link_to user_product_listed_product_path(current_user, [:product_id]), class:"MyPage__link" do
         出品した商品
     %li.MyPage__list
-      =link_to "#", class:"MyPage__link" do
+      =link_to user_product_sold_path(current_user, [:product_id]), class:"MyPage__link" do
         出品した商品（売却済）
     %li.MyPage__list
       =link_to user_product_purchased_product_path(current_user, [:product_id]), class:"MyPage__link" do

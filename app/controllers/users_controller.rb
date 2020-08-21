@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:show]
-  before_action :set_parents, only: [:show, :likes, :purchased_product, :listed_product]
+  before_action :set_parents, only: [:show, :listed_product,:sold, :purchased_product, :likes]
 
   def destroy
     user.destroy
@@ -13,18 +13,24 @@ class UsersController < ApplicationController
     end
   end
 
-  def likes
-    @user = User.find(params[:user_id])
-  end
-
-  def purchased_product
-
-  end
-  
   def listed_product
     @user = User.find(params[:user_id])
   end
 
+  def sold
+    @user = User.find(params[:user_id])
+    @current_user_items = current_user.products
+    @sold_current_user_items = @current_user_items.where.not(buyer_id: nil)
+    # binding.pry
+  end
+
+  def purchased_product
+    @product = Product.where(params[:buyer_id])
+  end
+
+  def likes
+    @user = User.find(params[:user_id])
+  end
 
   private
   
