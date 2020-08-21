@@ -22,6 +22,6 @@
             パスワードお忘れの方
         .actions
           = f.submit "Log in", class: "Button UserButton", value: "ログインをする"
-
+        = link_to 'Facebookで登録', user_twitter_omniauth_authorize_path, method: :post
 .footer
   = render 'products/footer'
