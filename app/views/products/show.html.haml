@@ -94,14 +94,7 @@
       .product-option
         .item-button-container
           .item-button-container__left
-          - if user_signed_in?
             = render partial: "likes/like", locals: { product: @product, products: @products, likes: @likes, like: @like}
-          -else
-            .item-button-container__left__like
-              %i.fas.fa-heart
-                %span いいね！
-                %span 
-                  = @product.likes_count
         %ul.product-option__report
           %li.option-report
           = link_to "#", class:"option-report__link" do
