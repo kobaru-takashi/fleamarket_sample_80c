@@ -21,13 +21,18 @@ class ApplicationController < ActionController::Base
 
   def set_product_search_query
     if params[:q] != nil
-      params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].try(:split,/[\p{blank}\s]+/)
+      params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].try(:split, /[\p{blank}\s]+/)
+      # if params[:q]['name_or_content_cont_all'].include?
+      #   params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].join("")
+      # end
       @q = Product.ransack(params[:q])
-      @products = @q.result
+      @products = @q.result(distinct: true)
     else
       @q = Product.ransack(params[:q])
-      @products = @q.result
+      @products = @q.result(distinct: true)
     end
+
+
   end
 
   protected
@@ -35,7 +40,6 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_date])
     devise_parameter_sanitizer.permit(:account_update, keys: [:nickname])
-
   end
 
 end
