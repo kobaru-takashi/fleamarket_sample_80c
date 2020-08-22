@@ -55,9 +55,10 @@ class ProductsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
     @images = @product.images
     @images_first = @product.images.first
-    @like = @product.likes.where(user_id: current_user.id).first
     @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
-
+    if user_signed_in?
+      @like = @product.likes.where(user_id: current_user.id).first
+    end
   end
 
   def get_category_children_form
