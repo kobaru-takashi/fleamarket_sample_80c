@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index,:show ]
+  before_action :authenticate_user!, except: [:index,:show, :search]
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search]
   before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :show]
 

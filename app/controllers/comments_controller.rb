@@ -19,13 +19,13 @@ class CommentsController < ApplicationController
     @comment.update(delete_check:1)
   end
 
-  def restore
-    @comment.update(delete_check:0)
-    @saler_of_product = User.find(@comment.product.saler_id)
-    respond_to do |format|
-      format.json
-    end
-  end
+  # def restore
+  #   @comment.update(delete_check:0)
+  #   @saler_of_product = User.find(@comment.product.saler_id)
+  #   respond_to do |format|
+  #     format.json
+  #   end
+  # end
 
   def destroy
     @comment.destroy
@@ -39,7 +39,7 @@ private
   def set_comment
     @comment = Comment.find(params[:id])
   end
-  
+
   def check_user
     unless @comment.product.saler == current_user
       flash[:alert] = "その操作はできません"
