@@ -55,6 +55,7 @@ class ProductsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
     @images = @product.images
     @images_first = @product.images.first
+    @like = @product.likes.where(user_id: current_user.id).first
     @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
     @comment = Comment.new
     @commentALL = @product.comments.includes(:user)

@@ -5,6 +5,10 @@ class Product < ApplicationRecord
   belongs_to :buyer, class_name: "User", optional: true
   has_many :images, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
   accepts_nested_attributes_for :images, allow_destroy: true
   validates_associated :images
   validates_associated :category
@@ -41,4 +45,5 @@ class Product < ApplicationRecord
   validates :content, length: { maximum: 1000 }, presence: true
   validates :category, presence: true
   validates :images, presence: true
+
 end

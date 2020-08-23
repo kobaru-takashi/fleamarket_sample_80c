@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
   has_one :address
   has_many :products
+  has_many :likes, dependent: :destroy
+
+  has_many :like_products, through: :likes, source: :product
+
 
   # has_one :card, dependent: :destroy
   has_one :card

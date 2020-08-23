@@ -1,0 +1,39 @@
+.header
+  = render 'products/header'
+
+.MyPage
+  = render 'mypage-side'
+  - if @user.products.present?
+    .likes-main
+      .pickupBrand
+        .pickupBrand-lists
+          - current_user.products.each do |product|
+            .pickupBrand-list
+              =link_to product_path(product), class: "main__table__list__item" do
+                .pickupBrand-list-tag
+                  = image_tag product.images[0].src.url, class: "pickupBrand-list-image",width: "300px"
+                    -if product.buyer_id.present? 
+                    .pickupCategory-list-tag__sold
+                      .pickupCategory-list-tag__sold__inner SOLD
+              .pickupBrand-list-body
+                .pickupBrand-list-name 
+                  = product.name
+                .pickupBrand-list-evaluation
+                  .pickupBrand-list-evaluation-left
+                    .pickupBrand-list-evaluation-price
+                      %ul
+                        %li
+                          = product.price.to_s(:delimited)
+                          円
+                        %li.likes-count
+                          = icon('fa', 'heart')
+                          = product.likes_count
+                      %p (税込)
+  - else
+    .likes-blank
+      .box
+        = image_tag("logo.png", width: '200', alt: "FURIMALOGO", class: "likes-blank-tag")
+        .text 『出品した商品』がありません
+
+.footer
+  = render 'products/footer'
