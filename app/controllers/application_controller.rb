@@ -22,17 +22,16 @@ class ApplicationController < ActionController::Base
   def set_product_search_query
     if params[:q] != nil
       params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].try(:split, /[\p{blank}\s]+/)
-      # if params[:q]['name_or_content_cont_all'].include?
-      #   params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].join("")
-      # end
+      if (params[:q]['name_or_content_cont_all'].length >=1)
+        params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].join(" ")
+        params[:q]['name_or_content_cont_all'] = params[:q]['name_or_content_cont_all'].try(:split, /[\p{blank}\s]+/)
+      end
       @q = Product.ransack(params[:q])
-      @products = @q.result(distinct: true)
+      @products = @q.result(distinct: true).order('created_at DESC')
     else
       @q = Product.ransack(params[:q])
-      @products = @q.result(distinct: true)
+      @products = @q.result(distinct: true).order('created_at DESC')
     end
-
-
   end
 
   protected
