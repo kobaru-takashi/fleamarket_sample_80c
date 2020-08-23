@@ -19,14 +19,6 @@ class CommentsController < ApplicationController
     @comment.update(delete_check:1)
   end
 
-  # def restore
-  #   @comment.update(delete_check:0)
-  #   @saler_of_product = User.find(@comment.product.saler_id)
-  #   respond_to do |format|
-  #     format.json
-  #   end
-  # end
-
   def destroy
     @comment.destroy
   end

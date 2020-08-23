@@ -46,48 +46,6 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  // $(".comment_list").on('click',".comment_restore",function(e){
-  //   e.preventDefault()
-  //   var index = $(this).data("index")
-  //   var url =`/comments/${index}/restore`
-  //   $.ajax({
-  //     url: url,
-  //     type: 'GET',
-  //     dataType: 'json',
-  //   })
-  //   .done(function(comment_data){
-  //     var html = new_comment(comment_data);
-  //     $(`.comment__box[data-index=${index}]`).replaceWith(html)
-  //   })
-  //   .fail(function() {
-  //     alert("メッセージ送信に失敗しました");
-  //   });
-  // });
-
-  // function PLEdelete(index){
-  //   var html =
-  //   `
-  //   <div class="comment__info">
-  //   このコメントは削除されました。
-  //   </div>
-  //   <div class="comment__restore" data-index=${index}>
-  //     <a href="/comments/${index}/restore" remote: true>復元</a>
-  //   </div>
-  //   <div class="comment__complete-delete" data-index="${index}">
-      // <a rel="nofollow" data-method="delete" href="/comments/${index}">完全に削除</a>
-  //   </div>
-  //   `
-  //   return html;
-  // };
-
-  // $(".comment-form__input").on('click',".comment__pre-delete",function(e){
-  //   e.preventDefault()
-  //   var index = $(this).data("index");
-  //   var content =  $(`.comment__box[data-index=${index}]`).find(".comment__content");
-  //   content.empty();
-  //   content.append(PLEdelete(index));
-  // });
-
   $(".comment-form__input").on('click','.comment__complete-delete',function(e){
     e.preventDefault()
     var index = $(this).data("index");
