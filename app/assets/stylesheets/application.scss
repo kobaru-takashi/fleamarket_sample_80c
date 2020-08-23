@@ -14,6 +14,7 @@
 @import "modules/users/create_address.scss";
 @import "modules/users/mypage.scss";
 @import "modules/users/edit.scss";
+@import "modules/users/likes.scss";
 @import "modules/categories/index.scss";
 @import "modules/products/search.scss";
 @import "modules/categories/show.scss";
@@ -26,3 +27,6 @@
 @import "modules/purchases/buy";
 @import "modules/purchases/pay";
 @import "modules/categories/index.scss";
+@import "modules/likes/like.scss";
+@import "modules/breadcrumbs/breadcrumbs";
+

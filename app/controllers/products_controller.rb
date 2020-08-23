@@ -68,6 +68,8 @@ class ProductsController < ApplicationController
         @category_parent = @category_child.parent
       end
     end
+    @like = @product.likes.where(user_id: current_user.id).first
+    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
   end
 
   def get_category_children_form

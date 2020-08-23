@@ -80,3 +80,5 @@ group :production do
   gem 'unicorn'
 end
 gem 'payjp'
+gem "gretel"
+gem 'fog-aws'

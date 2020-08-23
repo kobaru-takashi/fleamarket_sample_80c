@@ -15,6 +15,7 @@
             %li
               = product.price.to_s(:delimited)
               円
-            %li
-            = icon('fa', 'star')
+            %li.favorite-count
+              = icon('fa', 'heart')
+              = product.likes_count
           %p (税込)
