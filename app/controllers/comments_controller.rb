@@ -16,10 +16,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if @comment.destroy
-      @comment.destory
+    comment = Comment.find(params[:id])
+    if comment.destroy
+      redirect_to product_path(params[:id])
     else
-      flash[:alert] = "削除できていません"
       redirect_to product_path(params[:id])
     end
   end
