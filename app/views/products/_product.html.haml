@@ -1,9 +1,10 @@
 .pickupCategory-list__list
   = link_to product_path(product.id), data: {"turbolinks" => false} do
     .pickupCategory-list-tag
-      = image_tag product.images.first.src.url, class: "pickupCategory-list-image"
-        -if product.buyer_id.present?
-        .pickupCategory-list-tag__sold
+      -if @images.present?
+        = image_tag product.images.first.src.url, class: "pickupCategory-list-image"
+          -if product.buyer_id.present?
+          .pickupCategory-list-tag__sold
           .pickupCategory-list-tag__sold__inner SOLD
   .pickupCategory-list-body
     .pickupCategory-list-name

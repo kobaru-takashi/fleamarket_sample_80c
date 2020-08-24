@@ -14,8 +14,9 @@
 
 ### Association
 - has_many :products
-- has_one :credit
+- has_one :card
 - has_one :address
+- has_many :likes
 
 
 ## Productsテーブル
@@ -32,6 +33,7 @@
 |category_id|integer|null: false|
 |saler_id|integer|null: false|
 |buyer_id|integer|------|
+|likes_count|integer|-----|
 
 ### Association
 - belongs_to :user
@@ -40,6 +42,7 @@
 - belongs_to :category
 - has_many :images, inverse_of: :product
 - accepts_nested_attributes_for :images
+- has_many :likes
 
 
 ## Imageテーブル
@@ -52,12 +55,12 @@
 - belongs_to :product, inverse_of: :images
 
 
-## Creditsテーブル
+## Cardsテーブル
 |Column|Type|Option|
 |------|----|------|
-｜user＿id｜integer|null: false|
-|customer_token|-----|-----|
-|credit_token|-----|-----|
+|user＿id|integer|null: false|
+|customer_id|integer|null: false|
+|card_id|integer|null: false|
 
 
 ### Association
@@ -94,4 +97,29 @@
 - has_ancestry
 
 
-![er-fleamarket再訂正](https://user-images.githubusercontent.com/67687475/89699136-ec6e6600-d95f-11ea-8636-dfcc00853450.jpg)
+## Commentsテーブル
+|Column|Type|Option|
+|------|----|------|
+|comment|string|------|
+|delete_check|integer|default: 0|
+|user_id|integer|null: false|
+|product_id|integer|null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
+
+## Likesテーブル
+|Column|Type|Option|
+|------|----|------|
+|product_id|integer|null: false|
+|user_id|integer|null: false|
+
+### Association
+- belongs_to :product
+- belongs_to :user
+
+
+
+![er図-最終版](https://user-images.githubusercontent.com/67687475/90977694-3b341680-e582-11ea-9e39-e3f0c923638a.jpg)
