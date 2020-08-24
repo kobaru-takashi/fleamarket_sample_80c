@@ -152,7 +152,7 @@
                       .comment__text
                         = comment.comment
                       .comment__complete-delete{data:{index: comment.id}}
-                        = link_to '削除', comment_path(comment.id) ,method: :delete
+                        = link_to '削除', comment_path(comment.id) ,method: :delete, remote: true
               - else
                 .comment__box{data:{index: comment.id}}
                   - if comment.delete_check == 1
@@ -167,7 +167,7 @@
                         = comment.comment
                       -if @product.user_id == current_user.id
                         .comment__complete-delete
-                          = link_to '削除', comment_path(comment.id) ,method: :delete
+                          = link_to '削除', comment_path(comment.id) ,method: :delete, remote: true
                     .comment__user-name
                       = comment.user.nickname
                       %span さん
