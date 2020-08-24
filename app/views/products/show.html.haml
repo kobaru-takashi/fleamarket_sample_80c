@@ -69,10 +69,19 @@
                 = link_to "#{@category_child.name}",category_path(@category_child.id)
                 %br= link_to "#{@category_grandchild.name}","#"
             -else
-              %td.detail-right
-                = link_to "#{@category_parent.name}",category_path(@category_parent.id)
-                %br= link_to "#{@category_child.name}",category_path(@category_child.id)
-                = link_to "#{@category_grandchild.name}",category_path(@category_grandchild.id)
+              -if @category_parent.present? && @category_child.present?
+                %td.detail-right
+                  = link_to "#{@category_parent.name}",category_path(@category_parent.id)
+                  %br= link_to "#{@category_child.name}",category_path(@category_child.id)
+                  = link_to "#{@category_grandchild.name}",category_path(@category_grandchild.id)
+              -elsif @category_child.present?
+                %td.detail-right
+                  =link_to "#{@category_child.name}", category_path(@category_child.id)
+                  %br=link_to "#{@category_grandchild.name}", category_path(@category_grandchild.id)
+              -else
+                %td.detail-right
+                  = link_to "#{@category_grandchild.name}", category_path(@category_grandchild.id)
+
           %tr.detail-record
             %th.detail-left ブランド
             %td.detail-right= @product.brand
@@ -116,19 +125,77 @@
         - else
     .show-main__comment-show
       .comment-form
-        %input{type: "textarea", class: "comment-form__input"}
-        %p.comment-form__notice
-          相手のことを考え丁寧なコメントを心がけましょう。
-          %br/
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        - if @product.buyer_id.present?
-          %button{name: "button", type: "submit", class: "comment-form__btn-disabled"}
-            =icon("fas","comment")
-            売り切れのためコメント出来ません
-        - else
-          %button{name: "button", type: "submit", class: "comment-form__btn"}
-            =icon("fas","comment")
-            コメントする
+        %h4 ＜コメント一覧＞
+        - if user_signed_in?
+          .comment-form__input
+            - @commentALL.each do |comment|
+              - if comment.user_id == current_user.id
+                .comment__box#comment-mine{data:{index: comment.id}}
+                  - if comment.delete_check == 1
+                    .comment__content
+                      .comment__info
+                      このコメントは削除されました。
+                      .comment__restore{data:{index: comment.id}}
+                        = link_to "復元", restore_comment_path(comment.id), remote: true
+                      .comment__complete-delete{data:{index: comment.id}}
+                        = link_to '完全に削除', comment_path(comment.id) ,method: :delete
+                  - else
+                    .comment__user-name
+                      = comment.user.nickname
+                      %span さん
+                      -if @product.user_id == comment.user_id
+                        .saler_display
+                          出品者
+                    .comment__content
+                      .comment__create-at
+                        = comment.created_at.strftime('%Y年%m月%d日 %H時%M分')
+                      .comment__text
+                        = comment.comment
+                      .comment__complete-delete{data:{index: comment.id}}
+                        = link_to '削除', comment_path(comment.id) ,method: :delete
+              - else
+                .comment__box{data:{index: comment.id}}
+                  - if comment.delete_check == 1
+                    .comment__content
+                      .comment__info
+                      このコメントは削除されました。
+                  - else
+                    .comment__content
+                      .comment__create-at
+                        = comment.created_at.strftime('%Y年%m月%d日 %H時%M分')
+                      .comment__text
+                        = comment.comment
+                      -if @product.user_id == current_user.id
+                        .comment__complete-delete
+                          = link_to '削除', comment_path(comment.id) ,method: :delete
+                    .comment__user-name
+                      = comment.user.nickname
+                      %span さん
+                      -if @product.user_id == comment.user_id
+                        .saler_display
+                          出品者
+          - if @product.buyer_id.present?
+            %button{name: "button", type: "submit", class: "comment-form__btn-disabled"}
+              =icon("fas","comment")
+              売り切れのためコメント出来ません
+          - elsif current_user
+            = form_with model: @comment, class: "new_comment", local: true do |c|
+              = c.text_area :comment, class:"comment-form__body", wrap: "soft"
+              = c.hidden_field :product_id, value: @product.id
+              %p.comment-form__notice
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %button{name: "button", type: "submit", class: "comment-form__btn"}
+                = icon("fas","comment")
+                コメントする
+          - else
+            %button{name: "button", type: "submit", class: "comment-form__not-comment"}
+              =icon("fas","comment")
+              コメントはできません
+        -else
+          %p コメントを閲覧するにはログインかユーザー登録をしてください。
+
       .comment-area
     .show-main__links
       %ul.links-list
@@ -144,7 +211,12 @@
       - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
         =link_to "#{@category_child.name}をもっと見る", category_path(@category_child.id), class:"related-items-link"
       - else
-        = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
+        -if @category_parent.present? && @category_child.present?
+          = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
+        -elsif @category_child.present?
+          = link_to "#{@category_child.name}をもっと見る",category_path(@category_child.id), class: "related-items-link"
+        - else
+          = link_to "#{@category_grandchild.name}をもっとよく見る", category_path(@category_grandchild.id), class: "related-items-link"
       .related-items-list
         = render partial:'product', collection: @products
 

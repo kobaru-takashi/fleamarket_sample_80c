@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index,:show ]
-  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search]
-  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :show]
+  before_action :authenticate_user!, except: [:index,:show, :search]
+  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search, :search_detail]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail, ]
+  before_action :set_product_search_query
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
@@ -18,7 +19,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      render new_product_path
+      redirect_to new_product_path
     end
   end
 
@@ -33,10 +34,17 @@ class ProductsController < ApplicationController
 
   def edit
     @category_grandchild = @product.category
-    @category_child = @category_grandchild.parent
-    @category_parent = @category_child.parent
-    @category_children_edit = Category.find_by(id: @category_parent.id).children
-    @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
+    @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
+    if @category_grandchild.parent.present?
+      @category_child = @category_grandchild.parent
+      @category_children_edit = Category.find_by(id:@category_child.id).children
+      @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
+      if @category_child.parent.present?
+        @category_parent = @category_child.parent
+        @category_children_edit = Category.find_by(id: @category_parent.id).children
+        @category_grandchildren_edit = Category.find_by(id: @category_child.id ).children
+      end
+    end
   end
 
   def update
@@ -49,16 +57,23 @@ class ProductsController < ApplicationController
 
   def show
     @user = @product.user
-    @category_id = @product.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    @product = Product.find(params[:id])
     @images = @product.images
     @images_first = @product.images.first
     @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
     if user_signed_in?
       @like = @product.likes.where(user_id: current_user.id).first
     end
+    @category_id = @product.category_id
+    @category_grandchild = Category.find(@category_id)
+    if @category_grandchild.parent.present?
+      @category_child = Category.find(@category_id).parent
+      if @category_child.parent.present?
+        @category_parent = @category_child.parent
+      end
+    end
+    @comment = Comment.new
+    @commentALL = @product.comments.includes(:user)
   end
 
   def get_category_children_form
@@ -74,7 +89,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:keyword])
+
+  end
+
+  def search_detail
+
   end
 
   private

@@ -219,3 +219,23 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+
+ja:
+  enums:
+    product:
+      condition:
+        new: "新品・未使用"
+        almost_new: "未使用に近い"
+        meditate: "目立った汚れなし"
+        almost_meditate: "やや傷や汚れあり"
+        old: "傷や汚れあり"
+        very_old: "全体的に状態が悪い"
+
+
+ja:
+  enums:
+    product:
+      delivery_fee:
+        included: "送料込み(出品者負担)"
+        not_included: "着払い(購入者負担)"
