@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:update,:destroy,:restore]
-  before_action :check_user, only: [:update,:destroy,:restore]
+  # before_action :check_user, only: [:update,:destroy,:restore]
 
   def create
     @comment = Comment.new(comment_params)
@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     if comment.destroy
-      redirect_to product_path(params[:id])
+      redirect_to product_path(params[comment.product_id])
     else
-      redirect_to product_path(params[:id])
+      redirect_to product_path(params[comment.product_id])
     end
   end
 
@@ -33,10 +33,10 @@ private
     @comment = Comment.find(params[:id])
   end
 
-  def check_user
-    unless @comment.product.saler == current_user
-      flash[:alert] = "その操作はできません"
-      redirect_to root_path
-    end
-  end
+  # def check_user
+  #   unless @comment.product.saler == current_user
+  #     flash[:alert] = "その操作はできません"
+  #     redirect_to root_path
+  #   end
+  # end
 end
