@@ -15,6 +15,8 @@
           padding: 15px 0;
           border: 1px solid #888888;
           background-color: #ffffff;
+          cursor: pointer;
+          box-shadow:  6px 6px 6px #888888;
           .search-sort-icon{
             font-size: 16px;
             color: #888888;
@@ -26,13 +28,35 @@
         }
       }
     }
+    .search-sort-drop.is-show{
+      margin: 0 auto;
+      text-align: left;
+      width: 620px;
+      padding: 0 40px;
+      z-index: 1000;
+      position: relative;
+      .search-sort-drop-list{
+        border-bottom: 1px solid #cccccc;
+        cursor: pointer;
+        width: 150px;
+        padding: 10px 20px;
+        a{
+          text-decoration: none;
+          color: #888888;
+        }
+      }
+    }
+    .search-sort-drop.not-show{
+      display:none;
+    }
     .search-drop-box.is-show{
       background-color: #ffffff;
       width: 620px;
       margin: 0 auto;
       padding: 0 40px;
       z-index: 1000;
-      box-shadow: 0 0 4px 0;
+      position: relative;
+      box-shadow: 2px 2px 2px 0;
       .search-drop{
         display: block;
         padding: 16px 25px;
@@ -52,7 +76,7 @@
               font-size: 14px;
             }
           }
-          .search-drop-input{
+          .search-drop-input, .search-drop-input-brand{
             margin-top: 8px;
             display: inline-block;
             position: relative;
@@ -63,7 +87,7 @@
             line-height: 1.5;
             font-size: 16px;
             border: 1px solid #cccccc;
-            height: 40px;
+            height: 55px;
           }
           .search-drop-input-half{
             margin-top: 8px;
@@ -71,14 +95,78 @@
             margin-left: 6px;
             display: inline-block;
             position: relative;
-            width: 40%;
+            width: 43%;
             padding: 10px 16px 8px;
             border-radius: 4px;
             background-color: #ffffff;
             line-height: 1.5;
             font-size: 16px;
             border: 1px solid #cccccc;
-            height: 40px;
+            height: 55px;
+          }
+          .listing-product-detail__category{
+            .listing-default__label{
+              display: flex;
+              margin-bottom: 10px;
+              .icon-search-drop{
+                position: relative;
+                top: 2px;
+                color: #888888;
+                font-size: 16px;
+                margin-right: 5px;
+              }
+              .search-drop-text{
+                font-size: 14px;
+              }
+            }
+            .listing-select-wrapper,.listing-select-wrapper-added{
+              &__box{
+                &--select{
+                  margin-top: 8px;
+                  display: inline-block;
+                  position: relative;
+                  width: 94%;
+                  padding: 3px 16px 3px;
+                  border-radius: 4px;
+                  background-color: #ffffff;
+                  line-height: 1.5;
+                  font-size: 16px;
+                  border: 1px solid #cccccc;
+                  height: 55px;
+                }
+              }
+            }
+            .search-category-check-box{
+              position: relative;
+              padding: 10px;
+              .search-category-check-box-form{
+                position: relative;
+                display: flex;
+                &__btn{
+                  padding: 5px 3px;
+                }
+                &__label{
+
+                }
+              }
+            }
+          }
+          .search-drop-check-box, .search-drop-check-box-all{
+            position: relative;
+            padding: 10px;
+            label{
+              position: relative;
+              input{
+                position: absolute;
+                top: 5px;
+                left: 5px;
+              }
+              .check-box-label{
+                position: absolute;
+                left: 25px;
+                font-size: 15px;
+              }
+            }
           }
         }
         &__btn{

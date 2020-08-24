@@ -69,10 +69,19 @@
                 = link_to "#{@category_child.name}",category_path(@category_child.id)
                 %br= link_to "#{@category_grandchild.name}","#"
             -else
-              %td.detail-right
-                = link_to "#{@category_parent.name}",category_path(@category_parent.id)
-                %br= link_to "#{@category_child.name}",category_path(@category_child.id)
-                = link_to "#{@category_grandchild.name}",category_path(@category_grandchild.id)
+              -if @category_parent.present? && @category_child.present?
+                %td.detail-right
+                  = link_to "#{@category_parent.name}",category_path(@category_parent.id)
+                  %br= link_to "#{@category_child.name}",category_path(@category_child.id)
+                  = link_to "#{@category_grandchild.name}",category_path(@category_grandchild.id)
+              -elsif @category_child.present?
+                %td.detail-right
+                  =link_to "#{@category_child.name}", category_path(@category_child.id)
+                  %br=link_to "#{@category_grandchild.name}", category_path(@category_grandchild.id)
+              -else
+                %td.detail-right
+                  = link_to "#{@category_grandchild.name}", category_path(@category_grandchild.id)
+
           %tr.detail-record
             %th.detail-left ブランド
             %td.detail-right= @product.brand
@@ -110,7 +119,7 @@
             = link_to "商品の削除", product_path(@product.id), method: :delete, class: "destory"
         - elsif user_signed_in? && @product.buyer_id.present?
           .disabled-product-btn
-          = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
+            = link_to  "売り切れました", product_path(@product.id), class:"disabled-btn"
         - elsif user_signed_in?
           .buy-product-btn
             = link_to "購入画面に進む", buy_product_purchases_path(@product.id), data: {"turbolinks" => false} , class: "pay"
@@ -203,7 +212,12 @@
       - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
         =link_to "#{@category_child.name}をもっと見る", category_path(@category_child.id), class:"related-items-link"
       - else
-        = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
+        -if @category_parent.present? && @category_child.present?
+          = link_to "#{@category_parent.name}をもっと見る", category_path(@category_parent.id), class: "related-items-link"
+        -elsif @category_child.present?
+          = link_to "#{@category_child.name}をもっと見る",category_path(@category_child.id), class: "related-items-link"
+        - else
+          = link_to "#{@category_grandchild.name}をもっとよく見る", category_path(@category_grandchild.id), class: "related-items-link"
       .related-items-list
         = render partial:'product', collection: @products
 
