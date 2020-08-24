@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :set_product_search_query, only: [:show]
   before_action :set_parents, only: [:show, :listed_product,:sold, :purchased_product, :likes]
+  before_action :set_product_search_query, only: [:show, :listed_product, :sold, :purchased_product, :likes]
 
   def destroy
     user.destroy
@@ -33,11 +34,11 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit(:email, :nickname)
   end
-  
+
   def set_user
     @user = User.find(params[:id])
   end

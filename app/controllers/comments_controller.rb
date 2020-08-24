@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      redirect_to product_path(params[:id])
     else
       flash[:alert] = "削除できていません"
       redirect_to product_path(params[:id])
