@@ -52,8 +52,3 @@ crumb :grandchild_category do |category|
   link "#{category.name}", category_path(category)
   parent :child_category
 end
-
-crumb :show_product do |product,category|
-  category = Category.find(params[:id])
-  product = Product.find(params[:id])
-  link "#{Product.name}"
