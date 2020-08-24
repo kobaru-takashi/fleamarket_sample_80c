@@ -72,6 +72,9 @@ gem 'devise'
 gem 'ancestry'
 gem 'devise'
 gem 'faker'
+gem 'ransack'
+gem 'active_hash'
+gem 'enum_help'
 
 group :production do
   gem 'unicorn'

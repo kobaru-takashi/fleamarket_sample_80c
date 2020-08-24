@@ -65,15 +65,31 @@
                 カテゴリー
                 %span.require 必須
               - if @product.persisted?
-                .listing-select-wrapper
+                - if @category_parent.present? && @category_child.present?
+                  .listing-select-wrapper
+                    .listing-select-wrapper__box
+                      =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_parent.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                  #children_wrapper.listing-select-wrapper__added
+                    .listing-select-wrapper__box
+                      =f.select :category_id, options_for_select(@category_children_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}, @category_child.id),{},{class:"listing-select-wrapper__box--select", id: "child_category"}
+                  #grandchildren_wrapper.listing-select-wrapper__added
+                    .listing-select-wrapper__box
+                      =f.collection_select :category_id, @category_grandchildren_edit, :id, :name, { include_blank: "選択してください",selected: @category_grandchild.id },{class: "listing-select-wrapper__box--select", id: "grandchild_category"}
+                - elsif @category_child.present?
                   .listing-select-wrapper__box
-                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_parent.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
-                #children_wrapper.listing-select-wrapper__added
+                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_child.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                  #children_wrapper.listing-select-wrapper__added
+                    .listing-select-wrapper__box
+                      =f.select :category_id, options_for_select(@category_children_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}, @category_grandchild.id),{},{class:"listing-select-wrapper__box--select", id: "child_category"}
+                  #grandchildren_wrapper.listing-select-wrapper__added
+                    .listing-select-wrapper__box
+                      =f.collection_select :category_id, @category_grandchildren_edit, :id, :name, { include_blank: "選択してください"},{class: "listing-select-wrapper__box--select", id: "grandchild_category"}
+                - else
                   .listing-select-wrapper__box
-                    =f.select :category_id, options_for_select(@category_children_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}, @category_child.id),{},{class:"listing-select-wrapper__box--select", id: "child_category"}
-                #grandchildren_wrapper.listing-select-wrapper__added
-                  .listing-select-wrapper__box
-                    =f.collection_select :category_id, @category_grandchildren_edit, :id, :name, { include_blank: "選択してください",selected: @category_grandchild.id },{class: "listing-select-wrapper__box--select", id: "grandchild_category"}
+                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_grandchild.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                  #children_wrapper.listing-select-wrapper__added
+                    .listing-select-wrapper__box
+                      =f.select :category_id, options_for_select(@category_grandchildren_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}),{include_blank: "選択してください"},{class:"listing-select-wrapper__box--select", id: "child_category"}
               - else
                 .listing-select-wrapper
                   .listing-select-wrapper__box
@@ -115,6 +131,6 @@
             =f.text_field :price, class: "new-product-text-price__input-price",placeholder:"例)300"
         .new-product-btn
           -if @product.persisted?
-            =f.submit "編集する", class: "new-product-btn-green"
+            =f.submit "編集する", class: "new-product-btn-green", id: "product-form-btn"
           -else
-            =f.submit "出品する",class:"new-product-btn-green"
+            =f.submit "出品する",class:"new-product-btn-green", id: "product-form-btn"
