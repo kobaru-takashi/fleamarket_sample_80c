@@ -60,6 +60,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @images = @product.images
     @images_first = @product.images.first
+    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
+    if user_signed_in?
+      @like = @product.likes.where(user_id: current_user.id).first
+    end
     @category_id = @product.category_id
     @category_grandchild = Category.find(@category_id)
     if @category_grandchild.parent.present?
@@ -68,8 +72,6 @@ class ProductsController < ApplicationController
         @category_parent = @category_child.parent
       end
     end
-    @like = @product.likes.where(user_id: current_user.id).first
-    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
     @comment = Comment.new
     @commentALL = @product.comments.includes(:user)
   end

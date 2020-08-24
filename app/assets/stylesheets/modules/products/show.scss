@@ -177,7 +177,21 @@
           padding-left: 15px;
 
           .item-button-container__left{
-
+            .item-button-container__left__show{
+              background-color:  #eeeeee;
+              padding: 10px 10px;
+              border-radius: 20px;
+              a{
+                text-decoration: none;
+              }
+              i{
+                color: black;
+              }
+              span{
+                color: black;
+                font-weight:bold;
+              }
+            }
           }
         }
         &__report{
