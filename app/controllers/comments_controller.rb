@@ -15,12 +15,13 @@ class CommentsController < ApplicationController
     end
   end
 
-  def update
-    @comment.update(delete_check:1)
-  end
-
   def destroy
-    @comment.destroy
+    if @comment.destroy
+      redirect_to product_path(params[:id])
+    else
+      flash[:alert] = "削除できていません"
+      redirect_to product_path(params[:id])
+    end
   end
 
 private
