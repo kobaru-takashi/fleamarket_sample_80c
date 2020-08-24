@@ -16,11 +16,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    if comment.destroy
-      redirect_to product_path(params[comment.product_id])
+    if @comment.destroy!
     else
-      redirect_to product_path(params[comment.product_id])
+      redirect_to product_path(@comment.product_id)
     end
   end
 

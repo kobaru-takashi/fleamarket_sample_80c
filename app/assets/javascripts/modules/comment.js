@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function(){
           ${comment_data.comment}
           </div>
           <div class="comment__complete-delete" data-index=${comment_data.id}>
-          <a rel="nofollow" data-method="delete" href="/comments/${comment_data.id}">削除</a>
+          <a rel="nofollow" data-method="delete" remote: true href="/comments/${comment_data.id}">削除</a>
           </div>
         </div>
       </div>
@@ -46,9 +46,9 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  // $(".comment-form__input").on('click','.comment__complete-delete',function(e){
-  //   e.preventDefault()
-  //   var index = $(this).data("index");
-  //   $(`.comment__box[data-index=${index}]`).remove();
-  // });
+  $(".comment-form__input").on('click','.comment__complete-delete',function(e){
+    e.preventDefault()
+    var index = $(this).data("index");
+    $(`.comment__box[data-index=${index}]`).remove();
+  });
 });
