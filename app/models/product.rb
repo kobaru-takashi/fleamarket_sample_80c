@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to :saler, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   has_many :images, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   def like_user(user_id)
     likes.find_by(user_id: user_id)
@@ -12,13 +13,13 @@ class Product < ApplicationRecord
   validates_associated :images
   validates_associated :category
 
-  def self.search(search)
-    if search
-      Product.where('name LIKE(?)', "%#{search}%")
-    else
-      Product.all
-    end
-  end
+  # def self.search(search)
+  #   if search
+  #     Product.where('name LIKE(?)', "%#{search}%")
+  #   else
+  #     Product.all
+  #   end
+  # end
 
 
   enum condition: {  新品・未使用: 1, 未使用に近い: 2, 目立った傷や汚れなし: 3, やや傷や汚れあり: 4, 傷や汚れあり: 5, 全体的に状態が悪い: 6 }

@@ -15,6 +15,7 @@
 ### Association
 - has_many :products
 - has_one :card
+- has_many :comments
 - has_one :address
 - has_many :likes
 
@@ -33,7 +34,7 @@
 |category_id|integer|null: false|
 |saler_id|integer|null: false|
 |buyer_id|integer|------|
-|likes_count|integer|-----|
+|likes_count|integer|------|
 
 ### Association
 - belongs_to :user
@@ -41,6 +42,7 @@
 - belongs_to :buyer, class_name: "User", optional: true
 - belongs_to :category
 - has_many :images, inverse_of: :product
+- has_many :comments, inverse_of: :product
 - accepts_nested_attributes_for :images
 - has_many :likes
 
@@ -58,10 +60,9 @@
 ## Cardsテーブル
 |Column|Type|Option|
 |------|----|------|
-|user＿id|integer|null: false|
-|customer_id|integer|null: false|
-|card_id|integer|null: false|
-
+|user＿id|integer|null: false, foreign_key: true|
+|customer_id|integer|null:false|
+|card_id|integer|null:false|
 
 ### Association
 - belongs_to :user
@@ -81,7 +82,6 @@
 |building|string|------|
 |telephone-number|integer|-----|
 
-
 ### Association
 - belongs_to :user
 
@@ -95,6 +95,29 @@
 ### Association
 - has_many :products
 - has_ancestry
+
+## Commentsテーブル
+|Column|Type|Option|
+|------|----|------|
+|comment|string|------|
+|delete_check|integer|default: 0|
+|user_id|integer|null: false|
+|product_id|integer|null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
+
+## Likesテーブル
+|Column|Type|Option|
+|------|----|------|
+|product_id|integer|null: false|
+|user_id|integer|null: false|
+
+### Association
+- belongs_to :product
+- belongs_to :user
 
 
 ## Commentsテーブル

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'get_category_children_form', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'search'
+      get 'search_detail'
     end
   end
 
@@ -46,6 +47,12 @@ Rails.application.routes.draw do
   end
 
   resources :card, only: [:new, :create, :index, :destroy] do
+  end
+  
+  resources :comments, only:[:create,:update,:destroy] do
+    member do
+      get 'restore'
+    end
   end
 
   resources :users do

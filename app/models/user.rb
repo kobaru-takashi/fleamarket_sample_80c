@@ -22,5 +22,6 @@ class User < ApplicationRecord
 
   # has_one :card, dependent: :destroy
   has_one :card
+  has_many :comments, dependent: :destroy
 
 end

@@ -5,32 +5,45 @@ $(document).on('turbolinks:load', function(){
       var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
       return html;
     }
+    function appendCheckbox(category){
+      let html =`
+                  <div class="search-category-check-box-form">
+                    <div class="search-category-check-box-form__btn js_search_checkbox">
+                      <input type="checkbox" value="${category.id}" name="q[category_id_in][]" id="q_category_id_in_${category.id}" >
+                    </div>
+                    <div class="search-category-check-box-form__label">
+                      <label for="q_category_id_in_${category.id}">${category.name}</label>
+                    </div>
+                  </div>
+                  `
+      return html;
+    }
+
     function appendChildrenBox(insertHTML){
       var childSelectHtml = '';
-      childSelectHtml = `<div class='listing-select-wrapper__added' id= 'children_wrapper'>
-      <div class='listing-select-wrapper__box'>
-      <select class="listing-select-wrapper__box--select" id="child_category" name="product[category_id]">
-      <option value="" data-category="">選択してください</option>
-      ${insertHTML}
-      <select>
-      </div>
-      </div>`;
+      childSelectHtml = `
+                       <div class='listing-select-wrapper__added' id= 'children_wrapper'>
+                          <div class='listing-select-wrapper__box'>
+                            <select class="listing-select-wrapper__box--select" id="child_category_search" name="q[category_id_start_all]">
+                              <option value="" data-category="">選択してください</option>
+                              ${insertHTML}
+                            <select>
+                          </div>
+                        </div>
+      `;
       $('.listing-product-detail__category').append(childSelectHtml);
     }
     function appendGrandchildrenBox(insertHTML){
       var grandchildSelectHtml = '';
-      grandchildSelectHtml = `<div class='listing-select-wrapper__added' id= 'grandchildren_wrapper'>
-      <div class='listing-select-wrapper__box'>
-      <select class="listing-select-wrapper__box--select" id="grandchild_category" name="product[category_id]">
-      <option value="" data-category="">選択してください</option>
-      ${insertHTML}
-      <select>
-      </div>
-      </div>`;
+      grandchildSelectHtml = `
+                            <div class='search-category-check-box' id= 'grandchildren_wrapper'>
+                              ${insertHTML}
+                            </div>
+                            `;
       $('.listing-product-detail__category').append(grandchildSelectHtml);
     }
-    $('#parent_category').on('change', function(){
-      var parentCategory = document.getElementById('parent_category').value;
+    $('#parent_category_search').on('change', function(){
+      var parentCategory = document.getElementById('parent_category_search').value;
       if (parentCategory != ""){
         $.ajax({
           url: '/products/get_category_children_form',
@@ -55,8 +68,8 @@ $(document).on('turbolinks:load', function(){
         $('#grandchildren_wrapper').remove();
       }
     });
-    $('.listing-product-detail__category').on('change', '#child_category', function(){
-      var childId = $('#child_category option:selected').data('category');
+    $('.listing-product-detail__category').on('change', '#child_category_search', function(){
+      var childId = $('#child_category_search option:selected').data('category');
       if (childId != ""){
         $.ajax({
           url: '/products/get_category_grandchildren',
@@ -69,7 +82,7 @@ $(document).on('turbolinks:load', function(){
             $('#grandchildren_wrapper').remove();
           var insertHTML = '';
           grandchildren.forEach(function(grandchild){
-            insertHTML += appendOption(grandchild);
+            insertHTML += appendCheckbox(grandchild);
           });
           appendGrandchildrenBox(insertHTML);
         }
@@ -84,13 +97,11 @@ $(document).on('turbolinks:load', function(){
 });
 });
 
+
 $(function(){
-  $('#product-form-btn').click(function() {
-    if ($('#child_category').val() == "") {
-      $('#child_category').remove();
-    }
-    if ($('#grandchild_category').val()== "") {
-      $('#grandchild_category').remove();
+  $('.search-drop__btn-green').click(function() {
+    if ($('#child_category_search').val() == "") {
+      $('#child_category_search').remove();
     }
   });
 });

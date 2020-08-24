@@ -13,8 +13,9 @@
         %span いいね！
         %span
           = product.likes_count
--else
-  .item-button-container__left__like
+- else
+  .item-button-container__left__show
     %i.fas.fa-heart
       %span いいね！
-      %span = product.like_count
+      %span 
+        = product.likes_count
