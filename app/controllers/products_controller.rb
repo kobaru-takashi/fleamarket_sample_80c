@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index,:show ]
+  before_action :authenticate_user!, except: [:index,:show, :search]
   before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search, :search_detail]
   before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail, ]
   before_action :set_product_search_query
@@ -70,6 +70,8 @@ class ProductsController < ApplicationController
     end
     @like = @product.likes.where(user_id: current_user.id).first
     @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
+    @comment = Comment.new
+    @commentALL = @product.comments.includes(:user)
   end
 
   def get_category_children_form
