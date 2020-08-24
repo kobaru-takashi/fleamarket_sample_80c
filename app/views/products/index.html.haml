@@ -1,5 +1,7 @@
 .header
   = render "header"
+- breadcrumb :root
+= render "layouts/breadcrumbs"
 .main
   .mainVisual
     .mainVisual-content
@@ -70,7 +72,7 @@
 
   .pickupCategory
     .pickupCategory-title ピックアップカテゴリー
-    .pickupCategory-subtitle 
+    .pickupCategory-subtitle
       = link_to "新規投稿商品", products_path, class:"title"
     .pickupCategory-lists
       = render partial:'product', collection: @products
@@ -83,12 +85,13 @@
         .pickupBrand-list
           = link_to product_path(product.id), data: {"turbolinks" => false} do
             .pickupBrand-list-tag
-              = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
-                -if product.buyer_id.present? 
-                .pickupCategory-list-tag__sold
-                  .pickupCategory-list-tag__sold__inner SOLD
+              -if @images.present?
+                = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
+                  -if product.buyer_id.present?
+                  .pickupCategory-list-tag__sold
+                    .pickupCategory-list-tag__sold__inner SOLD
           .pickupBrand-list-body
-            .pickupBrand-list-name 
+            .pickupBrand-list-name
               = product.name
             .pickupBrand-list-evaluation
               .pickupBrand-list-evaluation-left

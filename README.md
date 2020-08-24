@@ -120,4 +120,29 @@
 - belongs_to :user
 
 
-![er-fleamarket再訂正](https://user-images.githubusercontent.com/67687475/89699136-ec6e6600-d95f-11ea-8636-dfcc00853450.jpg)
+## Commentsテーブル
+|Column|Type|Option|
+|------|----|------|
+|comment|string|------|
+|delete_check|integer|default: 0|
+|user_id|integer|null: false|
+|product_id|integer|null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
+
+## Likesテーブル
+|Column|Type|Option|
+|------|----|------|
+|product_id|integer|null: false|
+|user_id|integer|null: false|
+
+### Association
+- belongs_to :product
+- belongs_to :user
+
+
+
+![er図-最終版](https://user-images.githubusercontent.com/67687475/90977694-3b341680-e582-11ea-9e39-e3f0c923638a.jpg)
