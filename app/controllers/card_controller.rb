@@ -1,15 +1,18 @@
 class CardController < ApplicationController
   require "payjp" 
-
+  after_action :session_clear, only: [:show]
   def new
     if current_user.card.present?
+      session[:previous_url] = request.referer
 
       redirect_to card_index_path
     end
   end
 
   def create
+    @session = session[:previous_url]
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+
     if params["payjp_token"].blank?
       redirect_to action: "new", alert: "クレジットカードを登録できませんでした。"
     else
@@ -17,9 +20,13 @@ class CardController < ApplicationController
         card: params["payjp_token"]
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      @session = session[:previous_url]
       if @card.save
+
+        # @card.save ? (redirect_to request.referer) : (render :new)
       else
         redirect_to action: "create"
+
       end
     end
   end
@@ -66,5 +73,8 @@ class CardController < ApplicationController
         redirect_to card_path(current_user.id), alert: "削除できませんでした。"
       end
     end
+  end
+  def session_clear
+    session[:previous_url].clear
   end
 end
