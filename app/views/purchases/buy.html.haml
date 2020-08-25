@@ -28,7 +28,7 @@
     .Purchase-main-payment
       .payment-top
         .payment-top-text 支払い方法
-        = link_to new_card_path, class: "payment-top-link" do
+        = link_to card_new_path(current_user), class: "payment-top-link" do
           変更する  >
       .payment-under
         .payment-under-credit

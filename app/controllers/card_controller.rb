@@ -17,7 +17,12 @@ class CardController < ApplicationController
         card: params["payjp_token"]
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
+      if @card.save 
+        if session["no_card"]
+          redirect_to product_path(session["no_card"])
+          session["no_card"] = nil
+        else
+        end
       else
         redirect_to action: "create"
       end
