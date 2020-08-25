@@ -31,6 +31,7 @@ class PurchasesController < ApplicationController
         @exp_month = @customer_card.exp_month.to_s
         @exp_year = @customer_card.exp_year.to_s.slice(2,3)
       else
+        session["no_card"] = params[:product_id]
         redirect_to card_new_path, alert: "クレジットカードの登録をして下さい"
       end
     else
