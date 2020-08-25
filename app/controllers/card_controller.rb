@@ -20,8 +20,8 @@ class CardController < ApplicationController
       if @card.save 
         if session["no_card"]
           redirect_to product_path(session["no_card"])
+          session["no_card"] = nil
         else
-          
         end
       else
         redirect_to action: "create"
