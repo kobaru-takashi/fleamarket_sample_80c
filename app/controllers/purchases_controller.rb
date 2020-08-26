@@ -71,8 +71,8 @@ class PurchasesController < ApplicationController
   private
 
   def correct_user
-    @user = User.find(params[:id])
-    @product = Product.find(params[:id])
+    @user = current_user
+    @product = Product.find(params[:product_id])
     unless @user.id != @product.user_id
       redirect_to root_path
     end

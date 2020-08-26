@@ -12,6 +12,9 @@
           -if @images[0].src.blank?
             .image-main-tag
               = image_tag "logo.png", class: "product-image-tag-furima"
+                - if @product.buyer_id.present?
+                .products-box_photo__sold
+                  .products-box_photo__sold__inner SOLD
           -else
             - if @product.buyer_id.present?
               .products-box_photo__sold

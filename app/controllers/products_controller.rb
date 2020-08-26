@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail ]
   before_action :set_product_search_query
   before_action :correct_user,only: [:edit, :update, :destroy]
-  before_action :birthday, only: [:index, :new, :create, :edit,:show, :search,:search_detail]
+  before_action :birthday, only: [:index, :new, :create, :edit,:show,:update, :search,:search_detail]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
