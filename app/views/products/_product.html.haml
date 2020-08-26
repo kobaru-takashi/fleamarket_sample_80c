@@ -4,6 +4,9 @@
       -if product.images.first.src.blank?
         .pickupCategory-list-image-furima
           = image_tag "logo.png", class: "furima-logo-category"
+            -if product.buyer_id.present?
+            .pickupCategory-list-tag__sold
+              .pickupCategory-list-tag__sold__inner SOLD
       -else
         = image_tag product.images.first.src.url, class: "pickupCategory-list-image"
           -if product.buyer_id.present?

@@ -88,6 +88,9 @@
               -if product.images.first.src.blank?
                 .pickupBrand-list-image-furima
                   = image_tag "logo.png", class: "furima-logo-brand"
+                    -if product.buyer_id.present?
+                    .pickupCategory-list-tag__sold
+                      .pickupCategory-list-tag__sold__inner SOLD
               -else
                 = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
                   -if product.buyer_id.present?
