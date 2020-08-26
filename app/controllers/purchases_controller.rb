@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :correct_user ,only:[:buy, :pay]
   require "payjp"
 
   def buy
@@ -64,6 +65,16 @@ class PurchasesController < ApplicationController
       @product_buyer= Product.find(params[:product_id])
       @product_buyer.update( buyer_id: current_user.id)
       end
+    end
+  end
+
+  private
+
+  def correct_user
+    @user = User.find(params[:id])
+    @product = Product.find(params[:id])
+    unless @user.id != @product.user_id
+      redirect_to root_path
     end
   end
 end

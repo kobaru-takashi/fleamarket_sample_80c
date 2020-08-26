@@ -22,6 +22,15 @@ Rails.application.routes.draw do
       get 'search'
       get 'search_detail'
     end
+
+    resource :purchases do
+      member do
+        get  "buy"
+        post "pay"
+        get 'pay', to: 'purchases#pay', as: 'paied'
+      end
+    end
+
   end
 
   resources :users, only: [:show] do
@@ -30,34 +39,18 @@ Rails.application.routes.draw do
       get 'purchased_product', to: 'users#purchased_product', as: 'purchased_product'
       get 'listed_product', to: 'users#listed_product', as: 'listed_product'
       get 'sold', to: 'users#sold', as: 'sold'
+      resources :likes, only: [:create, :destroy, :show]
     end
   end
 
   resources :categories, only: [:index, :show]
 
-
-  resources :products do
-    resource :purchases do
-      member do
-        get  "buy"
-        post "pay"
-        get 'pay', to: 'purchases#pay', as: 'paied'
-      end
-    end
-  end
-
   resources :card, only: [:new, :create, :index, :destroy] do
   end
-  
+
   resources :comments, only:[:create,:update,:destroy] do
     member do
       get 'restore'
-    end
-  end
-
-  resources :users do
-    resources :products do
-     resources :likes, only: [:create, :destroy, :show]
     end
   end
 

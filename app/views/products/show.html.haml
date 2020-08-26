@@ -9,42 +9,50 @@
         %h2= @product.name
       .product-image
         .image-main
-          - if @product.buyer_id.present?
-            .products-box_photo__sold
-              .products-box_photo__sold__inner SOLD
-          -if @images[0].present?
-            .image-main-tag.show
-              = image_tag @images[0].src.url, class: "product-image-tag"
-          -if @images[1].present?
-            .image-main-tag.not-show
-              = image_tag @images[1].src.url, class: "product-image-tag"
-          -if @images[2].present?
-            .image-main-tag.not-show
-              = image_tag @images[2].src.url, class: "product-image-tag"
-          -if @images[3].present?
-            .image-main-tag.not-show
-              = image_tag @images[3].src.url, class: "product-image-tag"
-          -if @images[4].present?
-            .image-main-tag.not-show
-              = image_tag @images[4].src.url, class: "product-image-tag"
+          -if @images[0].src.blank?
+            .image-main-tag
+              = image_tag "logo.png", class: "product-image-tag-furima"
+          -else
+            - if @product.buyer_id.present?
+              .products-box_photo__sold
+                .products-box_photo__sold__inner SOLD
+            -if @images[0].present?
+              .image-main-tag.show
+                = image_tag @images[0].src.url, class: "product-image-tag"
+            -if @images[1].present?
+              .image-main-tag.not-show
+                = image_tag @images[1].src.url, class: "product-image-tag"
+            -if @images[2].present?
+              .image-main-tag.not-show
+                = image_tag @images[2].src.url, class: "product-image-tag"
+            -if @images[3].present?
+              .image-main-tag.not-show
+                = image_tag @images[3].src.url, class: "product-image-tag"
+            -if @images[4].present?
+              .image-main-tag.not-show
+                = image_tag @images[4].src.url, class: "product-image-tag"
 
         .image_box
           .image-sub
-            - if @images[0].present?
-              .image-sub-list.active
-                = image_tag @images[0].src.url, class:"product-image-list"
-            - if @images[1].present?
+            -if @images[0].src.blank?
               .image-sub-list
-                = image_tag @images[1].src.url, class:"product-image-list"
-            -if @images[2].present?
-              .image-sub-list
-                = image_tag @images[2].src.url, class:"product-image-list"
-            -if @images[3].present?
-              .image-sub-list
-                = image_tag @images[3].src.url, class:"product-image-list"
-            -if @images[4].present?
-              .image-sub-list
-                = image_tag @images[4].src.url, class:"product-image-list"
+                出品エラーが起こりました。写真が表示出来ません。
+            -else
+              - if @images[0].present?
+                .image-sub-list.active
+                  = image_tag @images[0].src.url, class:"product-image-list"
+              - if @images[1].present?
+                .image-sub-list
+                  = image_tag @images[1].src.url, class:"product-image-list"
+              -if @images[2].present?
+                .image-sub-list
+                  = image_tag @images[2].src.url, class:"product-image-list"
+              -if @images[3].present?
+                .image-sub-list
+                  = image_tag @images[3].src.url, class:"product-image-list"
+              -if @images[4].present?
+                .image-sub-list
+                  = image_tag @images[4].src.url, class:"product-image-list"
 
       .product-price
         .price

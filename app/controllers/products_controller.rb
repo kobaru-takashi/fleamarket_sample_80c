@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show, :search]
-  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search, :search_detail]
-  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail, ]
+  before_action :set_parents, only: [:index,  :new, :create, :edit, :show, :search, :search_detail, :update]
+  before_action :set_parent_array, only: [:new, :create, :edit, :update, :search, :search_detail ]
   before_action :set_product_search_query
+  before_action :correct_user,only: [:edit, :update, :destroy]
+  before_action :birthday, only: [:index, :new, :create, :edit,:show, :search,:search_detail]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').limit(5)
@@ -17,9 +19,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
     else
-      redirect_to new_product_path
+      render :new
     end
   end
 
@@ -33,6 +34,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @product.images.new
     @category_grandchild = @product.category
     @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
     if @category_grandchild.parent.present?
@@ -48,6 +50,8 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @category_grandchild = @product.category
+    @category_grandchildren_edit = Category.find_by(id: @category_grandchild.id ).children
     if @product.update(product_params)
       redirect_to product_path(params[:id])
     else
@@ -111,6 +115,13 @@ class ProductsController < ApplicationController
 
   def set_parent_array
     @category_parent_array = Category.where(ancestry: nil)
+  end
+
+  def correct_user
+    @product = Product.find(params[:id])
+    unless @product.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
 end

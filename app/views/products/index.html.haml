@@ -85,25 +85,29 @@
         .pickupBrand-list
           = link_to product_path(product.id), data: {"turbolinks" => false} do
             .pickupBrand-list-tag
-              -if @images.present?
+              -if product.images.first.src.blank?
+                .pickupBrand-list-image-furima
+                  = image_tag "logo.png", class: "furima-logo-brand"
+              -else
                 = image_tag product.images.first.src.url, class: "pickupBrand-list-image",width: "220px"
                   -if product.buyer_id.present?
                   .pickupCategory-list-tag__sold
                     .pickupCategory-list-tag__sold__inner SOLD
-          .pickupBrand-list-body
-            .pickupBrand-list-name
-              = product.name
-            .pickupBrand-list-evaluation
-              .pickupBrand-list-evaluation-left
-                .pickupBrand-list-evaluation-price
-                  %ul
-                    %li
-                      = product.price.to_s(:delimited)
-                      円
-                    %li.likes-count
-                      = icon('fa', 'heart')
-                      = product.likes_count
-                  %p (税込)
+            .pickupBrand-list-body
+              .pickupBrand-list-name
+                = product.name
+              .pickupBrand-list-evaluation
+                .pickupBrand-list-evaluation-left
+                  .pickupBrand-list-evaluation-price
+                    %ul
+                      %li
+                        = product.price.to_s(:delimited)
+                        円
+                      %li.likes-count
+                        = icon('fa', 'heart')
+                        = product.likes_count
+                    %p (税込)
+
 %aside.appBanner
   = render 'aside'
 .footer

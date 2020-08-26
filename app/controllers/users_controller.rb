@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :set_product_search_query, only: [:show]
   before_action :set_parents, only: [:show, :listed_product,:sold, :purchased_product, :likes]
   before_action :set_product_search_query, only: [:show, :listed_product, :sold, :purchased_product, :likes]
+  before_action :correct_user, only: [:show, :destroy, :listed_product, :sold, :purchased_product, :likes]
+  before_action :birthday_mypage, only: [:show, :listed_product,:sold, :purchased_product, :likes]
 
   def destroy
     user.destroy
@@ -13,6 +15,8 @@ class UsersController < ApplicationController
     unless @user == current_user
       redirect_to root_path(@user)
     end
+    @products = Product.where(params[:id])
+    @products_mine = @products.where(user_id: current_user.id)
   end
 
   def listed_product
@@ -26,8 +30,7 @@ class UsersController < ApplicationController
 
   def purchased_product
     @items = Product.where(params[:id])
-    @purchased_items = @items.where(buyer_id: current_user.id)
-  end
+    @purchased_items = @items.where(buyer_id: current_user.id)  end
 
   def likes
     @user = User.find(params[:user_id])
@@ -45,6 +48,19 @@ class UsersController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def correct_user
+    unless current_user
+      redirect_to root_path(@user)
+    end
+  end
+
+  def birthday_mypage
+    t = Date.today
+    @today = t.strftime("%m-%d")
+    b = current_user.birth_date
+    @birthday = b.strftime("%m-%d")
   end
 
 end

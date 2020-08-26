@@ -14,12 +14,13 @@
               #image-box
                 #previews
                   - @product.images.each_with_index do |image, i|
-                    .preview-box{id: "preview-box__#{i}"}
-                      .upper-box
-                        = image_tag image.src.url, data: { index: i}, class:"preview-image",alt:"preview"
-                      .lower-box
-                        .delete-box-edit{id:"delete_btn_#{i}"}
-                          %span 削除
+                    - if image.persisted?
+                      .preview-box{id: "preview-box__#{i}"}
+                        .upper-box
+                          = image_tag image.src.url, data: { index: i}, class:"preview-image",alt:"preview"
+                        .lower-box
+                          .delete-box-edit{id:"delete_btn_#{i}"}
+                            %span 削除
                 #labels
                   = f.fields_for :images do |image|
                     #label_edit{class: "label-content-#{image.index}"}
@@ -86,7 +87,7 @@
                       =f.collection_select :category_id, @category_grandchildren_edit, :id, :name, { include_blank: "選択してください"},{class: "listing-select-wrapper__box--select", id: "grandchild_category"}
                 - else
                   .listing-select-wrapper__box
-                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_grandchild.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
+                    =f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: "選択してください", selected: @category_grandchild&.id}, { class: "listing-select-wrapper__box--select", id: "parent_category"}
                   #children_wrapper.listing-select-wrapper__added
                     .listing-select-wrapper__box
                       =f.select :category_id, options_for_select(@category_grandchildren_edit.map{|c|[c[:name],c[:id],{'data-category'=>c[:id]}]}),{include_blank: "選択してください"},{class:"listing-select-wrapper__box--select", id: "child_category"}

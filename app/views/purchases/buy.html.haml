@@ -5,8 +5,12 @@
   .Purchase-main-view
     .Purchase-main-title 購入内容の確認
     .Purchase-main-contents
-      .contents-image
-        = image_tag @images.src.url, width: "100", class: "contents-image-tag"
+      -if @images.src.blank?
+        .contents-image-furima
+          = image_tag "logo.png", class: "contents-image-tag-furima"
+      -else
+        .contents-image
+          = image_tag @images.src.url, width: "100", class: "contents-image-tag"
       .contents-content
         .content-text
           = @product.name
@@ -16,14 +20,14 @@
           .price
             ¥
             = @product.price.to_s(:delimited)
-            %span.tax (税込) 
+            %span.tax (税込)
           .shpping_fee
             %span 送料：
             %span
               = @product.delivery_fee
     .Purchase-main-money
       .money-text 支払い金額
-      .money-number 
+      .money-number
         = "#{@product.price}" + "円"
     .Purchase-main-payment
       .payment-top
@@ -35,8 +39,8 @@
           クレジットカード
         .payment-under-personal-number
           = "**** **** **** " + @customer_card.last4
-        .payment-under-expiration-date 
-          有効期限 
+        .payment-under-expiration-date
+          有効期限
           .payment-under-expiration-date-number
             = @exp_month + " / " + @exp_year
         .payment-under-logo
@@ -62,4 +66,3 @@
 
 .Purchase-footer-link
   = render "card/Purchase-footer"
-

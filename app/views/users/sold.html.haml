@@ -11,12 +11,16 @@
             .pickupBrand-list
               =link_to product_path(product), class: "main__table__list__item" do
                 .pickupBrand-list-tag
-                  = image_tag product.images[0].src.url, class: "pickupBrand-list-image",width: "300px"
-                    -if product.buyer_id.present? 
-                    .pickupCategory-list-tag__sold
-                      .pickupCategory-list-tag__sold__inner SOLD
+                  -if product.images[0].src.blank?
+                    .pickupBrand-list-image-furima
+                      = image_tag "logo.png", class: "furima-logo-brand", width: "300px"
+                  -else
+                    = image_tag product.images[0].src.url, class: "pickupBrand-list-image",width: "300px"
+                      -if product.buyer_id.present?
+                      .pickupCategory-list-tag__sold
+                        .pickupCategory-list-tag__sold__inner SOLD
               .pickupBrand-list-body
-                .pickupBrand-list-name 
+                .pickupBrand-list-name
                   = product.name
                 .pickupBrand-list-evaluation
                   .pickupBrand-list-evaluation-left

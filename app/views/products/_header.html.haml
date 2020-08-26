@@ -36,18 +36,24 @@
       %li.list-left__brand
         =link_to "#", class: "brand-link" do
           ブランド
+    -if user_signed_in?
+      - if @today == @birthday
+        .birthday_header
+          = image_tag "happy-birthday-1169669_1920.png"
     - if user_signed_in?
       %ul.list-right
         %li.list-right__sign-in
           = link_to user_path(current_user), data: {"turbolinks" => false}, class: "list-right__sign-in-link" do
             マイページ
         %li.list-right__sign-in
+          = link_to user_path(current_user), data: {"turbolinks" => false}, class: "list-right__sign-in-link" do
+            = image_tag "member_photo_noimage_thumb.png", class: "list-right__sign-icon"
+        %li.list-right__sign-in
+          = link_to user_path(current_user), data: {"turbolinks" => false}, class: "list-right__sign-in-link" do
+            = current_user.nickname
+        %li.list-right__sign-in
           = link_to destroy_user_session_path, method: :delete, class: "list-right__sign-out" do
             ログアウト
-        %li.list-right__sign-in
-          = image_tag "member_photo_noimage_thumb.png", class: "list-right__sign-icon"
-        %li.list-right__sign-in
-          = current_user.nickname
     - else
       %ul.list-right
         %li.list-raight__sign-in
