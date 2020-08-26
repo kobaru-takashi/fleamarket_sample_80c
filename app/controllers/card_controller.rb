@@ -1,5 +1,5 @@
 class CardController < ApplicationController
-  require "payjp" 
+  require "payjp"
 
   def new
     if current_user.card.present?
@@ -27,7 +27,7 @@ class CardController < ApplicationController
   def index
     @card = Card.find_by(user_id: current_user.id)
     if @card.blank?
-      redirect_to action: "new" 
+      redirect_to action: "new"
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(@card.customer_id)

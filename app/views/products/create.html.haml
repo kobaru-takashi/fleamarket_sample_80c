@@ -1,0 +1,11 @@
+.Header
+  .Header__inner
+    =link_to root_path ,class:"LogoFurima__link" do
+      =image_tag "logo.png",class:"LogoFurima__image"
+.Account
+  .Account__container
+    %h2.create_address 登録が完了しました。
+    = link_to "トップへ戻る", root_path, class: "route-to-top"
+    = link_to "商品詳細ページへ", product_path(@product.id), class: "route-to-top"
+.footer
+  = render 'products/footer'

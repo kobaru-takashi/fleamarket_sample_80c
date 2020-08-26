@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_parents, only: [:index, :show]
   before_action :set_parent_array, only: [:show]
   before_action :set_product_search_query, only: [:index, :show]
+  before_action :birthday, only: [:index, :show]
 
   def index
     @parents = Category.where(ancestry: nil)

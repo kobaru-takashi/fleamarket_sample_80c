@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
-  accepts_nested_attributes_for :images, allow_destroy: true
+  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc{ |attributes| attributes['src'].blank?}
   validates_associated :images
   validates_associated :category
 

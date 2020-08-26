@@ -46,9 +46,9 @@
             position: absolute;
             z-index: 1;
             border-style: solid;
-    
+
             &__inner{
-              top: -60px;
+              top: -64px;
               font-size: 20px;
               position: absolute;
               left: 0;
@@ -63,6 +63,15 @@
         .pickupBrand-list-image{
           width: 100%;
           height: 150px;
+        }
+        .pickupBrand-list-image-furima{
+          width: 100%;
+          height: 150px;
+          .furima-logo-brand{
+            height: 30%;
+            width: 60%;
+            margin: 40px;
+          }
         }
         .pickupBrand-list-body{
           background-color: white;

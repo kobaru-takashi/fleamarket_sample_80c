@@ -1,22 +1,25 @@
 .pickupCategory-list__list
   = link_to product_path(product.id), data: {"turbolinks" => false} do
     .pickupCategory-list-tag
-      -if @images.present?
+      -if product.images.first.src.blank?
+        .pickupCategory-list-image-furima
+          = image_tag "logo.png", class: "furima-logo-category"
+      -else
         = image_tag product.images.first.src.url, class: "pickupCategory-list-image"
           -if product.buyer_id.present?
           .pickupCategory-list-tag__sold
-          .pickupCategory-list-tag__sold__inner SOLD
-  .pickupCategory-list-body
-    .pickupCategory-list-name
-      = product.name
-    .pickupCategory-list-evaluation
-      .pickupCategory-list-evaluation-left
-        .pickupCategory-list-evaluation-price
-          %ul
-            %li
-              = product.price.to_s(:delimited)
-              円
-            %li.favorite-count
-              = icon('fa', 'heart')
-              = product.likes_count
-          %p (税込)
+            .pickupCategory-list-tag__sold__inner SOLD
+    .pickupCategory-list-body
+      .pickupCategory-list-name
+        = product.name
+      .pickupCategory-list-evaluation
+        .pickupCategory-list-evaluation-left
+          .pickupCategory-list-evaluation-price
+            %ul
+              %li
+                = product.price.to_s(:delimited)
+                円
+              %li.favorite-count
+                = icon('fa', 'heart')
+                = product.likes_count
+            %p (税込)

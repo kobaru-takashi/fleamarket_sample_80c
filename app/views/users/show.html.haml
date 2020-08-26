@@ -10,7 +10,7 @@
       .MyPage__userInfo
         ようこそ #{@user.nickname} さん
       .MyPage__userInfo
-        評価  ３  出品数  ５
+        評価  ３  出品数 #{@products_mine.count}
     .MyPage__infoLists
       .MyPage__infoTitle
         お知らせ
@@ -24,8 +24,26 @@
         《最大10万円相当》売れたら売上金が2倍のチャンス！本日スタート！
       .MyPage__info
         3日後、8%還元クーポンの有効期限が切れます！タップして詳細を確認しましょう。
-    .MyPage__content
-      = image_tag "logo.png", class:"MyPage__logoFurima"
+    -# .MyPage__content
+    -#   = image_tag "logo.png", class:"MyPage__logoFurima"
 
 .footer
   = render 'products/footer'
+- if @today == @birthday
+  %ul.birthday_balloons
+    %li.birthday_balloon-1
+      = image_tag "ballon-25739_1280.png"
+    %li.birthday_balloon-2
+      = image_tag "balloon-25734_1280.png"
+    %li.birthday_balloon-3
+      = image_tag "balloons-25737_1280.png"
+    %li.birthday_balloon-4
+      = image_tag "balloons-1903713_1280.png"
+    %li.birthday_balloon-5
+      = image_tag "balloons-5479682_1280.png"
+    %li.birthday_balloon-6
+      = image_tag "heart-balloons-4924654_1920.png"
+    %li.birthday_balloon-7
+      = image_tag "balloons-5479682_1280.png"
+    %li.birthday_image
+      = image_tag "birthday-2496221_1280.png"

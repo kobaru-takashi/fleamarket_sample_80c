@@ -1,14 +1,15 @@
 .MyPage{
   display: flex;
   height: 100vh;
-  border-top: 3px solid #272727;
+  border-top: 3px solid #f8f8f8;
+  height: 100%;
   &__sideBar{
     width: 300px;
-    background-color: #272727;
+    background-color: #f8f8f8;
     border-bottom: 3px solid #f8f8f8;
     .MyPage__lists{
-      background-color: #272727;
-      margin: 10px;
+      background-color: #f8f8f8;
+      padding: 10px;
       .MyPage__list{
         height: 40px;
         margin-top: 10px;
@@ -27,12 +28,13 @@
   }
   &__main{
     width: calc(100vw - 300px);
-    background-color: #ffffff;
+    background-color: #f8f8f8;
     .MyPage__user{
       text-align: center;
       margin-bottom: 30px;
-      background-color: #cccccc;
+      background-color: #ffffff;
       padding: 20px;
+      position: relative;
       .MyPage__logo{
         width: 150px;
         height: 150px;
@@ -40,10 +42,11 @@
       .MyPage__userInfo{
         font-weight: bold;
         font-size: 20px;
+        }
       }
-    }
     .MyPage__infoLists{
-      margin: 50px 0;
+      margin: 50px 20px;
+      background-color: #ffffff;
       .MyPage__infoTitle{
         font-weight: bold;
         font-size: 20px;
@@ -66,5 +69,183 @@
         height: 100px;
       }
     }
+  }
+}
+.birthday_balloons{
+  display: flex;
+  background-color: #272727;
+  text-align: center;
+  margin: 0 auto;
+  .birthday_balloon-1 {
+    -webkit-animation:fuwafuwa1 20s infinite linear alternate;
+    animation:fuwafuwa1 20s infinite linear alternate;
+    img{
+      width: 70px;
+      height: 70px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa1 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(200px, -300px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(400px, -650px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(650px, -1200px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(650px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa1 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(200px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d(400px, -650px, -200px) rotate(0deg);}
+    80% {transform:translate3d(600px, -1200px, -200px) rotate(0deg);}
+    100% {transform:translate3d(600px, -1500px, 200px)rotate(5deg);}
+  }
+  .birthday_balloon-2 {
+    -webkit-animation:fuwafuwa2 20s infinite linear alternate;
+    animation:fuwafuwa2 20s infinite linear alternate;
+    img{
+      width: 70px;
+      height: 70px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa2 {
+  0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+  50% {-webkit-transform:translate3d(200px, -800px, -200px) rotate(0deg);}
+  100% {-webkit-transform:translate3d(200px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa2 {
+  0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+  50% {transform:translate3d(100px, -800px, 100px) rotate(0deg);}
+  100% {transform:translate3d(200px, -1500px, 200px)rotate(5deg);}
+  }
+  .birthday_balloon-3 {
+    -webkit-animation:fuwafuwa3 15s infinite linear alternate;
+    animation:fuwafuwa3 15s infinite linear alternate;
+    img{
+      width: 90px;
+      height: 90px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa3 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(10px, -300px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(30px, -700px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(50px, -1000px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(100px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa3 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d( 10px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d( 30px, -700px, -200px) rotate(0deg);}
+    80% {transform:translate3d( 50px, -1000px, -200px) rotate(0deg);}
+    100% {transform:translate3d( 100px, -1500px, 200px)rotate(5deg);}
+  }
+  .birthday_balloon-4 {
+    -webkit-animation:fuwafuwa4 15s infinite linear alternate;
+    animation:fuwafuwa4 15s infinite linear alternate;
+    img{
+      width: 120px;
+      height: 120px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa4 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(20px, -200px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(100px, -600px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(200px, -1000px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(400px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa4 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(20px, -200px, 400px) rotate(0deg);}
+    50% {transform:translate3d(100px, -600px, -200px) rotate(0deg);}
+    80% {transform:translate3d(200px, -1000px, -200px) rotate(0deg);}
+    100% {transform:translate3d(400px, -1500px, 200px)rotate(5deg);}
+  }
+  .birthday_balloon-5 {
+    -webkit-animation:fuwafuwa5 20s infinite linear alternate;
+    animation:fuwafuwa5 20s infinite linear alternate;
+    img{
+      width: 120px;
+      height: 120px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa5 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(20px, -200px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(100px, -600px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(200px, -1000px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(400px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa5 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(20px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d(150px, -500px, -200px) rotate(0deg);}
+    80% {transform:translate3d(250px, -1000px, -200px) rotate(0deg);}
+    100% {transform:translate3d(400px, -1500px, -200px)rotate(5deg);}
+  }
+  .birthday_balloon-6 {
+    -webkit-animation:fuwafuwa6 25s infinite linear alternate;
+    animation:fuwafuwa6 25s infinite linear alternate;
+    img{
+      width: 120px;
+      height: 120px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa6 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(20px, -200px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(50px, -600px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(150px, -1000px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(200px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa6 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(20px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d(50px, -500px, -200px) rotate(0deg);}
+    80% {transform:translate3d(150px, -1000px, -200px) rotate(0deg);}
+    100% {transform:translate3d(200px, -1500px, -200px)rotate(5deg);}
+  }
+  .birthday_balloon-7 {
+    -webkit-animation:fuwafuwa7 15s infinite linear alternate;
+    animation:fuwafuwa7 15s infinite linear alternate;
+    img{
+      width: 80px;
+      height: 80px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa7 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(40px, -300px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(120px, -650px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(150px, -1200px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(250px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa7 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(40px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d(120px, -650px, -200px) rotate(0deg);}
+    80% {transform:translate3d(150px, -1200px, -200px) rotate(0deg);}
+    100% {transform:translate3d(250px, -1500px, 200px)rotate(5deg);}
+  }
+  .birthday_image{
+    -webkit-animation:fuwafuwa8 15s infinite linear alternate;
+    animation:fuwafuwa8 15s infinite linear alternate;
+    img{
+      width: 220px;
+      height: 220px;
+    }
+  }
+  @-webkit-keyframes fuwafuwa8 {
+    0% {-webkit-transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {-webkit-transform:translate3d(-150px, -300px, 400px) rotate(0deg);}
+    50% {-webkit-transform:translate3d(-200px, -650px, -200px) rotate(0deg);}
+    80% {-webkit-transform:translate3d(-300px, -1200px, -200px) rotate(0deg);}
+    100% {-webkit-transform:translate3d(-500px, -1500px, 200px)rotate(5deg);}
+  }
+  @keyframes fuwafuwa8 {
+    0% {transform:translate3d(0, 0, 0) rotate(-5deg);}
+    30% {transform:translate3d(-150px, -300px, 400px) rotate(0deg);}
+    50% {transform:translate3d(-200px, -650px, -200px) rotate(0deg);}
+    80% {transform:translate3d(-300px, -1200px, -200px) rotate(0deg);}
+    100% {transform:translate3d(-500px, -1500px, 200px)rotate(5deg);}
   }
 }
