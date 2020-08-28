@@ -64,7 +64,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @images = @product.images
     @images_first = @product.images.first
-    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
     if user_signed_in?
       @like = @product.likes.where(user_id: current_user.id).first
     end
