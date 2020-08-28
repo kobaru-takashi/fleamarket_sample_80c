@@ -76,6 +76,13 @@ class ProductsController < ApplicationController
         @category_parent = @category_child.parent
       end
     end
+    if @category_parent.present? && @category_child.present?
+      @products = @category_parent.set_products.sample(12)
+    elsif @category_child.present?
+      @products = @category_child.set_products.sample(12)
+    else
+      @products = @category_grandchild.set_products.sample(12)
+    end
     @comment = Comment.new
     @commentALL = @product.comments.includes(:user)
   end
@@ -123,5 +130,6 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
 
 end
