@@ -64,7 +64,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @images = @product.images
     @images_first = @product.images.first
-    @products = Product.includes(:images).order('created_at DESC') .where.not(id:@product.id)
     if user_signed_in?
       @like = @product.likes.where(user_id: current_user.id).first
     end
@@ -75,6 +74,13 @@ class ProductsController < ApplicationController
       if @category_child.parent.present?
         @category_parent = @category_child.parent
       end
+    end
+    if @category_parent.present? && @category_child.present?
+      @products = @category_parent.set_products.sample(12)
+    elsif @category_child.present?
+      @products = @category_child.set_products.sample(12)
+    else
+      @products = @category_grandchild.set_products.sample(12)
     end
     @comment = Comment.new
     @commentALL = @product.comments.includes(:user)
@@ -123,5 +129,6 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
 
 end
