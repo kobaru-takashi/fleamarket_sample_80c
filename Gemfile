@@ -75,7 +75,7 @@ gem 'faker'
 gem 'ransack'
 gem 'active_hash'
 gem 'enum_help'
-
+gem "actionview", ">= 6.0.3.3"
 group :production do
   gem 'unicorn'
 end
